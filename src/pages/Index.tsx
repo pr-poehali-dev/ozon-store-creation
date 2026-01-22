@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +17,8 @@ interface Product {
   category: string;
   rating: number;
   reviews: number;
+  featured?: boolean;
+  description?: string;
 }
 
 interface CartItem extends Product {
@@ -25,6 +28,18 @@ interface CartItem extends Product {
 const mockProducts: Product[] = [
   {
     id: 1,
+    name: 'Настенный светильник "Ворон с лампой"',
+    price: 8990,
+    oldPrice: 12990,
+    image: 'https://cdn.poehali.dev/files/7419f0fb-b7f0-4b17-9cef-d7c93e9dadf9.png',
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 347,
+    featured: true,
+    description: 'Предмет искусства, который не просто украшает пространство, но и пробуждает воображение, вдохновляет на размышления'
+  },
+  {
+    id: 2,
     name: 'Беспроводные наушники Premium',
     price: 5990,
     oldPrice: 7990,
@@ -34,7 +49,7 @@ const mockProducts: Product[] = [
     reviews: 234
   },
   {
-    id: 2,
+    id: 3,
     name: 'Умные часы Sport Pro',
     price: 12990,
     oldPrice: 15990,
@@ -44,7 +59,7 @@ const mockProducts: Product[] = [
     reviews: 189
   },
   {
-    id: 3,
+    id: 4,
     name: 'Портативная колонка Bass Max',
     price: 3490,
     image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500',
@@ -53,7 +68,7 @@ const mockProducts: Product[] = [
     reviews: 156
   },
   {
-    id: 4,
+    id: 5,
     name: 'Игровая мышь RGB Pro',
     price: 2790,
     oldPrice: 3490,
@@ -63,7 +78,7 @@ const mockProducts: Product[] = [
     reviews: 312
   },
   {
-    id: 5,
+    id: 6,
     name: 'Механическая клавиатура LED',
     price: 4990,
     image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500',
@@ -72,7 +87,7 @@ const mockProducts: Product[] = [
     reviews: 98
   },
   {
-    id: 6,
+    id: 7,
     name: 'Веб-камера HD 1080p',
     price: 3290,
     oldPrice: 4290,
@@ -84,11 +99,12 @@ const mockProducts: Product[] = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [activeSection, setActiveSection] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState('Все');
 
-  const categories = ['Все', 'Электроника', 'Аудио', 'Аксессуары'];
+  const categories = ['Все', 'Интерьер', 'Электроника', 'Аудио', 'Аксессуары'];
 
   const addToCart = (product: Product) => {
     setCart(prev => {
@@ -266,7 +282,10 @@ const Index = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mockProducts.slice(0, 6).map(product => (
                   <Card key={product.id} className="overflow-hidden group hover:shadow-xl transition-all duration-300 animate-scale-in">
-                    <div className="relative overflow-hidden">
+                    <div 
+                      className="relative overflow-hidden cursor-pointer"
+                      onClick={() => product.featured && navigate(`/product/${product.id}`)}
+                    >
                       <img
                         src={product.image}
                         alt={product.name}
@@ -277,12 +296,22 @@ const Index = () => {
                           -{Math.round((1 - product.price / product.oldPrice) * 100)}%
                         </Badge>
                       )}
+                      {product.featured && (
+                        <Badge className="absolute top-4 left-4 bg-primary">
+                          ⭐ Хит
+                        </Badge>
+                      )}
                     </div>
                     <div className="p-6">
                       <Badge variant="secondary" className="mb-2">
                         {product.category}
                       </Badge>
-                      <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+                      <h3 
+                        className="font-semibold text-lg mb-2 cursor-pointer hover:text-primary transition-colors"
+                        onClick={() => product.featured && navigate(`/product/${product.id}`)}
+                      >
+                        {product.name}
+                      </h3>
                       <div className="flex items-center gap-2 mb-3">
                         <div className="flex items-center">
                           <Icon name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
@@ -327,7 +356,10 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredProducts.map(product => (
                 <Card key={product.id} className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                  <div className="relative overflow-hidden">
+                  <div 
+                    className="relative overflow-hidden cursor-pointer"
+                    onClick={() => product.featured && navigate(`/product/${product.id}`)}
+                  >
                     <img
                       src={product.image}
                       alt={product.name}
@@ -338,12 +370,22 @@ const Index = () => {
                         -{Math.round((1 - product.price / product.oldPrice) * 100)}%
                       </Badge>
                     )}
+                    {product.featured && (
+                      <Badge className="absolute top-4 left-4 bg-primary">
+                        ⭐ Хит
+                      </Badge>
+                    )}
                   </div>
                   <div className="p-6">
                     <Badge variant="secondary" className="mb-2">
                       {product.category}
                     </Badge>
-                    <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+                    <h3 
+                      className="font-semibold text-lg mb-2 cursor-pointer hover:text-primary transition-colors"
+                      onClick={() => product.featured && navigate(`/product/${product.id}`)}
+                    >
+                      {product.name}
+                    </h3>
                     <div className="flex items-center gap-2 mb-3">
                       <div className="flex items-center">
                         <Icon name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
