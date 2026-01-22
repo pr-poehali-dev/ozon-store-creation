@@ -29,8 +29,8 @@ const mockProducts: Product[] = [
   {
     id: 1,
     name: 'Настенный светильник "Ворон с лампой"',
-    price: 8990,
-    oldPrice: 12990,
+    price: 1900,
+    oldPrice: 700,
     image: 'https://cdn.poehali.dev/files/7419f0fb-b7f0-4b17-9cef-d7c93e9dadf9.png',
     category: 'Интерьер',
     rating: 5.0,
@@ -41,8 +41,8 @@ const mockProducts: Product[] = [
   {
     id: 2,
     name: 'Настольный светильник "Ворон белый"',
-    price: 7490,
-    oldPrice: 9990,
+    price: 1900,
+    oldPrice: 700,
     image: 'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
     category: 'Интерьер',
     rating: 5.0,
@@ -215,8 +215,8 @@ const Index = () => {
           <div className="space-y-12 animate-fade-in">
             <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
               <div className="relative z-10 max-w-2xl">
-                <h2 className="text-5xl font-bold mb-4">Скидки до 31%</h2>
-                <p className="text-xl mb-8 text-white/90">На эксклюзивные светильники ручной работы</p>
+                <h2 className="text-5xl font-bold mb-4">Розница 1900₽ • Опт 700₽</h2>
+                <p className="text-xl mb-8 text-white/90">Эксклюзивные светильники ручной работы</p>
                 <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => setActiveSection('catalog')}>
                   Смотреть каталог
                 </Button>

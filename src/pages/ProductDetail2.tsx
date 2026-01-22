@@ -25,8 +25,8 @@ interface ProductDetail {
 const productData: ProductDetail = {
   id: 2,
   name: 'Настольный светильник "Ворон белый"',
-  price: 7490,
-  oldPrice: 9990,
+  price: 1900,
+  oldPrice: 700,
   images: [
     'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
     'https://cdn.poehali.dev/files/3df05d0a-2b09-4fbd-a4bc-d71e8048251f.JPG',

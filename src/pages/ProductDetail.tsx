@@ -25,8 +25,8 @@ interface ProductDetail {
 const productData: ProductDetail = {
   id: 1,
   name: 'Настенный светильник "Ворон с лампой"',
-  price: 8990,
-  oldPrice: 12990,
+  price: 1900,
+  oldPrice: 700,
   images: [
     'https://cdn.poehali.dev/files/7419f0fb-b7f0-4b17-9cef-d7c93e9dadf9.png',
     'https://cdn.poehali.dev/files/e99e00c1-5914-47e9-9250-e46c7a9a3467.JPG',
