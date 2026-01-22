@@ -37,64 +37,6 @@ const mockProducts: Product[] = [
     reviews: 347,
     featured: true,
     description: 'Предмет искусства, который не просто украшает пространство, но и пробуждает воображение, вдохновляет на размышления'
-  },
-  {
-    id: 2,
-    name: 'Беспроводные наушники Premium',
-    price: 5990,
-    oldPrice: 7990,
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-    category: 'Электроника',
-    rating: 4.8,
-    reviews: 234
-  },
-  {
-    id: 3,
-    name: 'Умные часы Sport Pro',
-    price: 12990,
-    oldPrice: 15990,
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500',
-    category: 'Электроника',
-    rating: 4.6,
-    reviews: 189
-  },
-  {
-    id: 4,
-    name: 'Портативная колонка Bass Max',
-    price: 3490,
-    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500',
-    category: 'Аудио',
-    rating: 4.7,
-    reviews: 156
-  },
-  {
-    id: 5,
-    name: 'Игровая мышь RGB Pro',
-    price: 2790,
-    oldPrice: 3490,
-    image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500',
-    category: 'Аксессуары',
-    rating: 4.9,
-    reviews: 312
-  },
-  {
-    id: 6,
-    name: 'Механическая клавиатура LED',
-    price: 4990,
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500',
-    category: 'Аксессуары',
-    rating: 4.5,
-    reviews: 98
-  },
-  {
-    id: 7,
-    name: 'Веб-камера HD 1080p',
-    price: 3290,
-    oldPrice: 4290,
-    image: 'https://images.unsplash.com/photo-1589003077984-894e133dabab?w=500',
-    category: 'Аксессуары',
-    rating: 4.4,
-    reviews: 67
   }
 ];
 
@@ -104,7 +46,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedCategory, setSelectedCategory] = useState('Все');
 
-  const categories = ['Все', 'Интерьер', 'Электроника', 'Аудио', 'Аксессуары'];
+  const categories = ['Все', 'Интерьер'];
 
   const addToCart = (product: Product) => {
     setCart(prev => {
@@ -146,7 +88,7 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-8">
               <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                ShopHub
+                Полимер-проект
               </h1>
               <nav className="hidden md:flex gap-6">
                 {['home', 'catalog', 'reviews', 'delivery', 'about', 'contacts'].map((section) => (
@@ -261,23 +203,20 @@ const Index = () => {
           <div className="space-y-12 animate-fade-in">
             <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
               <div className="relative z-10 max-w-2xl">
-                <h2 className="text-5xl font-bold mb-4">Скидки до 50%</h2>
-                <p className="text-xl mb-8 text-white/90">На популярные товары электроники</p>
-                <Button size="lg" variant="secondary" className="shadow-lg">
-                  Смотреть предложения
+                <h2 className="text-5xl font-bold mb-4">Скидка 31%</h2>
+                <p className="text-xl mb-8 text-white/90">На эксклюзивный настенный светильник</p>
+                <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => navigate('/product/1')}>
+                  Смотреть товар
                 </Button>
               </div>
               <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20">
-                <Icon name="Sparkles" size={200} className="absolute right-10 top-10" />
+                <Icon name="Lightbulb" size={200} className="absolute right-10 top-10" />
               </div>
             </section>
 
             <section>
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-3xl font-bold">Популярные товары</h2>
-                <Button variant="ghost" onClick={() => setActiveSection('catalog')}>
-                  Все товары <Icon name="ArrowRight" size={16} className="ml-2" />
-                </Button>
+                <h2 className="text-3xl font-bold">Наши товары</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {mockProducts.slice(0, 6).map(product => (

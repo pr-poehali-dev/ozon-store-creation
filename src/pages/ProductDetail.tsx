@@ -83,7 +83,7 @@ const ProductDetail = () => {
               <Icon name="ArrowLeft" size={20} />
             </Button>
             <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              ShopHub
+              Полимер-проект
             </h1>
           </div>
         </div>
