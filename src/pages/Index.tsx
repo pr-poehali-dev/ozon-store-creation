@@ -49,6 +49,18 @@ const mockProducts: Product[] = [
     reviews: 289,
     featured: true,
     description: 'Стильный акцент в вашем интерьере, приковывающий взгляды и вызывающий восхищение'
+  },
+  {
+    id: 3,
+    name: 'Настольный светильник "Ворон золотой"',
+    price: 1900,
+    oldPrice: 700,
+    image: 'https://cdn.poehali.dev/files/d049b710-acfb-4fc8-912e-78a07883cc3e.png',
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 412,
+    featured: true,
+    description: 'Выбор для тех, кто ценит оригинальность, стиль и внимание к деталям'
   }
 ];
 
