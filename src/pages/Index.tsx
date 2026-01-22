@@ -37,6 +37,18 @@ const mockProducts: Product[] = [
     reviews: 347,
     featured: true,
     description: 'Предмет искусства, который не просто украшает пространство, но и пробуждает воображение, вдохновляет на размышления'
+  },
+  {
+    id: 2,
+    name: 'Настольный светильник "Ворон белый"',
+    price: 7490,
+    oldPrice: 9990,
+    image: 'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 289,
+    featured: true,
+    description: 'Стильный акцент в вашем интерьере, приковывающий взгляды и вызывающий восхищение'
   }
 ];
 
@@ -203,10 +215,10 @@ const Index = () => {
           <div className="space-y-12 animate-fade-in">
             <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
               <div className="relative z-10 max-w-2xl">
-                <h2 className="text-5xl font-bold mb-4">Скидка 31%</h2>
-                <p className="text-xl mb-8 text-white/90">На эксклюзивный настенный светильник</p>
-                <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => navigate('/product/1')}>
-                  Смотреть товар
+                <h2 className="text-5xl font-bold mb-4">Скидки до 31%</h2>
+                <p className="text-xl mb-8 text-white/90">На эксклюзивные светильники ручной работы</p>
+                <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => setActiveSection('catalog')}>
+                  Смотреть каталог
                 </Button>
               </div>
               <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20">
