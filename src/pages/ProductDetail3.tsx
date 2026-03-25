@@ -8,6 +8,7 @@ import Icon from '@/components/ui/icon';
 
 interface ProductDetail {
   id: number;
+  sku: string;
   name: string;
   price: number;
   oldPrice?: number;
@@ -24,9 +25,10 @@ interface ProductDetail {
 
 const productData: ProductDetail = {
   id: 3,
+  sku: '07020008',
   name: 'Настольный светильник "Ворон"',
   price: 1900,
-  oldPrice: 700,
+  oldPrice: 630,
   images: [
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c05a670d-564b-47d9-bde3-96214f2f5be2.PNG',
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/ec6172e2-d5a7-4d50-a2ef-1b29b467f1d5.PNG',
@@ -119,9 +121,10 @@ const ProductDetail3 = () => {
 
           <div className="space-y-6">
             <div>
-              <Badge variant="secondary" className="mb-3 bg-amber-100 text-amber-800">
-                {productData.category}
-              </Badge>
+              <div className="flex items-center justify-between mb-3">
+                <Badge variant="secondary" className="bg-amber-100 text-amber-800">{productData.category}</Badge>
+                <span className="text-sm text-muted-foreground">Арт. {productData.sku}</span>
+              </div>
               <h1 className="text-4xl font-bold mb-4">{productData.name}</h1>
               
               <div className="flex items-center gap-4 mb-6">

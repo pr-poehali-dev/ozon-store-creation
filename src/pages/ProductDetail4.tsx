@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 
-interface ProductDetail {
+interface ProductDetailType {
   id: number;
   sku: string;
   name: string;
@@ -23,52 +23,45 @@ interface ProductDetail {
   madeIn: string;
 }
 
-const productData: ProductDetail = {
-  id: 1,
-  sku: '07020002',
-  name: 'Настенный светильник "Ворон настенный крепление с право"',
-  price: 1900,
-  oldPrice: 580,
+const productData: ProductDetailType = {
+  id: 4,
+  sku: '07020007',
+  name: 'Настенный светильник "Ворон"',
+  price: 850,
+  oldPrice: 350,
   images: [
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
-    'https://cdn.poehali.dev/files/e99e00c1-5914-47e9-9250-e46c7a9a3467.JPG',
-    'https://cdn.poehali.dev/files/f95f7bd7-cbf6-41af-92a2-126e0928f8e3.JPG',
-    'https://cdn.poehali.dev/files/8355a9d3-93b9-44b5-98ba-b230bfe17584.png',
-    'https://cdn.poehali.dev/files/003c3b6d-7967-4229-a77f-0a6183b66a58.JPG'
+    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8096bb65-5a8a-4934-94e2-e85171eafebb.png',
   ],
   category: 'Интерьер',
   rating: 5.0,
-  reviews: 347,
+  reviews: 128,
   inStock: true,
   madeIn: 'Россия',
-  description: `Эта восхитительная скульптура – воплощение элегантности и интеллекта. Грациозная фигура ворона, выполненная с безупречной детализацией, удерживает в клюве светящуюся лампочку, символизируя связь между мудростью, прозрением и озарением.
+  description: `Арт-объект, который привнесёт в ваш интерьер нотку готической элегантности и загадочности. Ворон — символ мудрости, тайны и вдохновения.
 
-Настенный светильник "Ворон настенный" – это не просто источник света, а настоящий арт-объект, который преобразит любое помещение. Идеальное сочетание функциональности и эстетики.`,
+Настенный светильник "Ворон" — это не просто источник света, а настоящее украшение вашего дома, создающее особую атмосферу.`,
   features: [
-    '✨ Уникальный дизайн: Станьте обладателем эксклюзивного предмета искусства, который подчеркнет вашу индивидуальность и тонкий вкус',
-    '🏠 Неповторимая атмосфера: Создайте в своем доме атмосферу уюта, вдохновения и интеллектуального комфорта',
-    '💎 Источник вдохновения: Наслаждайтесь красотой и мудростью, которые излучает эта удивительная скульптура',
-    '🎁 Идеальный подарок: Подарите своим близким нечто особенное, что будет радовать их долгие годы',
-    '🔧 Безупречное качество: Будьте уверены в долговечности и безупречном внешнем виде вашей покупки',
-    '🇷🇺 Сделано в России: Поддержка отечественного производителя и высокие стандарты качества'
+    '🖤 Готическая элегантность: Уникальный дизайн в тёмных тонах добавит интерьеру загадочности',
+    '✨ Арт-объект: Привлекает взгляды и вызывает восхищение гостей',
+    '🏠 Универсальность: Подходит для гостиной, спальни, кабинета или прихожей',
+    '🎁 Отличный подарок: Для тех, кто ценит необычное и стильное',
+    '🔧 Лёгкий монтаж: Простая установка на стену',
+    '🇷🇺 Сделано в России: Высокое качество отечественного производителя'
   ],
   specifications: [
     { label: 'Материал', value: 'Полимер высокого качества' },
-    { label: 'Цвет', value: 'Черный матовый' },
-    { label: 'Размер ворона', value: '35 × 15 см' },
-    { label: 'Длина крепления', value: '~20 см' },
+    { label: 'Цвет', value: 'Чёрный матовый' },
+    { label: 'Тип установки', value: 'Настенный' },
     { label: 'Тип лампы', value: 'E27 (не входит в комплект)' },
     { label: 'Максимальная мощность', value: '60 Вт' },
     { label: 'Напряжение', value: '220 В' },
-    { label: 'Способ крепления', value: 'Настенное' },
     { label: 'Производство', value: 'Россия' },
     { label: 'Гарантия', value: '1 год' }
   ]
 };
 
-const ProductDetail = () => {
+const ProductDetail4 = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
@@ -130,17 +123,12 @@ const ProductDetail = () => {
                 <span className="text-sm text-muted-foreground">Арт. {productData.sku}</span>
               </div>
               <h1 className="text-4xl font-bold mb-4">{productData.name}</h1>
-              
+
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Icon
-                        key={i}
-                        name="Star"
-                        size={20}
-                        className={i < Math.floor(productData.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}
-                      />
+                      <Icon key={i} name="Star" size={20} className={i < Math.floor(productData.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'} />
                     ))}
                   </div>
                   <span className="font-semibold">{productData.rating}</span>
@@ -172,32 +160,19 @@ const ProductDetail = () => {
             <Card className="p-6 bg-gradient-to-br from-primary/5 to-secondary/5">
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-3 bg-white rounded-lg px-4 py-2 border">
-                  <Button
-                    size="icon"
-                    variant="outline"
-                    className="h-10 w-10"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  >
+                  <Button size="icon" variant="outline" className="h-10 w-10" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
                     <Icon name="Minus" size={16} />
                   </Button>
                   <span className="w-12 text-center font-bold text-xl">{quantity}</span>
-                  <Button
-                    size="icon"
-                    variant="outline"
-                    className="h-10 w-10"
-                    onClick={() => setQuantity(quantity + 1)}
-                  >
+                  <Button size="icon" variant="outline" className="h-10 w-10" onClick={() => setQuantity(quantity + 1)}>
                     <Icon name="Plus" size={16} />
                   </Button>
                 </div>
                 <div className="text-right flex-1">
                   <div className="text-sm text-muted-foreground">Сумма:</div>
-                  <div className="text-2xl font-bold text-primary">
-                    {(productData.price * quantity).toLocaleString()} ₽
-                  </div>
+                  <div className="text-2xl font-bold text-primary">{(productData.price * quantity).toLocaleString()} ₽</div>
                 </div>
               </div>
-
               <Button size="lg" className="w-full mb-3 gap-2">
                 <Icon name="ShoppingCart" size={20} />
                 Добавить в корзину
@@ -234,15 +209,13 @@ const ProductDetail = () => {
             <TabsTrigger value="features">Преимущества</TabsTrigger>
             <TabsTrigger value="specs">Характеристики</TabsTrigger>
           </TabsList>
-          
+
           <TabsContent value="description" className="mt-8">
             <Card className="p-8">
               <h2 className="text-2xl font-bold mb-4">О товаре</h2>
               <div className="prose max-w-none">
                 {productData.description.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="text-lg leading-relaxed mb-4 text-muted-foreground">
-                    {paragraph}
-                  </p>
+                  <p key={idx} className="text-lg leading-relaxed mb-4 text-muted-foreground">{paragraph}</p>
                 ))}
               </div>
             </Card>
@@ -257,7 +230,7 @@ const ProductDetail = () => {
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
                       <Icon name="Check" size={20} className="text-primary" />
                     </div>
-                    <p className="text-lg leading-relaxed">{feature}</p>
+                    <p className="text-muted-foreground leading-relaxed">{feature}</p>
                   </div>
                 ))}
               </div>
@@ -267,14 +240,11 @@ const ProductDetail = () => {
           <TabsContent value="specs" className="mt-8">
             <Card className="p-8">
               <h2 className="text-2xl font-bold mb-6">Технические характеристики</h2>
-              <div className="grid gap-4">
+              <div className="grid gap-3">
                 {productData.specifications.map((spec, idx) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between py-4 border-b last:border-0 hover:bg-muted/30 px-4 rounded transition-colors"
-                  >
-                    <span className="font-medium text-muted-foreground">{spec.label}</span>
-                    <span className="font-semibold text-right">{spec.value}</span>
+                  <div key={idx} className="flex justify-between py-3 border-b last:border-0">
+                    <span className="text-muted-foreground">{spec.label}</span>
+                    <span className="font-medium">{spec.value}</span>
                   </div>
                 ))}
               </div>
@@ -286,4 +256,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetail4;

@@ -10,6 +10,7 @@ import Icon from '@/components/ui/icon';
 
 interface Product {
   id: number;
+  sku: string;
   name: string;
   price: number;
   oldPrice?: number;
@@ -28,6 +29,7 @@ interface CartItem extends Product {
 const mockProducts: Product[] = [
   {
     id: 8,
+    sku: '07020001',
     name: 'Настенный светильник "Ворон настенный крепление с лево"',
     price: 850,
     oldPrice: 580,
@@ -40,6 +42,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 1,
+    sku: '07020002',
     name: 'Настенный светильник "Ворон настенный крепление с право"',
     price: 1900,
     oldPrice: 580,
@@ -52,6 +55,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 2,
+    sku: '07020003',
     name: 'Настольный светильник "Ворон белый"',
     price: 1900,
     oldPrice: 630,
@@ -64,6 +68,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 7,
+    sku: '07020004',
     name: 'Настенный светильник "Сова на ветке"',
     price: 1700,
     oldPrice: 750,
@@ -76,6 +81,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 6,
+    sku: '07020005',
     name: 'Настенный светильник "Сова"',
     price: 2500,
     oldPrice: 1000,
@@ -88,6 +94,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 5,
+    sku: '07020006',
     name: 'Настенный светильник "Луна"',
     price: 3100,
     oldPrice: 1100,
@@ -100,6 +107,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 4,
+    sku: '07020007',
     name: 'Настенный светильник "Ворон"',
     price: 850,
     oldPrice: 350,
@@ -112,6 +120,7 @@ const mockProducts: Product[] = [
   },
   {
     id: 3,
+    sku: '07020008',
     name: 'Настольный светильник "Ворон"',
     price: 1900,
     oldPrice: 630,
@@ -400,9 +409,10 @@ const Index = () => {
                     )}
                   </div>
                   <div className="p-6">
-                    <Badge variant="secondary" className="mb-2">
-                      {product.category}
-                    </Badge>
+                    <div className="flex items-center justify-between mb-2">
+                      <Badge variant="secondary">{product.category}</Badge>
+                      <span className="text-xs text-muted-foreground">Арт. {product.sku}</span>
+                    </div>
                     <h3 
                       className="font-semibold text-lg mb-2 cursor-pointer hover:text-primary transition-colors"
                       onClick={() => product.featured && navigate(`/product/${product.id}`)}
