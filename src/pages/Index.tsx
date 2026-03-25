@@ -416,24 +416,30 @@ const Index = () => {
         {activeSection === 'reviews' && (
           <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
             <h2 className="text-3xl font-bold">Отзывы покупателей</h2>
-            {[1, 2, 3].map(i => (
+            {[
+              { name: 'Александр Б.', date: '23 марта 2026', text: 'Красивая ворона', stars: 5 },
+              { name: 'Марина С.', date: '22 марта 2026', text: 'Оригинальный светильник! Купила в подарок человеку, который коллекционирует ворон и воронов. Тщательно проработано оперенье, блестит! Надеюсь, оценит!', stars: 5 },
+              { name: 'Сергей Е.', date: '18 марта 2026', text: 'супер', stars: 5 },
+              { name: 'Анастасия Ш.', date: '11 марта 2026', text: 'Прекрасный светильник)) Сначала правда загрустила, что он лёгкий, но потом разглядела, что он очень красивый. Брала на подарок, поэтому не могу приложить фото — не распаковывала полностью. Жаль, что лампочки в комплекте нет, вот это минус для меня.', stars: 5 },
+              { name: 'Моногарова О.', date: '8 марта 2026', text: 'Очень красивый светильник', stars: 5 },
+              { name: 'Вера Я.', date: '2 марта 2026', text: 'Очень классный светильник — необычный, стильный. Однозначно рекомендую к покупке!', stars: 5 },
+            ].map((review, i) => (
               <Card key={i} className="p-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Icon name="User" size={24} className="text-primary" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-semibold">Покупатель #{i}</h4>
+                    <div className="flex items-center justify-between mb-1">
+                      <h4 className="font-semibold">{review.name}</h4>
                       <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Icon key={i} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
+                        {[...Array(review.stars)].map((_, j) => (
+                          <Icon key={j} name="Star" size={16} className="text-yellow-500 fill-yellow-500" />
                         ))}
                       </div>
                     </div>
-                    <p className="text-muted-foreground">
-                      Отличный магазин! Быстрая доставка, качественные товары, приятные цены. Рекомендую!
-                    </p>
+                    <p className="text-xs text-muted-foreground mb-2">{review.date}</p>
+                    <p className="text-muted-foreground">{review.text}</p>
                   </div>
                 </div>
               </Card>
