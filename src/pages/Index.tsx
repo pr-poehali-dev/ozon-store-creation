@@ -543,21 +543,21 @@ const Index = () => {
                   <Icon name="MapPin" size={24} className="text-primary mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Адрес</h4>
-                    <p className="text-muted-foreground">г. Москва, ул. Примерная, д. 1</p>
+                    <p className="text-muted-foreground">г. Санкт-Петербург</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Icon name="Phone" size={24} className="text-primary mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Телефон</h4>
-                    <p className="text-muted-foreground">+7 (800) 123-45-67</p>
+                    <p className="text-muted-foreground">8 921 636-36-08</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Icon name="Mail" size={24} className="text-primary mt-1" />
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-muted-foreground">info@shophub.ru</p>
+                    <p className="text-muted-foreground">proekt-polimer@mail.ru</p>
                   </div>
                 </div>
               </Card>
