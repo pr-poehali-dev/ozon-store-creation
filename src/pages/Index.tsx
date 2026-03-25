@@ -430,30 +430,48 @@ const Index = () => {
         )}
 
         {activeSection === 'delivery' && (
-          <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+          <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
             <h2 className="text-3xl font-bold">Доставка и оплата</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card className="p-6">
-                <Icon name="Truck" size={32} className="text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Способы доставки</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Курьерская доставка по городу</li>
-                  <li>• Пункты выдачи заказов</li>
-                  <li>• Почта России</li>
-                  <li>• Транспортные компании</li>
-                </ul>
-              </Card>
-              <Card className="p-6">
-                <Icon name="CreditCard" size={32} className="text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Способы оплаты</h3>
-                <ul className="space-y-2 text-muted-foreground">
-                  <li>• Банковские карты</li>
-                  <li>• Яндекс.Касса</li>
-                  <li>• Сбербанк Онлайн</li>
-                  <li>• Наличные при получении</li>
-                </ul>
-              </Card>
-            </div>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Icon name="Package" size={28} className="text-primary" />
+                <h3 className="text-xl font-semibold">Самовывоз со склада в Санкт-Петербурге</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Мы рады предложить нашим клиентам удобную услугу – самовывоз из нашего склада, расположенного в Санкт-Петербурге. Это отличная возможность получить ваш заказ оперативно и без лишних затрат на доставку. Наш склад находится по адресу: [Указать точный адрес склада]. Работаем для вас <strong>10:00–19:00</strong>. Перед приездом, пожалуйста, убедитесь, что ваш заказ готов к отгрузке, связавшись с нами по телефону [Указать номер телефона] или через форму на сайте. Мы всегда готовы помочь вам с погрузкой и ответить на все ваши вопросы.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Icon name="Truck" size={28} className="text-primary" />
+                <h3 className="text-xl font-semibold">Доставка по Санкт-Петербургу</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Если самовывоз вам не подходит, мы предлагаем быструю и надежную доставку вашего заказа по всему Санкт-Петербургу. Наши курьеры доставят товар прямо до двери в удобное для вас время. Стоимость доставки по городу составляет <strong>1 000 ₽</strong> вне зависимости от района. При заказе на сумму свыше <strong>50 000 ₽</strong> доставка по Санкт-Петербургу осуществляется бесплатно. Мы стремимся к тому, чтобы ваш заказ был у вас как можно скорее.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Icon name="MapPin" size={28} className="text-primary" />
+                <h3 className="text-xl font-semibold">Доставка по Ленинградской области</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Мы также осуществляем доставку заказов по всей Ленинградской области. Стоимость и сроки доставки рассчитываются индивидуально в зависимости от удалённости вашего населённого пункта. Для уточнения стоимости и времени доставки, пожалуйста, свяжитесь с нашими менеджерами по телефону <strong>8 921 636-36-08</strong> или оставьте заявку на сайте. Мы постараемся сделать процесс доставки максимально удобным для вас.
+              </p>
+            </Card>
+
+            <Card className="p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Icon name="Globe" size={28} className="text-primary" />
+                <h3 className="text-xl font-semibold">Доставка по России</h3>
+              </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Для клиентов из других регионов России мы предлагаем надёжную доставку с помощью проверенных транспортных компаний. Мы работаем с ведущими перевозчиками, такими как СДЭК, Деловые Линии, ПЭК. Стоимость и сроки доставки по России зависят от выбранной вами транспортной компании, веса и габаритов груза, а также удалённости вашего города. Мы поможем вам подобрать оптимальный вариант и рассчитаем предварительную стоимость доставки. После отправки заказа мы предоставим вам трек-номер для отслеживания его местонахождения.
+              </p>
+            </Card>
           </div>
         )}
 
