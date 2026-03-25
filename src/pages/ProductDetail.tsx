@@ -28,7 +28,7 @@ const productData: ProductDetail = {
   price: 1900,
   oldPrice: 700,
   images: [
-    'https://cdn.poehali.dev/files/7419f0fb-b7f0-4b17-9cef-d7c93e9dadf9.png',
+    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
     'https://cdn.poehali.dev/files/e99e00c1-5914-47e9-9250-e46c7a9a3467.JPG',
     'https://cdn.poehali.dev/files/f95f7bd7-cbf6-41af-92a2-126e0928f8e3.JPG',
     'https://cdn.poehali.dev/files/8355a9d3-93b9-44b5-98ba-b230bfe17584.png',

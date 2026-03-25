@@ -31,7 +31,7 @@ const mockProducts: Product[] = [
     name: 'Настенный светильник "Ворон настенный"',
     price: 1900,
     oldPrice: 700,
-    image: 'https://cdn.poehali.dev/files/7419f0fb-b7f0-4b17-9cef-d7c93e9dadf9.png',
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
     category: 'Интерьер',
     rating: 5.0,
     reviews: 347,
