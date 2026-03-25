@@ -26,7 +26,7 @@ const productData: ProductDetail = {
   id: 1,
   name: 'Настенный светильник "Ворон настенный крепление с право"',
   price: 1900,
-  oldPrice: 700,
+  oldPrice: 580,
   images: [
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
     'https://cdn.poehali.dev/files/e99e00c1-5914-47e9-9250-e46c7a9a3467.JPG',
