@@ -51,6 +51,18 @@ const mockProducts: Product[] = [
     description: 'Стильный акцент в вашем интерьере, приковывающий взгляды и вызывающий восхищение'
   },
   {
+    id: 4,
+    name: 'Настенный светильник "Ворон"',
+    price: 850,
+    oldPrice: 350,
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8096bb65-5a8a-4934-94e2-e85171eafebb.png',
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 128,
+    featured: true,
+    description: 'Арт-объект, который привнесёт в ваш интерьер нотку готической элегантности и загадочности'
+  },
+  {
     id: 3,
     name: 'Настольный светильник "Ворон"',
     price: 1900,
