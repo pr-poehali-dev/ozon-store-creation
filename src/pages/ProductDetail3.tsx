@@ -24,15 +24,12 @@ interface ProductDetail {
 
 const productData: ProductDetail = {
   id: 3,
-  name: 'Настольный светильник "Ворон золотой"',
+  name: 'Настольный светильник "Ворон"',
   price: 1900,
   oldPrice: 700,
   images: [
-    'https://cdn.poehali.dev/files/d049b710-acfb-4fc8-912e-78a07883cc3e.png',
-    'https://cdn.poehali.dev/files/f72fc973-b899-441f-ab8f-ae0394bfeb02.png',
-    'https://cdn.poehali.dev/files/0fcf2b4f-726b-441c-8ee4-0c932fdb12ba.png',
-    'https://cdn.poehali.dev/files/7e20a695-3456-4335-b134-57f8cb229a9b.png',
-    'https://cdn.poehali.dev/files/113676be-11eb-41e5-b991-b53ab798e0e9.JPG'
+    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c05a670d-564b-47d9-bde3-96214f2f5be2.PNG',
+    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/ec6172e2-d5a7-4d50-a2ef-1b29b467f1d5.PNG',
   ],
   category: 'Интерьер',
   rating: 5.0,

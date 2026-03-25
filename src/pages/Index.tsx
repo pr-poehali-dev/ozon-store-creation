@@ -52,10 +52,10 @@ const mockProducts: Product[] = [
   },
   {
     id: 3,
-    name: 'Настольный светильник "Ворон золотой"',
+    name: 'Настольный светильник "Ворон"',
     price: 1900,
     oldPrice: 700,
-    image: 'https://cdn.poehali.dev/files/d049b710-acfb-4fc8-912e-78a07883cc3e.png',
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c05a670d-564b-47d9-bde3-96214f2f5be2.PNG',
     category: 'Интерьер',
     rating: 5.0,
     reviews: 412,
