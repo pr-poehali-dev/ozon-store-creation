@@ -28,7 +28,7 @@ interface CartItem extends Product {
 const mockProducts: Product[] = [
   {
     id: 1,
-    name: 'Настенный светильник "Ворон с лампой"',
+    name: 'Настенный светильник "Ворон настенный"',
     price: 1900,
     oldPrice: 700,
     image: 'https://cdn.poehali.dev/files/7419f0fb-b7f0-4b17-9cef-d7c93e9dadf9.png',
