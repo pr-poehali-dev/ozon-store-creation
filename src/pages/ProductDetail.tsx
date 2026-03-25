@@ -24,7 +24,7 @@ interface ProductDetail {
 
 const productData: ProductDetail = {
   id: 1,
-  name: 'Настенный светильник "Ворон настенный"',
+  name: 'Настенный светильник "Ворон настенный крепление с право"',
   price: 1900,
   oldPrice: 700,
   images: [
