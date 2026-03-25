@@ -27,6 +27,18 @@ interface CartItem extends Product {
 
 const mockProducts: Product[] = [
   {
+    id: 8,
+    name: 'Настенный светильник "Ворон настенный крепление с лево"',
+    price: 850,
+    oldPrice: 350,
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 0,
+    featured: true,
+    description: 'Зеркальное исполнение настенного ворона с креплением с левой стороны — создайте симметричную пару или уникальную композицию в вашем интерьере'
+  },
+  {
     id: 1,
     name: 'Настенный светильник "Ворон настенный крепление с право"',
     price: 1900,
