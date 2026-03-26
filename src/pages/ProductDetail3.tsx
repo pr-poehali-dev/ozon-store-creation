@@ -11,7 +11,6 @@ interface ProductDetail {
   sku: string;
   name: string;
   price: number;
-  oldPrice?: number;
   images: string[];
   category: string;
   rating: number;
@@ -27,8 +26,7 @@ const productData: ProductDetail = {
   id: 3,
   sku: '07020008',
   name: 'Настольный светильник "Ворон"',
-  price: 1900,
-  oldPrice: 630,
+  price: 630,
   images: [
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c05a670d-564b-47d9-bde3-96214f2f5be2.PNG',
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/ec6172e2-d5a7-4d50-a2ef-1b29b467f1d5.PNG',
@@ -69,10 +67,6 @@ const ProductDetail3 = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
-
-  const discount = productData.oldPrice
-    ? Math.round((1 - productData.oldPrice / productData.price) * 100)
-    : 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
@@ -148,11 +142,6 @@ const ProductDetail3 = () => {
                 <div className="text-5xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                   {productData.price.toLocaleString()} ₽
                 </div>
-                {productData.oldPrice && (
-                  <div className="text-xl text-muted-foreground">
-                    Опт: {productData.oldPrice} ₽
-                  </div>
-                )}
               </div>
 
               <div className="flex gap-3 mb-6">

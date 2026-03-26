@@ -11,7 +11,6 @@ interface ProductDetailType {
   sku: string;
   name: string;
   price: number;
-  oldPrice?: number;
   images: string[];
   category: string;
   rating: number;
@@ -27,8 +26,7 @@ const productData: ProductDetailType = {
   id: 7,
   sku: '07020004',
   name: 'Настенный светильник "Сова на ветке"',
-  price: 1700,
-  oldPrice: 750,
+  price: 750,
   images: [
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/83c5fef9-775f-45cf-a2ca-6f871b38f789.JPG',
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/cbeb8c7c-1f28-49ff-8b0a-c4c117b84660.JPG',
@@ -69,10 +67,6 @@ const ProductDetail7 = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  const discount = productData.oldPrice
-    ? Math.round((1 - productData.price / productData.oldPrice) * 100)
-    : 0;
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
@@ -93,9 +87,7 @@ const ProductDetail7 = () => {
           <div className="space-y-4">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg">
               <img src={productData.images[selectedImage]} alt={productData.name} className="w-full h-full object-contain p-8" />
-              {productData.oldPrice && (
-                <Badge className="absolute top-6 right-6 bg-accent text-lg px-4 py-2">-{discount}%</Badge>
-              )}
+
             </div>
             <div className="grid grid-cols-5 gap-3">
               {productData.images.map((img, idx) => (
@@ -127,9 +119,6 @@ const ProductDetail7 = () => {
               </div>
               <div className="flex items-baseline gap-4 mb-6">
                 <div className="text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
-                {productData.oldPrice && (
-                  <div className="text-2xl text-muted-foreground line-through">{productData.oldPrice.toLocaleString()} ₽</div>
-                )}
               </div>
               <div className="flex gap-3 mb-6">
                 <Badge variant="outline" className="gap-2 px-4 py-2">

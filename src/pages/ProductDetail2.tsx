@@ -11,7 +11,6 @@ interface ProductDetail {
   sku: string;
   name: string;
   price: number;
-  oldPrice?: number;
   images: string[];
   category: string;
   rating: number;
@@ -27,8 +26,7 @@ const productData: ProductDetail = {
   id: 2,
   sku: '07020003',
   name: 'Настольный светильник "Ворон белый"',
-  price: 1900,
-  oldPrice: 630,
+  price: 630,
   images: [
     'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
     'https://cdn.poehali.dev/files/3df05d0a-2b09-4fbd-a4bc-d71e8048251f.JPG',
@@ -73,10 +71,6 @@ const ProductDetail2 = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  const discount = productData.oldPrice
-    ? Math.round((1 - productData.price / productData.oldPrice) * 100)
-    : 0;
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
@@ -101,11 +95,7 @@ const ProductDetail2 = () => {
                 alt={productData.name}
                 className="w-full h-full object-contain p-8"
               />
-              {productData.oldPrice && (
-                <Badge className="absolute top-6 right-6 bg-accent text-lg px-4 py-2">
-                  -{discount}%
-                </Badge>
-              )}
+
             </div>
             <div className="grid grid-cols-5 gap-3">
               {productData.images.map((img, idx) => (
@@ -151,11 +141,6 @@ const ProductDetail2 = () => {
 
               <div className="flex items-baseline gap-4 mb-6">
                 <div className="text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
-                {productData.oldPrice && (
-                  <div className="text-2xl text-muted-foreground line-through">
-                    {productData.oldPrice.toLocaleString()} ₽
-                  </div>
-                )}
               </div>
 
               <div className="flex gap-3 mb-6">

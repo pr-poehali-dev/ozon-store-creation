@@ -11,7 +11,6 @@ interface ProductDetail {
   sku: string;
   name: string;
   price: number;
-  oldPrice?: number;
   images: string[];
   category: string;
   rating: number;
@@ -27,8 +26,7 @@ const productData: ProductDetail = {
   id: 1,
   sku: '07020002',
   name: 'Настенный светильник "Ворон настенный крепление с право"',
-  price: 1900,
-  oldPrice: 580,
+  price: 580,
   images: [
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
     'https://cdn.poehali.dev/files/e99e00c1-5914-47e9-9250-e46c7a9a3467.JPG',
@@ -72,10 +70,6 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  const discount = productData.oldPrice
-    ? Math.round((1 - productData.price / productData.oldPrice) * 100)
-    : 0;
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
@@ -100,11 +94,7 @@ const ProductDetail = () => {
                 alt={productData.name}
                 className="w-full h-full object-contain p-8"
               />
-              {productData.oldPrice && (
-                <Badge className="absolute top-6 right-6 bg-accent text-lg px-4 py-2">
-                  -{discount}%
-                </Badge>
-              )}
+
             </div>
             <div className="grid grid-cols-5 gap-3">
               {productData.images.map((img, idx) => (
@@ -150,11 +140,6 @@ const ProductDetail = () => {
 
               <div className="flex items-baseline gap-4 mb-6">
                 <div className="text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
-                {productData.oldPrice && (
-                  <div className="text-2xl text-muted-foreground line-through">
-                    {productData.oldPrice.toLocaleString()} ₽
-                  </div>
-                )}
               </div>
 
               <div className="flex gap-3 mb-6">
