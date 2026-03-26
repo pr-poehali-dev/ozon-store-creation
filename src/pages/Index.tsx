@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -127,6 +127,76 @@ const mockProducts: Product[] = [
 const AUTH_URL = 'https://functions.poehali.dev/14c9736b-f723-402b-bd36-35c34afa4bae';
 
 interface User { id: number; name: string; email: string; }
+
+const CONTACT_URL = 'https://functions.poehali.dev/78de95d1-8bfd-474b-893c-af5d41aba571';
+
+const ContactForm = () => {
+  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    try {
+      const res = await fetch(CONTACT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setStatus('success');
+      setForm({ name: '', email: '', subject: '', message: '' });
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="flex flex-col items-center justify-center py-8 gap-3 text-center">
+        <Icon name="CheckCircle" size={48} className="text-green-500" />
+        <p className="font-semibold text-lg">Заявка отправлена!</p>
+        <p className="text-muted-foreground text-sm">Мы свяжемся с вами в ближайшее время.</p>
+        <Button variant="outline" onClick={() => setStatus('idle')}>Отправить ещё</Button>
+      </div>
+    );
+  }
+
+  return (
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      <Input
+        placeholder="Ваше имя *"
+        value={form.name}
+        onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+        required
+      />
+      <Input
+        type="email"
+        placeholder="Email *"
+        value={form.email}
+        onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+        required
+      />
+      <Input
+        placeholder="Тема сообщения"
+        value={form.subject}
+        onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+      />
+      <textarea
+        className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring min-h-[100px] resize-none"
+        placeholder="Сообщение"
+        value={form.message}
+        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+      />
+      {status === 'error' && (
+        <p className="text-sm text-red-500">Ошибка отправки. Попробуйте позже или напишите нам напрямую.</p>
+      )}
+      <Button className="w-full" type="submit" disabled={status === 'loading'}>
+        {status === 'loading' ? 'Отправка...' : 'Отправить'}
+      </Button>
+    </form>
+  );
+};
 
 const Index = () => {
   const navigate = useNavigate();
@@ -598,12 +668,7 @@ const Index = () => {
               </Card>
               <Card className="p-6">
                 <h3 className="text-xl font-semibold mb-4">Напишите нам</h3>
-                <form className="space-y-4">
-                  <Input placeholder="Ваше имя" />
-                  <Input type="email" placeholder="Email" />
-                  <Input placeholder="Тема сообщения" />
-                  <Button className="w-full">Отправить</Button>
-                </form>
+                <ContactForm />
               </Card>
             </div>
           </div>
