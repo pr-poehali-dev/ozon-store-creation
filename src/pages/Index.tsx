@@ -13,7 +13,6 @@ interface Product {
   sku: string;
   name: string;
   price: number;
-  oldPrice?: number;
   image: string;
   category: string;
   rating: number;
@@ -31,8 +30,7 @@ const mockProducts: Product[] = [
     id: 8,
     sku: '07020001',
     name: 'Настенный светильник "Ворон настенный крепление с лево"',
-    price: 850,
-    oldPrice: 580,
+    price: 680,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
     category: 'Интерьер',
     rating: 5.0,
@@ -44,8 +42,7 @@ const mockProducts: Product[] = [
     id: 1,
     sku: '07020002',
     name: 'Настенный светильник "Ворон настенный крепление с право"',
-    price: 1900,
-    oldPrice: 580,
+    price: 580,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
     category: 'Интерьер',
     rating: 5.0,
@@ -57,8 +54,7 @@ const mockProducts: Product[] = [
     id: 2,
     sku: '07020003',
     name: 'Настольный светильник "Ворон белый"',
-    price: 1900,
-    oldPrice: 630,
+    price: 630,
     image: 'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
     category: 'Интерьер',
     rating: 5.0,
@@ -70,8 +66,7 @@ const mockProducts: Product[] = [
     id: 7,
     sku: '07020004',
     name: 'Настенный светильник "Сова на ветке"',
-    price: 1700,
-    oldPrice: 750,
+    price: 750,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/83c5fef9-775f-45cf-a2ca-6f871b38f789.JPG',
     category: 'Интерьер',
     rating: 5.0,
@@ -83,8 +78,7 @@ const mockProducts: Product[] = [
     id: 6,
     sku: '07020005',
     name: 'Настенный светильник "Сова"',
-    price: 2500,
-    oldPrice: 1000,
+    price: 1000,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8879c698-3282-47fe-86c7-bb9ff379fbfa.JPG',
     category: 'Интерьер',
     rating: 5.0,
@@ -96,8 +90,7 @@ const mockProducts: Product[] = [
     id: 5,
     sku: '07020006',
     name: 'Настенный светильник "Луна"',
-    price: 3100,
-    oldPrice: 1100,
+    price: 1100,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/3174a2b5-b1a4-4b3d-80e6-9f209257dc2d.JPG',
     category: 'Интерьер',
     rating: 5.0,
@@ -109,8 +102,7 @@ const mockProducts: Product[] = [
     id: 4,
     sku: '07020007',
     name: 'Настенный светильник "Ворон"',
-    price: 850,
-    oldPrice: 350,
+    price: 350,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8096bb65-5a8a-4934-94e2-e85171eafebb.png',
     category: 'Интерьер',
     rating: 5.0,
@@ -122,8 +114,7 @@ const mockProducts: Product[] = [
     id: 3,
     sku: '07020008',
     name: 'Настольный светильник "Ворон"',
-    price: 1900,
-    oldPrice: 630,
+    price: 630,
     image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c05a670d-564b-47d9-bde3-96214f2f5be2.PNG',
     category: 'Интерьер',
     rating: 5.0,
@@ -323,11 +314,6 @@ const Index = () => {
                         alt={product.name}
                         className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
-                      {product.oldPrice && (
-                        <Badge className="absolute top-4 right-4 bg-accent">
-                          -{Math.round((1 - product.price / product.oldPrice) * 100)}%
-                        </Badge>
-                      )}
                       {product.featured && (
                         <Badge className="absolute top-4 left-4 bg-primary">
                           ⭐ Хит
@@ -354,11 +340,6 @@ const Index = () => {
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="text-2xl font-bold text-primary">{product.price.toLocaleString()} ₽</div>
-                          {product.oldPrice && (
-                            <div className="text-sm text-muted-foreground line-through">
-                              {product.oldPrice.toLocaleString()} ₽
-                            </div>
-                          )}
                         </div>
                         <Button onClick={() => addToCart(product)} className="gap-2">
                           <Icon name="ShoppingCart" size={16} />
@@ -397,11 +378,6 @@ const Index = () => {
                       alt={product.name}
                       className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    {product.oldPrice && (
-                      <Badge className="absolute top-4 right-4 bg-accent">
-                        -{Math.round((1 - product.price / product.oldPrice) * 100)}%
-                      </Badge>
-                    )}
                     {product.featured && (
                       <Badge className="absolute top-4 left-4 bg-primary">
                         ⭐ Хит
@@ -429,11 +405,6 @@ const Index = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-2xl font-bold text-primary">{product.price.toLocaleString()} ₽</div>
-                        {product.oldPrice && (
-                          <div className="text-sm text-muted-foreground line-through">
-                            {product.oldPrice.toLocaleString()} ₽
-                          </div>
-                        )}
                       </div>
                       <Button onClick={() => addToCart(product)} className="gap-2">
                         <Icon name="ShoppingCart" size={16} />
