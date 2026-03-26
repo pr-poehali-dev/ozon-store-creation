@@ -5,6 +5,15 @@
       "method": "OPTIONS",
       "path": "/",
       "expectedStatus": 200
+    },
+    {
+      "name": "Отправка тестовой заявки",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Тест", "email": "proekt-polimer@mail.ru", "subject": "Тестовая заявка", "message": "Проверка формы обратной связи"},
+      "expectedStatus": 200,
+      "expectedBody": {"success": true},
+      "bodyMatcher": "partial"
     }
   ]
 }
