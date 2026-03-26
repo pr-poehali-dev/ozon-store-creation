@@ -27,8 +27,8 @@ const productData: ProductDetailType = {
   id: 8,
   sku: '07020001',
   name: 'Настенный светильник "Ворон настенный крепление с лево"',
-  price: 850,
-  oldPrice: 580,
+  price: 1750,
+  oldPrice: 680,
   images: [
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/f0aef8fd-1f87-44d7-a45a-d92fec0c8ab2.JPG',
     'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/135c7432-df41-4173-b1a1-f189539752b0.JPG',
