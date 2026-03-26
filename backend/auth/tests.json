@@ -1,0 +1,24 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Register new user",
+      "method": "POST",
+      "path": "/",
+      "body": {"action": "register", "name": "Тест2 Тестов", "email": "test_reg_unique2@example.com", "password": "password123"},
+      "expectedStatus": 200
+    },
+    {
+      "name": "Login with wrong password",
+      "method": "POST",
+      "path": "/",
+      "body": {"action": "login", "email": "test_reg_unique2@example.com", "password": "wrongpass"},
+      "expectedStatus": 401
+    }
+  ]
+}
