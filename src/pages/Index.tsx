@@ -585,9 +585,31 @@ const Index = () => {
         )}
       </main>
 
-      <footer className="bg-muted/50 mt-20 py-8 border-t">
+      <footer className="bg-muted/50 mt-20 py-12 border-t">
         <div className="container mx-auto px-4">
-          <div className="text-center text-sm text-muted-foreground">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h3 className="font-bold text-lg mb-3">Полимер-проект</h3>
+              <p className="text-sm text-muted-foreground">Эксклюзивные декоративные светильники из Санкт-Петербурга</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-3">Контакты</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2"><Icon name="Phone" size={14} />8 921 636-36-08</li>
+                <li className="flex items-center gap-2"><Icon name="Mail" size={14} />proekt-polimer@mail.ru</li>
+                <li className="flex items-center gap-2"><Icon name="MapPin" size={14} />г. Санкт-Петербург</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-3">Навигация</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li className="cursor-pointer hover:text-foreground transition-colors" onClick={() => {}}>Каталог</li>
+                <li className="cursor-pointer hover:text-foreground transition-colors" onClick={() => {}}>Доставка</li>
+                <li className="cursor-pointer hover:text-foreground transition-colors" onClick={() => {}}>О магазине</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t pt-6 text-center text-sm text-muted-foreground">
             © 2026 Полимер-проект. Все права защищены.
           </div>
         </div>
