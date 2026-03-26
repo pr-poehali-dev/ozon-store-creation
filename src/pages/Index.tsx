@@ -288,7 +288,6 @@ const Index = () => {
             <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
               <div className="relative z-10 max-w-2xl">
                 <h2 className="text-5xl font-bold mb-4">Оптовые цены от 350₽</h2>
-                <p className="text-xl mb-8 text-white/90">Эксклюзивные светильники ручной работы</p>
                 <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => setActiveSection('catalog')}>
                   Смотреть каталог
                 </Button>
