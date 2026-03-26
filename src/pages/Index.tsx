@@ -585,44 +585,10 @@ const Index = () => {
         )}
       </main>
 
-      <footer className="bg-muted/50 mt-20 py-12 border-t">
+      <footer className="bg-muted/50 mt-20 py-8 border-t">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">ShopHub</h3>
-              <p className="text-sm text-muted-foreground">
-                Ваш надёжный интернет-магазин электроники
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Информация</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>О компании</li>
-                <li>Доставка</li>
-                <li>Оплата</li>
-                <li>Гарантия</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Помощь</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>Контакты</li>
-                <li>FAQ</li>
-                <li>Возврат</li>
-                <li>Отзывы</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Контакты</h4>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>+7 (800) 123-45-67</li>
-                <li>info@shophub.ru</li>
-                <li>Ежедневно 9:00 - 21:00</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t mt-8 pt-8 text-center text-sm text-muted-foreground">
-            © 2024 ShopHub. Все права защищены.
+          <div className="text-center text-sm text-muted-foreground">
+            © 2026 Полимер-проект. Все права защищены.
           </div>
         </div>
       </footer>
