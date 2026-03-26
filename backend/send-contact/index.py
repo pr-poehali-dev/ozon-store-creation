@@ -1,4 +1,4 @@
-import json
+import json  # v2
 import os
 import smtplib
 from email.mime.text import MIMEText
