@@ -35,11 +35,43 @@ def handler(event: dict, context) -> dict:
 
     return_url = 'https://polimer-proekt.ru/payment-success'
 
+    customer = body.get('customer', {})
+    items = body.get('items', [])
+
+    receipt_items = [
+        {
+            'description': item.get('name', 'Товар')[:128],
+            'quantity': str(item.get('quantity', 1)),
+            'amount': {'value': f"{float(item.get('price', 0)):.2f}", 'currency': 'RUB'},
+            'vat_code': 1,
+            'payment_mode': 'full_payment',
+            'payment_subject': 'commodity',
+        }
+        for item in items
+    ] or [
+        {
+            'description': description[:128],
+            'quantity': '1',
+            'amount': {'value': f'{float(amount):.2f}', 'currency': 'RUB'},
+            'vat_code': 1,
+            'payment_mode': 'full_payment',
+            'payment_subject': 'commodity',
+        }
+    ]
+
     payload = json.dumps({
         'amount': {'value': f'{float(amount):.2f}', 'currency': 'RUB'},
         'confirmation': {'type': 'redirect', 'return_url': return_url},
         'description': description,
         'capture': True,
+        'receipt': {
+            'customer': {
+                'full_name': customer.get('name', ''),
+                'email': customer.get('email', ''),
+                'phone': customer.get('phone', '').replace(' ', '').replace('-', ''),
+            },
+            'items': receipt_items,
+        },
     }).encode('utf-8')
 
     req = urllib.request.Request(
