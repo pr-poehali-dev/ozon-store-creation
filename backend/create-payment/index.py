@@ -58,10 +58,11 @@ def handler(event: dict, context) -> dict:
             result = json.loads(resp.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
         error_body = e.read().decode('utf-8')
+        print(f'[YOOKASSA ERROR] code={e.code} body={error_body}')
         return {
             'statusCode': 502,
             'headers': cors_headers,
-            'body': json.dumps({'error': f'ЮКасса вернула ошибку {e.code}', 'details': error_body}, ensure_ascii=False),
+            'body': json.dumps({'error': f'ЮКасса: {error_body}'}, ensure_ascii=False),
         }
 
     confirmation_url = result['confirmation']['confirmation_url']
