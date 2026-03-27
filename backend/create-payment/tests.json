@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Слишком маленькая сумма",
+      "method": "POST",
+      "path": "/",
+      "body": {"amount": 100, "description": "Тест"},
+      "expectedStatus": 400
+    }
+  ]
+}

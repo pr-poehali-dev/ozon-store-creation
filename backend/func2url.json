@@ -1,4 +1,5 @@
 {
+  "create-payment": "https://functions.poehali.dev/08dea84f-8d63-4974-b1a5-dad7368f84ee",
   "yml-export": "https://functions.poehali.dev/56bb9d57-ff07-4bb0-ae99-1141ee4cf7ba",
   "send-contact": "https://functions.poehali.dev/78de95d1-8bfd-474b-893c-af5d41aba571",
   "auth": "https://functions.poehali.dev/14c9736b-f723-402b-bd36-35c34afa4bae"

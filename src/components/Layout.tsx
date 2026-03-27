@@ -27,12 +27,38 @@ const NAV_ITEMS = [
   { path: '/contacts', label: 'Контакты' },
 ];
 
+const MIN_ORDER = 30000;
+
 const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isPaymentLoading, setIsPaymentLoading] = useState(false);
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const canCheckout = totalPrice >= MIN_ORDER;
+
+  const handleCheckout = async () => {
+    if (!canCheckout) return;
+    setIsPaymentLoading(true);
+    try {
+      const res = await fetch('https://functions.poehali.dev/08dea84f-8d63-4974-b1a5-dad7368f84ee', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: totalPrice,
+          description: `Заказ на сайте Полимер-проект (${cart.length} товар(ов))`,
+          items: cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
+        }),
+      });
+      const data = await res.json();
+      if (data.confirmation_url) {
+        window.location.href = data.confirmation_url;
+      }
+    } finally {
+      setIsPaymentLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -122,7 +148,19 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
                             <span>Итого:</span>
                             <span className="text-primary">{totalPrice.toLocaleString()} ₽</span>
                           </div>
-                          <Button className="w-full" size="lg">Оформить заказ</Button>
+                          {!canCheckout && (
+                            <p className="text-sm text-red-500 text-center">
+                              Минимальный заказ — 30 000 ₽. Ещё {(MIN_ORDER - totalPrice).toLocaleString()} ₽
+                            </p>
+                          )}
+                          <Button
+                            className="w-full"
+                            size="lg"
+                            disabled={!canCheckout || isPaymentLoading}
+                            onClick={handleCheckout}
+                          >
+                            {isPaymentLoading ? 'Перенаправление...' : 'Оплатить'}
+                          </Button>
                         </div>
                       </>
                     )}
