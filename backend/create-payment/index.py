@@ -3,6 +3,7 @@ import os
 import uuid
 import urllib.request
 import urllib.parse
+import urllib.error
 import base64
 
 
@@ -52,8 +53,16 @@ def handler(event: dict, context) -> dict:
         method='POST',
     )
 
-    with urllib.request.urlopen(req) as resp:
-        result = json.loads(resp.read().decode('utf-8'))
+    try:
+        with urllib.request.urlopen(req) as resp:
+            result = json.loads(resp.read().decode('utf-8'))
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode('utf-8')
+        return {
+            'statusCode': 502,
+            'headers': cors_headers,
+            'body': json.dumps({'error': f'ЮКасса вернула ошибку {e.code}', 'details': error_body}, ensure_ascii=False),
+        }
 
     confirmation_url = result['confirmation']['confirmation_url']
 

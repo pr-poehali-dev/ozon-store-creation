@@ -127,7 +127,11 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
       const data = await res.json();
       if (data.confirmation_url) {
         window.location.href = data.confirmation_url;
+      } else {
+        alert(data.error || 'Не удалось создать платёж. Попробуйте ещё раз или выберите оплату при получении.');
       }
+    } catch {
+      alert('Ошибка соединения. Попробуйте ещё раз.');
     } finally {
       setIsPaymentLoading(false);
     }
