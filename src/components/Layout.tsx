@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
 import { Product } from '@/data/products';
@@ -29,17 +32,86 @@ const NAV_ITEMS = [
 
 const MIN_ORDER = 30000;
 
+const DELIVERY_OPTIONS = [
+  { value: 'courier', label: 'Курьером по Санкт-Петербургу' },
+  { value: 'sdek', label: 'СДЭК (по России)' },
+  { value: 'pochta', label: 'Почта России' },
+  { value: 'pickup', label: 'Самовывоз (СПб)' },
+];
+
+interface OrderForm {
+  name: string;
+  phone: string;
+  email: string;
+  delivery: string;
+  address: string;
+  comment: string;
+}
+
+const emptyForm: OrderForm = {
+  name: '',
+  phone: '',
+  email: '',
+  delivery: 'courier',
+  address: '',
+  comment: '',
+};
+
 const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [step, setStep] = useState<'cart' | 'order' | 'success'>('cart');
+  const [form, setForm] = useState<OrderForm>(emptyForm);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isPaymentLoading, setIsPaymentLoading] = useState(false);
+  const [errors, setErrors] = useState<Partial<OrderForm>>({});
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const canCheckout = totalPrice >= MIN_ORDER;
 
-  const handleCheckout = async () => {
-    if (!canCheckout) return;
+  const handleSheetOpenChange = (open: boolean) => {
+    if (!open) {
+      setTimeout(() => setStep('cart'), 300);
+    }
+  };
+
+  const setField = (field: keyof OrderForm, value: string) => {
+    setForm(prev => ({ ...prev, [field]: value }));
+    setErrors(prev => ({ ...prev, [field]: '' }));
+  };
+
+  const validate = (): boolean => {
+    const e: Partial<OrderForm> = {};
+    if (!form.name.trim()) e.name = 'Введите ФИО';
+    if (!form.phone.trim()) e.phone = 'Введите телефон';
+    if (!form.email.trim()) e.email = 'Введите email';
+    if (form.delivery !== 'pickup' && !form.address.trim()) e.address = 'Введите адрес доставки';
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+
+  const handleSubmitOrder = async () => {
+    if (!validate()) return;
+    setIsSubmitting(true);
+    try {
+      await fetch('https://functions.poehali.dev/2837d83b-f881-44e4-8f6e-b85d0e5052e1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          total: totalPrice,
+          items: cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
+        }),
+      });
+      setStep('success');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handlePayment = async () => {
+    if (!validate()) return;
     setIsPaymentLoading(true);
     try {
       const res = await fetch('https://functions.poehali.dev/08dea84f-8d63-4974-b1a5-dad7368f84ee', {
@@ -47,8 +119,9 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           amount: totalPrice,
-          description: `Заказ на сайте Полимер-проект (${cart.length} товар(ов))`,
+          description: `Заказ: ${form.name}, ${form.phone}`,
           items: cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
+          customer: form,
         }),
       });
       const data = await res.json();
@@ -65,10 +138,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div
-              className="flex items-center gap-3 cursor-pointer"
-              onClick={() => navigate('/')}
-            >
+            <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
               <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                 <Icon name="Lightbulb" size={18} className="text-primary-foreground" />
               </div>
@@ -95,7 +165,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
               <Button variant="ghost" size="icon" onClick={() => navigate('/profile')}>
                 <Icon name="User" size={20} />
               </Button>
-              <Sheet>
+              <Sheet onOpenChange={handleSheetOpenChange}>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className="relative">
                     <Icon name="ShoppingCart" size={20} />
@@ -106,65 +176,217 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
                     )}
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="w-full sm:max-w-lg">
+                <SheetContent className="w-full sm:max-w-lg flex flex-col">
                   <SheetHeader>
-                    <SheetTitle>Корзина</SheetTitle>
+                    <SheetTitle className="flex items-center gap-2">
+                      {step === 'order' && (
+                        <button onClick={() => setStep('cart')} className="text-muted-foreground hover:text-foreground">
+                          <Icon name="ArrowLeft" size={18} />
+                        </button>
+                      )}
+                      {step === 'cart' && 'Корзина'}
+                      {step === 'order' && 'Оформление заказа'}
+                      {step === 'success' && 'Заказ принят'}
+                    </SheetTitle>
                   </SheetHeader>
-                  <div className="mt-8 space-y-4">
-                    {cart.length === 0 ? (
-                      <div className="text-center py-12">
-                        <Icon name="ShoppingBag" size={48} className="mx-auto mb-4 text-muted-foreground" />
-                        <p className="text-muted-foreground">Корзина пуста</p>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="space-y-4 max-h-[60vh] overflow-y-auto">
-                          {cart.map(item => (
-                            <Card key={item.id} className="p-4">
-                              <div className="flex gap-4">
-                                <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded-lg" />
-                                <div className="flex-1">
-                                  <h4 className="font-semibold text-sm">{item.name}</h4>
-                                  <p className="text-primary font-bold mt-1">{item.price.toLocaleString()} ₽</p>
-                                  <div className="flex items-center gap-2 mt-2">
-                                    <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>
-                                      <Icon name="Minus" size={14} />
-                                    </Button>
-                                    <span className="w-8 text-center font-medium">{item.quantity}</span>
-                                    <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>
-                                      <Icon name="Plus" size={14} />
-                                    </Button>
-                                    <Button size="icon" variant="ghost" className="h-8 w-8 ml-auto text-destructive" onClick={() => onRemoveFromCart(item.id)}>
-                                      <Icon name="Trash2" size={14} />
-                                    </Button>
+
+                  {/* ШАГ 1: КОРЗИНА */}
+                  {step === 'cart' && (
+                    <div className="mt-6 flex flex-col flex-1 overflow-hidden">
+                      {cart.length === 0 ? (
+                        <div className="text-center py-12">
+                          <Icon name="ShoppingBag" size={48} className="mx-auto mb-4 text-muted-foreground" />
+                          <p className="text-muted-foreground">Корзина пуста</p>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="space-y-3 overflow-y-auto flex-1 pr-1">
+                            {cart.map(item => (
+                              <Card key={item.id} className="p-3">
+                                <div className="flex gap-3">
+                                  <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg flex-shrink-0" />
+                                  <div className="flex-1 min-w-0">
+                                    <h4 className="font-semibold text-sm leading-tight">{item.name}</h4>
+                                    <p className="text-primary font-bold mt-1 text-sm">{item.price.toLocaleString()} ₽</p>
+                                    <div className="flex items-center gap-2 mt-2">
+                                      <Button size="icon" variant="outline" className="h-7 w-7" onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}>
+                                        <Icon name="Minus" size={12} />
+                                      </Button>
+                                      <span className="w-6 text-center font-medium text-sm">{item.quantity}</span>
+                                      <Button size="icon" variant="outline" className="h-7 w-7" onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}>
+                                        <Icon name="Plus" size={12} />
+                                      </Button>
+                                      <Button size="icon" variant="ghost" className="h-7 w-7 ml-auto text-destructive" onClick={() => onRemoveFromCart(item.id)}>
+                                        <Icon name="Trash2" size={12} />
+                                      </Button>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </Card>
-                          ))}
+                              </Card>
+                            ))}
+                          </div>
+                          <div className="border-t pt-4 mt-4 space-y-3">
+                            <div className="flex justify-between text-lg font-bold">
+                              <span>Итого:</span>
+                              <span className="text-primary">{totalPrice.toLocaleString()} ₽</span>
+                            </div>
+                            {!canCheckout && (
+                              <p className="text-sm text-red-500 text-center">
+                                Минимальный заказ — 30 000 ₽. Ещё {(MIN_ORDER - totalPrice).toLocaleString()} ₽
+                              </p>
+                            )}
+                            <Button
+                              className="w-full"
+                              size="lg"
+                              disabled={!canCheckout}
+                              onClick={() => setStep('order')}
+                            >
+                              Оформить заказ
+                            </Button>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  )}
+
+                  {/* ШАГ 2: ФОРМА ЗАКАЗА */}
+                  {step === 'order' && (
+                    <div className="mt-4 flex flex-col flex-1 overflow-hidden">
+                      <div className="overflow-y-auto flex-1 pr-1 space-y-4">
+                        <div className="space-y-1">
+                          <Label htmlFor="name">ФИО *</Label>
+                          <Input
+                            id="name"
+                            placeholder="Иванов Иван Иванович"
+                            value={form.name}
+                            onChange={e => setField('name', e.target.value)}
+                            className={errors.name ? 'border-red-500' : ''}
+                          />
+                          {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
                         </div>
-                        <div className="border-t pt-4 space-y-4">
-                          <div className="flex justify-between text-lg font-bold">
-                            <span>Итого:</span>
+
+                        <div className="space-y-1">
+                          <Label htmlFor="phone">Телефон *</Label>
+                          <Input
+                            id="phone"
+                            placeholder="+7 (900) 000-00-00"
+                            value={form.phone}
+                            onChange={e => setField('phone', e.target.value)}
+                            className={errors.phone ? 'border-red-500' : ''}
+                          />
+                          {errors.phone && <p className="text-xs text-red-500">{errors.phone}</p>}
+                        </div>
+
+                        <div className="space-y-1">
+                          <Label htmlFor="email">Email *</Label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="example@mail.ru"
+                            value={form.email}
+                            onChange={e => setField('email', e.target.value)}
+                            className={errors.email ? 'border-red-500' : ''}
+                          />
+                          {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label>Способ доставки *</Label>
+                          <div className="space-y-2">
+                            {DELIVERY_OPTIONS.map(opt => (
+                              <label
+                                key={opt.value}
+                                className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                                  form.delivery === opt.value
+                                    ? 'border-primary bg-primary/5'
+                                    : 'border-border hover:bg-muted/50'
+                                }`}
+                              >
+                                <input
+                                  type="radio"
+                                  name="delivery"
+                                  value={opt.value}
+                                  checked={form.delivery === opt.value}
+                                  onChange={() => setField('delivery', opt.value)}
+                                  className="accent-primary"
+                                />
+                                <span className="text-sm">{opt.label}</span>
+                              </label>
+                            ))}
+                          </div>
+                        </div>
+
+                        {form.delivery !== 'pickup' && (
+                          <div className="space-y-1">
+                            <Label htmlFor="address">Адрес доставки *</Label>
+                            <Input
+                              id="address"
+                              placeholder="Город, улица, дом, квартира"
+                              value={form.address}
+                              onChange={e => setField('address', e.target.value)}
+                              className={errors.address ? 'border-red-500' : ''}
+                            />
+                            {errors.address && <p className="text-xs text-red-500">{errors.address}</p>}
+                          </div>
+                        )}
+
+                        <div className="space-y-1">
+                          <Label htmlFor="comment">Комментарий к заказу</Label>
+                          <Textarea
+                            id="comment"
+                            placeholder="Дополнительные пожелания..."
+                            value={form.comment}
+                            onChange={e => setField('comment', e.target.value)}
+                            rows={3}
+                          />
+                        </div>
+
+                        <div className="border rounded-lg p-3 bg-muted/30">
+                          <div className="flex justify-between font-bold">
+                            <span>Сумма заказа:</span>
                             <span className="text-primary">{totalPrice.toLocaleString()} ₽</span>
                           </div>
-                          {!canCheckout && (
-                            <p className="text-sm text-red-500 text-center">
-                              Минимальный заказ — 30 000 ₽. Ещё {(MIN_ORDER - totalPrice).toLocaleString()} ₽
-                            </p>
-                          )}
-                          <Button
-                            className="w-full"
-                            size="lg"
-                            disabled={!canCheckout || isPaymentLoading}
-                            onClick={handleCheckout}
-                          >
-                            {isPaymentLoading ? 'Перенаправление...' : 'Оплатить'}
-                          </Button>
+                          <p className="text-xs text-muted-foreground mt-1">{cart.length} товар(ов)</p>
                         </div>
-                      </>
-                    )}
-                  </div>
+                      </div>
+
+                      <div className="border-t pt-4 mt-4 space-y-2">
+                        <Button
+                          className="w-full"
+                          size="lg"
+                          onClick={handlePayment}
+                          disabled={isPaymentLoading || isSubmitting}
+                        >
+                          {isPaymentLoading ? 'Перенаправление...' : 'Оплатить онлайн'}
+                        </Button>
+                        <Button
+                          className="w-full"
+                          size="lg"
+                          variant="outline"
+                          onClick={handleSubmitOrder}
+                          disabled={isSubmitting || isPaymentLoading}
+                        >
+                          {isSubmitting ? 'Отправка...' : 'Оформить без оплаты'}
+                        </Button>
+                        <p className="text-xs text-muted-foreground text-center">
+                          При выборе «без оплаты» менеджер свяжется с вами для подтверждения
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ШАГ 3: УСПЕХ */}
+                  {step === 'success' && (
+                    <div className="mt-8 text-center py-8 space-y-4">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                        <Icon name="CheckCircle" size={32} className="text-green-600" />
+                      </div>
+                      <h3 className="text-xl font-bold">Заказ оформлен!</h3>
+                      <p className="text-muted-foreground text-sm">
+                        Спасибо, {form.name.split(' ')[0]}! Мы свяжемся с вами по номеру {form.phone} для подтверждения заказа.
+                      </p>
+                    </div>
+                  )}
                 </SheetContent>
               </Sheet>
             </div>
