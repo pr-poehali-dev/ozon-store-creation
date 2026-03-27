@@ -21,6 +21,7 @@ import ProductDetail6 from "./pages/ProductDetail6";
 import ProductDetail7 from "./pages/ProductDetail7";
 import ProductDetail8 from "./pages/ProductDetail8";
 import NotFound from "./pages/NotFound";
+import AdminPage from "./pages/AdminPage";
 import { Product } from "@/data/products";
 
 interface CartItem extends Product {
@@ -99,6 +100,7 @@ const AppContent = () => {
       <Route path="/product/6" element={<ProductDetail6 />} />
       <Route path="/product/7" element={<ProductDetail7 />} />
       <Route path="/product/8" element={<ProductDetail8 />} />
+      <Route path="/admin" element={<AdminPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

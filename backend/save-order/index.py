@@ -68,19 +68,73 @@ def send_email_notification(order_id, name, phone, email, delivery, address, com
         server.sendmail(smtp_user, to_email, msg.as_string())
 
 
+ADMIN_TOKEN = 'polimer-admin-2024'
+
+
 def handler(event: dict, context) -> dict:
-    """Сохраняет заказ клиента в базу данных и отправляет уведомление на почту."""
+    """Сохраняет заказ в БД (POST), возвращает список заказов для админки (GET), обновляет статус (PUT)."""
     cors_headers = {
         'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, X-Admin-Token',
     }
 
     if event.get('httpMethod') == 'OPTIONS':
         return {'statusCode': 200, 'headers': cors_headers, 'body': ''}
 
-    body = json.loads(event.get('body') or '{}')
+    method = event.get('httpMethod', 'POST')
+    headers = event.get('headers') or {}
 
+    # GET — список заказов для админки
+    if method == 'GET':
+        token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
+        if token != ADMIN_TOKEN:
+            return {'statusCode': 401, 'headers': cors_headers, 'body': json.dumps({'error': 'Нет доступа'})}
+
+        conn = psycopg2.connect(os.environ['DATABASE_URL'])
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT id, name, phone, email, delivery, address, comment, total, items, status, created_at "
+            "FROM orders ORDER BY created_at DESC LIMIT 200"
+        )
+        rows = cur.fetchall()
+        cur.close(); conn.close()
+
+        orders = []
+        for r in rows:
+            orders.append({
+                'id': r[0], 'name': r[1], 'phone': r[2], 'email': r[3],
+                'delivery': r[4], 'address': r[5] or '', 'comment': r[6] or '',
+                'total': float(r[7]),
+                'items': r[8] if isinstance(r[8], list) else json.loads(r[8]),
+                'status': r[9],
+                'created_at': r[10].isoformat() if r[10] else '',
+            })
+
+        return {'statusCode': 200, 'headers': cors_headers, 'body': json.dumps({'orders': orders}, ensure_ascii=False)}
+
+    # PUT — обновление статуса
+    if method == 'PUT':
+        token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
+        if token != ADMIN_TOKEN:
+            return {'statusCode': 401, 'headers': cors_headers, 'body': json.dumps({'error': 'Нет доступа'})}
+
+        body = json.loads(event.get('body') or '{}')
+        order_id = body.get('id')
+        new_status = body.get('status')
+        allowed = ['new', 'processing', 'shipped', 'delivered', 'cancelled']
+        if not order_id or new_status not in allowed:
+            return {'statusCode': 400, 'headers': cors_headers, 'body': json.dumps({'error': 'Неверные данные'})}
+
+        conn = psycopg2.connect(os.environ['DATABASE_URL'])
+        cur = conn.cursor()
+        cur.execute("UPDATE orders SET status = %s WHERE id = %s", (new_status, order_id))
+        conn.commit()
+        cur.close(); conn.close()
+        return {'statusCode': 200, 'headers': cors_headers, 'body': json.dumps({'ok': True})}
+
+    # POST — создать заказ
+    body = json.loads(event.get('body') or '{}')
     name = body.get('name', '').strip()
     phone = body.get('phone', '').strip()
     email = body.get('email', '').strip()

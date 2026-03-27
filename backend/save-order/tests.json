@@ -12,6 +12,21 @@
       "path": "/",
       "body": {},
       "expectedStatus": 400
+    },
+    {
+      "name": "GET без токена — 401",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 401
+    },
+    {
+      "name": "GET с токеном — список заказов",
+      "method": "GET",
+      "path": "/",
+      "headers": { "X-Admin-Token": "polimer-admin-2024" },
+      "expectedStatus": 200,
+      "expectedBody": { "orders": [] },
+      "bodyMatcher": "partial"
     }
   ]
 }
