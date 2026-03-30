@@ -19,6 +19,26 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
         <title>Полимер-проект — декоративные светильники из Санкт-Петербурга</title>
         <meta name="description" content="Декоративные светильники из полимерных материалов — ворон, сова, луна. Уникальный дизайн, производство в Санкт-Петербурге. Оптовые цены от 350₽. Доставка по всей России." />
         <link rel="canonical" href="https://proekt-polimer.ru/" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Полимер-проект",
+          "url": "https://proekt-polimer.ru",
+          "logo": "https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/files/7b978b85-30d5-4d9b-8834-d2cb5f648179.jpg",
+          "description": "Производитель декоративных светильников из полимерных материалов. Уникальный дизайн, доставка по всей России.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Санкт-Петербург",
+            "addressCountry": "RU"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-921-636-36-08",
+            "contactType": "customer service",
+            "availableLanguage": "Russian"
+          },
+          "sameAs": []
+        })}</script>
       </Helmet>
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
         <div className="relative z-10 max-w-2xl">

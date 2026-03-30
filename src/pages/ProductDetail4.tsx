@@ -70,6 +70,30 @@ const ProductDetail4 = () => {
         <title>Настенный светильник «Ворон» — Полимер-проект</title>
         <meta name="description" content="Настенный светильник «Ворон». Цена: 580₽. Арт-объект с готической элегантностью. Ворон — символ мудрости, тайны и вдохновения в вашем интерьере. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/4" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": productData.name,
+          "sku": productData.sku,
+          "description": productData.description.replace(/\n/g, ' '),
+          "image": productData.images,
+          "brand": { "@type": "Brand", "name": "Полимер-проект" },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://proekt-polimer.ru/product/4",
+            "priceCurrency": "RUB",
+            "price": productData.price,
+            "availability": "https://schema.org/InStock",
+            "seller": { "@type": "Organization", "name": "Полимер-проект" }
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": productData.rating,
+            "reviewCount": productData.reviews,
+            "bestRating": 5,
+            "worstRating": 1
+          }
+        })}</script>
       </Helmet>
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
         <div className="container mx-auto px-4 py-4">
