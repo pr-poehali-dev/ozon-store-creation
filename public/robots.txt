@@ -4,5 +4,3 @@ Disallow: /admin
 Disallow: /profile
 
 Sitemap: https://proekt-polimer.ru/sitemap.xml
-
-Host: proekt-polimer.ru
