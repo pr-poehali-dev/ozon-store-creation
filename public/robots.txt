@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /profile
 
-Sitemap: https://polimer-proekt.ru/sitemap.xml
+Sitemap: https://proekt-polimer.ru/sitemap.xml
 
-Host: polimer-proekt.ru
+Host: proekt-polimer.ru

@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -14,6 +15,11 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
 
   return (
     <div className="space-y-12 animate-fade-in">
+      <Helmet>
+        <title>Полимер-проект — декоративные светильники из Санкт-Петербурга</title>
+        <meta name="description" content="Декоративные светильники из полимерных материалов — ворон, сова, луна. Уникальный дизайн, производство в Санкт-Петербурге. Оптовые цены от 350₽. Доставка по всей России." />
+        <link rel="canonical" href="https://proekt-polimer.ru/" />
+      </Helmet>
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
         <div className="relative z-10 max-w-2xl">
           <h2 className="text-5xl font-bold mb-4">Оптовые цены от 350₽</h2>

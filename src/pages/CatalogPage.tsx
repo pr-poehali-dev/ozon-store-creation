@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -41,6 +42,11 @@ const CatalogPage = ({ onAddToCart }: CatalogPageProps) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
+      <Helmet>
+        <title>Каталог светильников — Полимер-проект</title>
+        <meta name="description" content="Каталог декоративных светильников из полимерных материалов: ворон, сова, луна. Настенные и настольные светильники с доставкой по России. Оптовые цены от 350₽." />
+        <link rel="canonical" href="https://proekt-polimer.ru/catalog" />
+      </Helmet>
       <div className="flex items-center justify-between flex-wrap gap-4">
         <h2 className="text-3xl font-bold">Каталог товаров</h2>
         <Button variant="outline" onClick={downloadYml} disabled={ymlLoading} className="gap-2">

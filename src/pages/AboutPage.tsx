@@ -1,7 +1,13 @@
+import { Helmet } from 'react-helmet-async';
 import { Card } from '@/components/ui/card';
 
 const AboutPage = () => (
   <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+    <Helmet>
+      <title>О магазине — Полимер-проект</title>
+      <meta name="description" content="Полимер-проект — российская компания из Санкт-Петербурга, производитель уникальных декоративных светильников из полимерных материалов. Основана в 2024 году. Современный дизайн и высокое качество." />
+      <link rel="canonical" href="https://proekt-polimer.ru/about" />
+    </Helmet>
     <h2 className="text-3xl font-bold">О магазине</h2>
     <Card className="p-8 space-y-6">
       <p className="text-lg text-muted-foreground leading-relaxed">

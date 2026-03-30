@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -72,6 +73,11 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <Helmet>
+        <title>{productData.name} — Полимер-проект</title>
+        <meta name="description" content={`${productData.name}. Цена: ${productData.price}₽. ${productData.description.slice(0, 120).replace(/\n/g, ' ')} Доставка по России.`} />
+        <link rel="canonical" href="https://proekt-polimer.ru/product/1" />
+      </Helmet>
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">

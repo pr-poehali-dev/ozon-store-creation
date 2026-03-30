@@ -1,8 +1,14 @@
+import { Helmet } from 'react-helmet-async';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
 const DeliveryPage = () => (
   <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+    <Helmet>
+      <title>Доставка и оплата — Полимер-проект</title>
+      <meta name="description" content="Доставка светильников по Санкт-Петербургу, Ленинградской области и всей России (СДЭК, Деловые Линии). Самовывоз со склада в СПб. Оплата онлайн или при получении." />
+      <link rel="canonical" href="https://proekt-polimer.ru/delivery" />
+    </Helmet>
     <h2 className="text-3xl font-bold">Доставка и оплата</h2>
 
     <Card className="p-6">

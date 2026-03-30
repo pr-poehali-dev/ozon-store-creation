@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -59,6 +60,11 @@ const ContactForm = () => {
 
 const ContactsPage = () => (
   <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+    <Helmet>
+      <title>Контакты — Полимер-проект</title>
+      <meta name="description" content="Контакты магазина Полимер-проект. Адрес: г. Санкт-Петербург. Телефон: 8 921 636-36-08. Email: proekt-polimer@mail.ru. Форма обратной связи." />
+      <link rel="canonical" href="https://proekt-polimer.ru/contacts" />
+    </Helmet>
     <h2 className="text-3xl font-bold">Контакты</h2>
     <div className="grid md:grid-cols-2 gap-6">
       <Card className="p-6 space-y-4">

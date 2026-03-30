@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { Card } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
@@ -21,6 +22,11 @@ const reviews = [
 
 const ReviewsPage = () => (
   <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
+    <Helmet>
+      <title>Отзывы покупателей — Полимер-проект</title>
+      <meta name="description" content="Отзывы покупателей о декоративных светильниках Полимер-проект. Более 15 отзывов с оценкой 5 звёзд. Ворон, сова, луна — уникальные светильники из Санкт-Петербурга." />
+      <link rel="canonical" href="https://proekt-polimer.ru/reviews" />
+    </Helmet>
     <h2 className="text-3xl font-bold">Отзывы покупателей</h2>
     {reviews.map((review, i) => (
       <Card key={i} className="p-6">

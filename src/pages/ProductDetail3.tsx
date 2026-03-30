@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -70,6 +71,11 @@ const ProductDetail3 = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <Helmet>
+        <title>Настольный светильник «Ворон» — Полимер-проект</title>
+        <meta name="description" content="Настольный светильник «Ворон». Цена: 630₽. Настольный светильник Ворон золотой — шедевр современного дизайна, сочетающий элегантность и функциональность. Доставка по России." />
+        <link rel="canonical" href="https://proekt-polimer.ru/product/3" />
+      </Helmet>
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
