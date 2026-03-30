@@ -101,6 +101,15 @@ const ProductDetail = () => {
             "worstRating": 1
           }
         })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://proekt-polimer.ru/" },
+            { "@type": "ListItem", "position": 2, "name": "Каталог", "item": "https://proekt-polimer.ru/catalog" },
+            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/1" }
+          ]
+        })}</script>
       </Helmet>
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
         <div className="container mx-auto px-4 py-4">
