@@ -29,8 +29,8 @@ def handler(event: dict, context) -> dict:
             'body': json.dumps({'error': 'Минимальный заказ 30 000 ₽'}, ensure_ascii=False),
         }
 
-    shop_id = os.environ['YOOKASSA_SHOP_ID']
-    secret_key = os.environ['YOOKASSA_SECRET_KEY']
+    shop_id = os.environ.get('YOOKASSA_SHOP_ID', '1311963')
+    secret_key = os.environ.get('YOOKASSA_SECRET_KEY', 'live_tv7B3B-suhtM-MaNxc2KsG0jujg2reK_xGebnExt-x4')
     credentials = base64.b64encode(f'{shop_id}:{secret_key}'.encode()).decode()
 
     return_url = 'https://polimer-proekt.ru/payment-success'
