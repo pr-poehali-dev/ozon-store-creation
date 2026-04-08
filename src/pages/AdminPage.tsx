@@ -139,9 +139,9 @@ export default function AdminPage() {
                   className="flex flex-wrap items-center gap-3 px-5 py-4 cursor-pointer hover:bg-muted/40 transition"
                   onClick={() => setExpanded(expanded === order.id ? null : order.id)}
                 >
-                  <span className="font-mono text-muted-foreground text-sm w-10">#{order.id}</span>
-                  <span className="font-semibold flex-1 min-w-[120px]">{order.name}</span>
-                  <span className="text-sm text-muted-foreground">{order.phone}</span>
+                  <span className="font-mono text-muted-foreground text-xs w-8">#{order.id}</span>
+                  <span className="font-semibold flex-1 min-w-0 truncate">{order.name}</span>
+                  <span className="text-sm text-muted-foreground hidden sm:block">{order.phone}</span>
                   <span className="text-sm hidden sm:block">{DELIVERY_LABELS[order.delivery] || order.delivery}</span>
                   <span className="font-bold text-primary">{order.total.toLocaleString('ru-RU')} ₽</span>
                   <span className={`text-xs px-2 py-1 rounded-full font-medium ${STATUS_LABELS[order.status]?.color || 'bg-gray-100 text-gray-600'}`}>

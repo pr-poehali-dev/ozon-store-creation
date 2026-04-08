@@ -27,15 +27,15 @@ const ReviewsPage = () => (
       <meta name="description" content="Отзывы покупателей о декоративных светильниках Полимер-проект. Более 15 отзывов с оценкой 5 звёзд. Ворон, сова, луна — уникальные светильники из Санкт-Петербурга." />
       <link rel="canonical" href="https://proekt-polimer.ru/reviews" />
     </Helmet>
-    <h2 className="text-3xl font-bold">Отзывы покупателей</h2>
+    <h2 className="text-2xl sm:text-3xl font-bold">Отзывы покупателей</h2>
     {reviews.map((review, i) => (
-      <Card key={i} className="p-6">
-        <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <Icon name="User" size={24} className="text-primary" />
+      <Card key={i} className="p-4 sm:p-6">
+        <div className="flex items-start gap-3 sm:gap-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+            <Icon name="User" size={20} className="text-primary" />
           </div>
-          <div className="flex-1">
-            <div className="flex items-center justify-between mb-1">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center justify-between mb-1 gap-2 flex-wrap">
               <h4 className="font-semibold">{review.name}</h4>
               <div className="flex">
                 {[...Array(review.stars)].map((_, j) => (

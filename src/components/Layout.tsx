@@ -60,6 +60,7 @@ const emptyForm: OrderForm = {
 const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [step, setStep] = useState<'cart' | 'order' | 'success'>('cart');
   const [form, setForm] = useState<OrderForm>(emptyForm);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -165,9 +166,12 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
               ))}
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               <Button variant="ghost" size="icon" onClick={() => navigate('/profile')}>
                 <Icon name="User" size={20} />
+              </Button>
+              <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setMobileMenuOpen(v => !v)}>
+                <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={20} />
               </Button>
               <Sheet onOpenChange={handleSheetOpenChange}>
                 <SheetTrigger asChild>
@@ -398,13 +402,33 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-background border-b shadow-sm z-40">
+          <nav className="container mx-auto px-4 py-3 flex flex-col gap-1">
+            {NAV_ITEMS.map(item => (
+              <button
+                key={item.path}
+                onClick={() => { navigate(item.path); setMobileMenuOpen(false); }}
+                className={`w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  location.pathname === item.path
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
+
+      <main className="container mx-auto px-4 py-6 sm:py-8">
         {children}
       </main>
 
-      <footer className="bg-muted/50 mt-20 py-12 border-t">
+      <footer className="bg-muted/50 mt-12 sm:mt-20 py-8 sm:py-12 border-t">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div>
               <h3 className="font-bold text-lg mb-3">Полимер-проект</h3>
               <p className="text-sm text-muted-foreground">Эксклюзивные декоративные светильники из Санкт-Петербурга</p>

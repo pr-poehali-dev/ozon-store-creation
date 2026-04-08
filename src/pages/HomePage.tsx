@@ -40,21 +40,21 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
           "sameAs": []
         })}</script>
       </Helmet>
-      <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-12 text-white">
+      <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-6 sm:p-12 text-white">
         <div className="relative z-10 max-w-2xl">
-          <h2 className="text-5xl font-bold mb-4">Оптовые цены от 350₽</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Оптовые цены от 350₽</h2>
           <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => navigate('/catalog')}>
             Смотреть каталог
           </Button>
         </div>
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20">
+        <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 hidden sm:block">
           <Icon name="Lightbulb" size={200} className="absolute right-10 top-10" />
         </div>
       </section>
 
       <section>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-bold">Наши товары</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold">Наши товары</h2>
           <Button variant="outline" onClick={() => navigate('/catalog')}>
             Все товары
             <Icon name="ArrowRight" size={16} className="ml-2" />

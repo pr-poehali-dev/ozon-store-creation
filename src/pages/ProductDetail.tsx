@@ -125,17 +125,17 @@ const ProductDetail = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-12 mb-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 mb-12">
           <div className="space-y-4">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg">
               <img
                 src={productData.images[selectedImage]}
                 alt={productData.name}
-                className="w-full h-full object-contain p-8"
+                className="w-full h-full object-contain p-4 sm:p-8"
               />
 
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-5 gap-2 sm:gap-3">
               {productData.images.map((img, idx) => (
                 <button
                   key={idx}
@@ -158,7 +158,7 @@ const ProductDetail = () => {
                 <Badge variant="secondary">{productData.category}</Badge>
                 <span className="text-sm text-muted-foreground">Арт. {productData.sku}</span>
               </div>
-              <h1 className="text-4xl font-bold mb-4">{productData.name}</h1>
+              <h1 className="text-2xl sm:text-4xl font-bold mb-4">{productData.name}</h1>
               
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2">
@@ -178,7 +178,7 @@ const ProductDetail = () => {
               </div>
 
               <div className="flex items-baseline gap-4 mb-6">
-                <div className="text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
+                <div className="text-3xl sm:text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
               </div>
 
               <div className="flex gap-3 mb-6">
@@ -253,18 +253,18 @@ const ProductDetail = () => {
         </div>
 
         <Tabs defaultValue="description" className="mb-12">
-          <TabsList className="grid w-full max-w-md grid-cols-3">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="description">Описание</TabsTrigger>
             <TabsTrigger value="features">Преимущества</TabsTrigger>
             <TabsTrigger value="specs">Характеристики</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="description" className="mt-8">
-            <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-4">О товаре</h2>
+          <TabsContent value="description" className="mt-6 sm:mt-8">
+            <Card className="p-4 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4">О товаре</h2>
               <div className="prose max-w-none">
                 {productData.description.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="text-lg leading-relaxed mb-4 text-muted-foreground">
+                  <p key={idx} className="text-base leading-relaxed mb-4 text-muted-foreground">
                     {paragraph}
                   </p>
                 ))}
@@ -272,25 +272,25 @@ const ProductDetail = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="features" className="mt-8">
-            <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-6">Почему стоит купить?</h2>
-              <div className="grid gap-6">
+          <TabsContent value="features" className="mt-6 sm:mt-8">
+            <Card className="p-4 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6">Почему стоит купить?</h2>
+              <div className="grid gap-4 sm:gap-6">
                 {productData.features.map((feature, idx) => (
-                  <div key={idx} className="flex gap-4 items-start">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                      <Icon name="Check" size={20} className="text-primary" />
+                  <div key={idx} className="flex gap-3 sm:gap-4 items-start">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                      <Icon name="Check" size={16} className="text-primary" />
                     </div>
-                    <p className="text-lg leading-relaxed">{feature}</p>
+                    <p className="text-base leading-relaxed">{feature}</p>
                   </div>
                 ))}
               </div>
             </Card>
           </TabsContent>
 
-          <TabsContent value="specs" className="mt-8">
-            <Card className="p-8">
-              <h2 className="text-2xl font-bold mb-6">Технические характеристики</h2>
+          <TabsContent value="specs" className="mt-6 sm:mt-8">
+            <Card className="p-4 sm:p-8">
+              <h2 className="text-xl sm:text-2xl font-bold mb-6">Технические характеристики</h2>
               <div className="grid gap-4">
                 {productData.specifications.map((spec, idx) => (
                   <div
