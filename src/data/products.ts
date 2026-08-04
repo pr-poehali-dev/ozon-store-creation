@@ -1,14 +1,14 @@
 import ravenRight1 from '@/assets/products/raven-right-1.png';
 import ravenWhite1 from '@/assets/products/raven-white-1.jpg';
 import ravenTable1 from '@/assets/products/raven-table-1.jpg';
-import ravenLeft1 from '@/assets/products/raven-left-1.jpg';
 import owlBranch1 from '@/assets/products/owl-branch-1.jpg';
 import owl1 from '@/assets/products/owl-1.jpg';
 import moon1 from '@/assets/products/moon-1.jpg';
 import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
-import ravenBlack1 from '@/assets/products/raven-black-1.png';
+import ravenBlack2 from '@/assets/products/raven-black-2.jpg';
 import mouseHangedReal from '@/assets/products/mouse-hanged-real.png';
 import monk2 from '@/assets/products/monk-2.jpg';
+import ravenLeftReal1 from '@/assets/products/raven-left-real-1.jpg';
 
 export interface Product {
   id: number;
@@ -27,9 +27,9 @@ export const mockProducts: Product[] = [
   {
     id: 8,
     sku: '07020001',
-    name: 'Настенный светильник "Ворон настенный крепление с лево"',
+    name: 'Настенный светильник "Ворон крепление слева"',
     price: 850,
-    image: ravenLeft1,
+    image: ravenLeftReal1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 0,
@@ -39,7 +39,7 @@ export const mockProducts: Product[] = [
   {
     id: 1,
     sku: '07020002',
-    name: 'Настенный светильник "Ворон настенный крепление с право"',
+    name: 'Настенный светильник "Ворон крепление справа"',
     price: 850,
     image: ravenRight1,
     category: 'Интерьер',
@@ -125,7 +125,7 @@ export const mockProducts: Product[] = [
     sku: '07020009',
     name: 'Настольный светильник "Ворон черный"',
     price: 900,
-    image: ravenBlack1,
+    image: ravenBlack2,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 0,
@@ -148,7 +148,7 @@ export const mockProducts: Product[] = [
     id: 11,
     sku: '07020011',
     name: 'Подсвечник "Монах"',
-    price: 900,
+    price: 300,
     image: monk2,
     category: 'Интерьер',
     rating: 5.0,

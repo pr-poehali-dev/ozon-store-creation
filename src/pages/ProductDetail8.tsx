@@ -6,6 +6,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import ravenLeftReal1 from '@/assets/products/raven-left-real-1.jpg';
+import ravenLeftReal2 from '@/assets/products/raven-left-real-2.jpg';
 
 interface ProductDetailType {
   id: number;
@@ -26,14 +28,11 @@ interface ProductDetailType {
 const productData: ProductDetailType = {
   id: 8,
   sku: '07020001',
-  name: 'Настенный светильник "Ворон настенный крепление с лево"',
-  price: 680,
+  name: 'Настенный светильник "Ворон крепление слева"',
+  price: 850,
   images: [
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/f0aef8fd-1f87-44d7-a45a-d92fec0c8ab2.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/135c7432-df41-4173-b1a1-f189539752b0.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/244916a1-bf01-47f5-8252-ef0c35e0da47.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/d3f564ed-10b1-47a2-9121-eeb17f89e9e0.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c169b9ab-f6e6-49f1-bf25-9d76510adc96.png',
+    ravenLeftReal1,
+    ravenLeftReal2,
   ],
   category: 'Интерьер',
   rating: 5.0,
@@ -72,8 +71,8 @@ const ProductDetail8 = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Helmet>
-        <title>Настенный светильник «Ворон крепление с лево» — Полимер-проект</title>
-        <meta name="description" content="Настенный светильник «Ворон крепление с лево». Цена: 580₽. Зеркальное исполнение настенного ворона с креплением с левой стороны. Создайте симметричную пару в интерьере. Доставка по России." />
+        <title>Настенный светильник «Ворон крепление слева» — Полимер-проект</title>
+        <meta name="description" content="Настенный светильник «Ворон крепление слева». Цена: 850₽. Зеркальное исполнение настенного ворона с креплением с левой стороны. Создайте симметричную пару в интерьере. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/8" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

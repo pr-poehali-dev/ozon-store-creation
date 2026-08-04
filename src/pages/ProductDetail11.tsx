@@ -30,7 +30,7 @@ const productData: ProductDetail = {
   id: 11,
   sku: '07020011',
   name: 'Подсвечник "Монах"',
-  price: 900,
+  price: 300,
   images: [
     monk1,
     monk2,
@@ -80,7 +80,7 @@ const ProductDetail11 = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Helmet>
         <title>Подсвечник «Монах» — Полимер-проект</title>
-        <meta name="description" content="Подсвечник «Монах». Цена: 900₽. Эксклюзивная статуэтка таинственной фигуры с внутренним пламенем — идеальный выбор для тех, кто ценит оригинальность. Доставка по России." />
+        <meta name="description" content="Подсвечник «Монах». Цена: 300₽. Эксклюзивная статуэтка таинственной фигуры с внутренним пламенем — идеальный выбор для тех, кто ценит оригинальность. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/11" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

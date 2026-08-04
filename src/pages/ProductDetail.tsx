@@ -31,7 +31,7 @@ interface ProductDetail {
 const productData: ProductDetail = {
   id: 1,
   sku: '07020002',
-  name: 'Настенный светильник "Ворон настенный крепление с право"',
+  name: 'Настенный светильник "Ворон крепление справа"',
   price: 850,
   images: [
     ravenRight1,
