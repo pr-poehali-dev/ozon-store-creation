@@ -101,7 +101,7 @@ export const mockProducts: Product[] = [
     sku: '07020008',
     name: 'Настольный светильник "Ворон"',
     price: 630,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c05a670d-564b-47d9-bde3-96214f2f5be2.PNG',
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/ea900f25-f5e2-468e-9028-c75137470847.JPG',
     category: 'Интерьер',
     rating: 5.0,
     reviews: 412,
