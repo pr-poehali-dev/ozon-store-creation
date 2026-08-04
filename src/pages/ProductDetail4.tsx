@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
+import ravenHead2 from '@/assets/products/raven-head-2.png';
 
 interface ProductDetailType {
   id: number;
@@ -30,7 +30,7 @@ const productData: ProductDetailType = {
   name: 'Настенный светильник "Голова ворона"',
   price: 450,
   images: [
-    ravenGeneric1,
+    ravenHead2,
   ],
   category: 'Интерьер',
   rating: 5.0,

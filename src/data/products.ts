@@ -4,7 +4,7 @@ import ravenTable1 from '@/assets/products/raven-table-1.jpg';
 import owlBranch2 from '@/assets/products/owl-branch-2.png';
 import owlBall1 from '@/assets/products/owl-ball-1.png';
 import moon2 from '@/assets/products/moon-2.png';
-import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
+import ravenHead2 from '@/assets/products/raven-head-2.png';
 import ravenBlack2 from '@/assets/products/raven-black-2.jpg';
 import mouseHangedReal from '@/assets/products/mouse-hanged-real.png';
 import monk2 from '@/assets/products/monk-2.jpg';
@@ -101,7 +101,7 @@ export const mockProducts: Product[] = [
     sku: '07020007',
     name: 'Настенный светильник "Голова ворона"',
     price: 450,
-    image: ravenGeneric1,
+    image: ravenHead2,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 128,
