@@ -1,3 +1,12 @@
+import ravenRight1 from '@/assets/products/raven-right-1.png';
+import ravenWhite1 from '@/assets/products/raven-white-1.jpg';
+import ravenTable1 from '@/assets/products/raven-table-1.jpg';
+import ravenLeft1 from '@/assets/products/raven-left-1.jpg';
+import owlBranch1 from '@/assets/products/owl-branch-1.jpg';
+import owl1 from '@/assets/products/owl-1.jpg';
+import moon1 from '@/assets/products/moon-1.jpg';
+import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
+
 export interface Product {
   id: number;
   sku: string;
@@ -17,7 +26,7 @@ export const mockProducts: Product[] = [
     sku: '07020001',
     name: 'Настенный светильник "Ворон настенный крепление с лево"',
     price: 680,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
+    image: ravenLeft1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 0,
@@ -29,7 +38,7 @@ export const mockProducts: Product[] = [
     sku: '07020002',
     name: 'Настенный светильник "Ворон настенный крепление с право"',
     price: 580,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/2c365501-6595-4d4e-bad1-d09f29e73b87.PNG',
+    image: ravenRight1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 347,
@@ -41,7 +50,7 @@ export const mockProducts: Product[] = [
     sku: '07020003',
     name: 'Настольный светильник "Ворон белый"',
     price: 630,
-    image: 'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
+    image: ravenWhite1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 289,
@@ -53,7 +62,7 @@ export const mockProducts: Product[] = [
     sku: '07020004',
     name: 'Настенный светильник "Сова на ветке"',
     price: 750,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/83c5fef9-775f-45cf-a2ca-6f871b38f789.JPG',
+    image: owlBranch1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 97,
@@ -65,7 +74,7 @@ export const mockProducts: Product[] = [
     sku: '07020005',
     name: 'Настенный светильник "Сова"',
     price: 1000,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8879c698-3282-47fe-86c7-bb9ff379fbfa.JPG',
+    image: ravenRight1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 183,
@@ -77,7 +86,7 @@ export const mockProducts: Product[] = [
     sku: '07020006',
     name: 'Настенный светильник "Луна"',
     price: 1100,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/3174a2b5-b1a4-4b3d-80e6-9f209257dc2d.JPG',
+    image: ravenRight1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 215,
@@ -89,7 +98,7 @@ export const mockProducts: Product[] = [
     sku: '07020007',
     name: 'Настенный светильник "Ворон"',
     price: 350,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8096bb65-5a8a-4934-94e2-e85171eafebb.png',
+    image: ravenRight1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 128,
@@ -101,7 +110,7 @@ export const mockProducts: Product[] = [
     sku: '07020008',
     name: 'Настольный светильник "Ворон"',
     price: 630,
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/ea900f25-f5e2-468e-9028-c75137470847.JPG',
+    image: ravenTable1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 412,
