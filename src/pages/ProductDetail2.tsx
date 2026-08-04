@@ -11,6 +11,10 @@ import ravenWhite2 from '@/assets/products/raven-white-2.jpg';
 import ravenWhite3 from '@/assets/products/raven-white-3.jpg';
 import ravenWhite4 from '@/assets/products/raven-white-4.jpg';
 import ravenWhite5 from '@/assets/products/raven-white-5.jpg';
+import ravenWhite6 from '@/assets/products/raven-white-6.jpg';
+import ravenWhite7 from '@/assets/products/raven-white-7.jpg';
+import ravenWhite8 from '@/assets/products/raven-white-8.jpg';
+import ravenWhite9 from '@/assets/products/raven-white-9.jpg';
 
 interface ProductDetail {
   id: number;
@@ -38,7 +42,11 @@ const productData: ProductDetail = {
     ravenWhite2,
     ravenWhite3,
     ravenWhite4,
-    ravenWhite5
+    ravenWhite5,
+    ravenWhite6,
+    ravenWhite7,
+    ravenWhite8,
+    ravenWhite9
   ],
   category: 'Интерьер',
   rating: 5.0,

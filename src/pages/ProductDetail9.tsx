@@ -6,7 +6,6 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import ravenBlack1 from '@/assets/products/raven-black-1.png';
 import ravenBlack2 from '@/assets/products/raven-black-2.jpg';
 import ravenBlack3 from '@/assets/products/raven-black-3.jpg';
 
@@ -32,7 +31,6 @@ const productData: ProductDetail = {
   name: 'Настольный светильник "Ворон черный"',
   price: 900,
   images: [
-    ravenBlack1,
     ravenBlack2,
     ravenBlack3,
   ],
