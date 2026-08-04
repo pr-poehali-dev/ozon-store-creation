@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
 
 interface ProductDetailType {
   id: number;
@@ -26,10 +27,10 @@ interface ProductDetailType {
 const productData: ProductDetailType = {
   id: 4,
   sku: '07020007',
-  name: 'Настенный светильник "Ворон"',
-  price: 350,
+  name: 'Настенный светильник "Голова ворона"',
+  price: 450,
   images: [
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/8096bb65-5a8a-4934-94e2-e85171eafebb.png',
+    ravenGeneric1,
   ],
   category: 'Интерьер',
   rating: 5.0,
@@ -67,8 +68,8 @@ const ProductDetail4 = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Helmet>
-        <title>Настенный светильник «Ворон» — Полимер-проект</title>
-        <meta name="description" content="Настенный светильник «Ворон». Цена: 580₽. Арт-объект с готической элегантностью. Ворон — символ мудрости, тайны и вдохновения в вашем интерьере. Доставка по России." />
+        <title>Настенный светильник «Голова ворона» — Полимер-проект</title>
+        <meta name="description" content="Настенный светильник «Голова ворона». Цена: 450₽. Арт-объект с готической элегантностью. Ворон — символ мудрости, тайны и вдохновения в вашем интерьере. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/4" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

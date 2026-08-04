@@ -6,6 +6,8 @@ import owlBranch1 from '@/assets/products/owl-branch-1.jpg';
 import owl1 from '@/assets/products/owl-1.jpg';
 import moon1 from '@/assets/products/moon-1.jpg';
 import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
+import ravenBlack1 from '@/assets/products/raven-black-1.png';
+import mouseHanged1 from '@/assets/products/mouse-hanged-1.jpg';
 
 export interface Product {
   id: number;
@@ -25,7 +27,7 @@ export const mockProducts: Product[] = [
     id: 8,
     sku: '07020001',
     name: 'Настенный светильник "Ворон настенный крепление с лево"',
-    price: 680,
+    price: 850,
     image: ravenLeft1,
     category: 'Интерьер',
     rating: 5.0,
@@ -37,7 +39,7 @@ export const mockProducts: Product[] = [
     id: 1,
     sku: '07020002',
     name: 'Настенный светильник "Ворон настенный крепление с право"',
-    price: 580,
+    price: 850,
     image: ravenRight1,
     category: 'Интерьер',
     rating: 5.0,
@@ -49,7 +51,7 @@ export const mockProducts: Product[] = [
     id: 2,
     sku: '07020003',
     name: 'Настольный светильник "Ворон белый"',
-    price: 630,
+    price: 900,
     image: ravenWhite1,
     category: 'Интерьер',
     rating: 5.0,
@@ -61,7 +63,7 @@ export const mockProducts: Product[] = [
     id: 7,
     sku: '07020004',
     name: 'Настенный светильник "Сова на ветке"',
-    price: 750,
+    price: 1000,
     image: owlBranch1,
     category: 'Интерьер',
     rating: 5.0,
@@ -72,9 +74,9 @@ export const mockProducts: Product[] = [
   {
     id: 6,
     sku: '07020005',
-    name: 'Настенный светильник "Сова"',
-    price: 1000,
-    image: ravenRight1,
+    name: 'Настенный светильник "Сова с шаром"',
+    price: 1100,
+    image: owl1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 183,
@@ -85,8 +87,8 @@ export const mockProducts: Product[] = [
     id: 5,
     sku: '07020006',
     name: 'Настенный светильник "Луна"',
-    price: 1100,
-    image: ravenRight1,
+    price: 1300,
+    image: moon1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 215,
@@ -96,9 +98,9 @@ export const mockProducts: Product[] = [
   {
     id: 4,
     sku: '07020007',
-    name: 'Настенный светильник "Ворон"',
-    price: 350,
-    image: ravenRight1,
+    name: 'Настенный светильник "Голова ворона"',
+    price: 450,
+    image: ravenGeneric1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 128,
@@ -109,12 +111,36 @@ export const mockProducts: Product[] = [
     id: 3,
     sku: '07020008',
     name: 'Настольный светильник "Ворон"',
-    price: 630,
+    price: 900,
     image: ravenTable1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 412,
     featured: true,
     description: 'Выбор для тех, кто ценит оригинальность, стиль и внимание к деталям'
+  },
+  {
+    id: 9,
+    sku: '07020009',
+    name: 'Настольный светильник "Ворон черный"',
+    price: 900,
+    image: ravenBlack1,
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 0,
+    featured: true,
+    description: 'Изящная скульптура чёрного ворона с лампой в клюве — произведение искусства для уюта вашего дома'
+  },
+  {
+    id: 10,
+    sku: '07020010',
+    name: 'Фигурка в холодильник "Мышь повесилась"',
+    price: 260,
+    image: mouseHanged1,
+    category: 'Юмор',
+    rating: 5.0,
+    reviews: 0,
+    featured: true,
+    description: 'Эксклюзивная фигурка с чёрным юмором для холодильника — станет звездой вашей кухни'
   }
 ];

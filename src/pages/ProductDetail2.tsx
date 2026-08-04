@@ -6,6 +6,11 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import ravenWhite1 from '@/assets/products/raven-white-1.jpg';
+import ravenWhite2 from '@/assets/products/raven-white-2.jpg';
+import ravenWhite3 from '@/assets/products/raven-white-3.jpg';
+import ravenWhite4 from '@/assets/products/raven-white-4.jpg';
+import ravenWhite5 from '@/assets/products/raven-white-5.jpg';
 
 interface ProductDetail {
   id: number;
@@ -27,13 +32,13 @@ const productData: ProductDetail = {
   id: 2,
   sku: '07020003',
   name: 'Настольный светильник "Ворон белый"',
-  price: 630,
+  price: 900,
   images: [
-    'https://cdn.poehali.dev/files/9c8c5d3b-f00d-47ad-b19e-51e059d79f85.JPG',
-    'https://cdn.poehali.dev/files/3df05d0a-2b09-4fbd-a4bc-d71e8048251f.JPG',
-    'https://cdn.poehali.dev/files/d07819fd-22e6-4d18-9daf-aa0974ac4339.JPG',
-    'https://cdn.poehali.dev/files/4313ad28-8a36-4283-b983-df1f0e749c58.JPG',
-    'https://cdn.poehali.dev/files/d28cdfdf-a5df-4d1f-89fe-4ee966e63b5d.JPG'
+    ravenWhite1,
+    ravenWhite2,
+    ravenWhite3,
+    ravenWhite4,
+    ravenWhite5
   ],
   category: 'Интерьер',
   rating: 5.0,

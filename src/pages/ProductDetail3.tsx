@@ -6,6 +6,12 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import ravenTable1 from '@/assets/products/raven-table-1.jpg';
+import ravenTable2 from '@/assets/products/raven-table-2.jpg';
+import ravenTable3 from '@/assets/products/raven-table-3.jpg';
+import ravenTable4 from '@/assets/products/raven-table-4.jpg';
+import ravenTable5 from '@/assets/products/raven-table-5.png';
+import ravenTable6 from '@/assets/products/raven-table-6.jpg';
 
 interface ProductDetail {
   id: number;
@@ -27,14 +33,14 @@ const productData: ProductDetail = {
   id: 3,
   sku: '07020008',
   name: 'Настольный светильник "Ворон"',
-  price: 630,
+  price: 900,
   images: [
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/ea900f25-f5e2-468e-9028-c75137470847.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/733ed048-93a0-4f5d-8241-9f6641e9c9b9.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/0ba6cd40-a617-45dd-a2b4-b90513b85d76.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/1b3e63c4-2a98-4575-ad73-b78d020913e9.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/24dae882-1ca3-43a7-8f89-b4685907497d.png',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/d7b5839a-67f3-4bc9-b10c-8dd42d3ebce0.JPG',
+    ravenTable1,
+    ravenTable2,
+    ravenTable3,
+    ravenTable4,
+    ravenTable5,
+    ravenTable6,
   ],
   category: 'Интерьер',
   rating: 5.0,

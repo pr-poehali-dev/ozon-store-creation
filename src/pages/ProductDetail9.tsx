@@ -6,9 +6,11 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import owl1 from '@/assets/products/owl-1.jpg';
+import ravenBlack1 from '@/assets/products/raven-black-1.png';
+import ravenBlack2 from '@/assets/products/raven-black-2.jpg';
+import ravenBlack3 from '@/assets/products/raven-black-3.jpg';
 
-interface ProductDetailType {
+interface ProductDetail {
   id: number;
   sku: string;
   name: string;
@@ -24,43 +26,49 @@ interface ProductDetailType {
   madeIn: string;
 }
 
-const productData: ProductDetailType = {
-  id: 6,
-  sku: '07020005',
-  name: 'Настенный светильник "Сова с шаром"',
-  price: 1100,
+const productData: ProductDetail = {
+  id: 9,
+  sku: '07020009',
+  name: 'Настольный светильник "Ворон черный"',
+  price: 900,
   images: [
-    owl1,
+    ravenBlack1,
+    ravenBlack2,
+    ravenBlack3,
   ],
   category: 'Интерьер',
   rating: 5.0,
-  reviews: 183,
+  reviews: 0,
   inStock: true,
   madeIn: 'Россия',
-  description: `Добавьте в свою жизнь магию ночи и мудрость веков с уникальным светильником "Сова". Сова — древний символ мудрости, проницательности, ночного видения и защиты.
+  description: `Изящная скульптура чёрного ворона с лампой в клюве — это больше, чем просто светильник. Это произведение искусства, которое привносит в ваш дом атмосферу уюта, вдохновения и гармонии.
 
-Не просто источник света, это арт-объект, который призван дарить эмоции, создавать настроение и отражать вашу индивидуальность. Позвольте этой мистической птице осветить ваш дом, наполняя его теплом, мудростью и волшебством.`,
+Настольный светильник "Ворон черный" сочетает в себе элегантность природных форм и современный дизайн, создавая неповторимую атмосферу в любом помещении. Мягкий теплый свет создает комфортную обстановку для отдыха, работы и вечерних чаепитий.`,
   features: [
-    '🦉 Символ мудрости: Сова — древний символ знания, проницательности и защиты',
-    '✨ Арт-объект: Станет изюминкой вашего интерьера и объектом восхищения гостей',
-    '🌙 Магия ночи: Создаёт атмосферу таинственности и уюта',
-    '🎁 Прекрасный подарок: Для тех, кто ценит красоту, смысл и уникальность',
-    '🏠 Универсальность: Идеально впишется в классический и современный интерьер',
-    '🇷🇺 Сделано в России: Качество и надёжность отечественного производителя'
+    '🎨 Стильный акцент: Эксклюзивный элемент декора, приковывающий взгляды и вызывающий восхищение гостей',
+    '🌙 Атмосфера уюта: Мягкое теплое освещение создает комфортную обстановку, располагающую к задушевным разговорам и чаепитиям',
+    '💡 Универсальность: Идеально подходит для рабочего стола, тумбочки, комода или журнального столика',
+    '🎁 Изысканный подарок: Настоящее произведение искусства, которое оценят люди с утонченным вкусом',
+    '✨ Релаксация: Создает комфортную атмосферу, идеально подходящую для отдыха и релаксации',
+    '🏆 Безупречное качество: Прочная конструкция и детальная проработка каждого элемента',
+    '🇷🇺 Российское производство: Поддержка отечественного производителя, высокие стандарты качества'
   ],
   specifications: [
-    { label: 'Материал', value: 'Полимер высокого качества' },
-    { label: 'Цвет', value: 'Белый' },
-    { label: 'Тип установки', value: 'Настенный' },
-    { label: 'Тип лампы', value: 'E27 (не входит в комплект)' },
+    { label: 'Материал', value: 'Высококачественный полимер' },
+    { label: 'Цвет', value: 'Чёрный матовый' },
+    { label: 'Размер фигуры', value: '30 × 12 см' },
+    { label: 'Высота с лампой', value: '~25 см' },
+    { label: 'Тип установки', value: 'Настольный' },
+    { label: 'Тип лампы', value: 'E27 (в комплект не входит)' },
     { label: 'Максимальная мощность', value: '60 Вт' },
     { label: 'Напряжение', value: '220 В' },
+    { label: 'Длина кабеля', value: '1.5 м' },
     { label: 'Производство', value: 'Россия' },
     { label: 'Гарантия', value: '1 год' }
   ]
 };
 
-const ProductDetail6 = () => {
+const ProductDetail9 = () => {
   const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
@@ -68,31 +76,23 @@ const ProductDetail6 = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Helmet>
-        <title>Настенный светильник «Сова с шаром» — Полимер-проект</title>
-        <meta name="description" content="Настенный светильник «Сова с шаром». Цена: 1100₽. Добавьте магию ночи и мудрость веков с уникальным светильником Сова. Символ мудрости и защиты в вашем доме. Доставка по России." />
-        <link rel="canonical" href="https://proekt-polimer.ru/product/6" />
+        <title>Настольный светильник «Ворон черный» — Полимер-проект</title>
+        <meta name="description" content="Настольный светильник «Ворон черный». Цена: 900₽. Изящная скульптура чёрного ворона с лампой в клюве — произведение искусства для уюта вашего дома. Доставка по России." />
+        <link rel="canonical" href="https://proekt-polimer.ru/product/9" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Product",
           "name": productData.name,
           "sku": productData.sku,
           "description": productData.description.replace(/\n/g, ' '),
-          "image": productData.images,
           "brand": { "@type": "Brand", "name": "Полимер-проект" },
           "offers": {
             "@type": "Offer",
-            "url": "https://proekt-polimer.ru/product/6",
+            "url": "https://proekt-polimer.ru/product/9",
             "priceCurrency": "RUB",
             "price": productData.price,
             "availability": "https://schema.org/InStock",
             "seller": { "@type": "Organization", "name": "Полимер-проект" }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": productData.rating,
-            "reviewCount": productData.reviews,
-            "bestRating": 5,
-            "worstRating": 1
           }
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -101,7 +101,7 @@ const ProductDetail6 = () => {
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://proekt-polimer.ru/" },
             { "@type": "ListItem", "position": 2, "name": "Каталог", "item": "https://proekt-polimer.ru/catalog" },
-            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/6" }
+            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/9" }
           ]
         })}</script>
       </Helmet>
@@ -122,13 +122,23 @@ const ProductDetail6 = () => {
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
           <div className="space-y-4">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg">
-              <img src={productData.images[selectedImage]} alt={productData.name} className="w-full h-full object-contain p-8" />
-
+              <img
+                src={productData.images[selectedImage]}
+                alt={productData.name}
+                className="w-full h-full object-contain p-8"
+              />
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {productData.images.map((img, idx) => (
-                <button key={idx} onClick={() => setSelectedImage(idx)}
-                  className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${selectedImage === idx ? 'border-primary shadow-md scale-105' : 'border-transparent hover:border-primary/50'}`}>
+                <button
+                  key={idx}
+                  onClick={() => setSelectedImage(idx)}
+                  className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                    selectedImage === idx
+                      ? 'border-primary shadow-md scale-105'
+                      : 'border-transparent hover:border-primary/50'
+                  }`}
+                >
                   <img src={img} alt={`${productData.name} ${idx + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
@@ -142,26 +152,36 @@ const ProductDetail6 = () => {
                 <span className="text-sm text-muted-foreground">Арт. {productData.sku}</span>
               </div>
               <h1 className="text-4xl font-bold mb-4">{productData.name}</h1>
+
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <Icon key={i} name="Star" size={20} className={i < Math.floor(productData.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'} />
+                      <Icon
+                        key={i}
+                        name="Star"
+                        size={20}
+                        className={i < Math.floor(productData.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}
+                      />
                     ))}
                   </div>
                   <span className="font-semibold">{productData.rating}</span>
                 </div>
                 <span className="text-muted-foreground">({productData.reviews} отзывов)</span>
               </div>
+
               <div className="flex items-baseline gap-4 mb-6">
                 <div className="text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
               </div>
+
               <div className="flex gap-3 mb-6">
                 <Badge variant="outline" className="gap-2 px-4 py-2">
-                  <Icon name="CheckCircle" size={16} className="text-green-500" />В наличии
+                  <Icon name="CheckCircle" size={16} className="text-green-500" />
+                  В наличии
                 </Badge>
                 <Badge variant="outline" className="gap-2 px-4 py-2">
-                  <Icon name="Flag" size={16} />{productData.madeIn}
+                  <Icon name="Flag" size={16} />
+                  {productData.madeIn}
                 </Badge>
               </div>
             </div>
@@ -169,24 +189,39 @@ const ProductDetail6 = () => {
             <Card className="p-6 bg-gradient-to-br from-primary/5 to-secondary/5">
               <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-3 bg-white rounded-lg px-4 py-2 border">
-                  <Button size="icon" variant="outline" className="h-10 w-10" onClick={() => setQuantity(Math.max(1, quantity - 1))}>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-10 w-10"
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  >
                     <Icon name="Minus" size={16} />
                   </Button>
                   <span className="w-12 text-center font-bold text-xl">{quantity}</span>
-                  <Button size="icon" variant="outline" className="h-10 w-10" onClick={() => setQuantity(quantity + 1)}>
+                  <Button
+                    size="icon"
+                    variant="outline"
+                    className="h-10 w-10"
+                    onClick={() => setQuantity(quantity + 1)}
+                  >
                     <Icon name="Plus" size={16} />
                   </Button>
                 </div>
                 <div className="text-right flex-1">
                   <div className="text-sm text-muted-foreground">Сумма:</div>
-                  <div className="text-2xl font-bold text-primary">{(productData.price * quantity).toLocaleString()} ₽</div>
+                  <div className="text-2xl font-bold text-primary">
+                    {(productData.price * quantity).toLocaleString()} ₽
+                  </div>
                 </div>
               </div>
+
               <Button size="lg" className="w-full mb-3 gap-2">
-                <Icon name="ShoppingCart" size={20} />Добавить в корзину
+                <Icon name="ShoppingCart" size={20} />
+                Добавить в корзину
               </Button>
               <Button size="lg" variant="outline" className="w-full gap-2">
-                <Icon name="Heart" size={20} />В избранное
+                <Icon name="Heart" size={20} />
+                В избранное
               </Button>
             </Card>
 
@@ -216,14 +251,20 @@ const ProductDetail6 = () => {
             <TabsTrigger value="features">Преимущества</TabsTrigger>
             <TabsTrigger value="specs">Характеристики</TabsTrigger>
           </TabsList>
+
           <TabsContent value="description" className="mt-8">
             <Card className="p-8">
               <h2 className="text-2xl font-bold mb-4">О товаре</h2>
-              {productData.description.split('\n\n').map((p, idx) => (
-                <p key={idx} className="text-lg leading-relaxed mb-4 text-muted-foreground">{p}</p>
-              ))}
+              <div className="prose max-w-none">
+                {productData.description.split('\n\n').map((paragraph, idx) => (
+                  <p key={idx} className="text-lg leading-relaxed mb-4 text-muted-foreground">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </Card>
           </TabsContent>
+
           <TabsContent value="features" className="mt-8">
             <Card className="p-8">
               <h2 className="text-2xl font-bold mb-6">Почему стоит купить?</h2>
@@ -233,20 +274,24 @@ const ProductDetail6 = () => {
                     <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
                       <Icon name="Check" size={20} className="text-primary" />
                     </div>
-                    <p className="text-muted-foreground leading-relaxed">{feature}</p>
+                    <p className="text-lg leading-relaxed">{feature}</p>
                   </div>
                 ))}
               </div>
             </Card>
           </TabsContent>
+
           <TabsContent value="specs" className="mt-8">
             <Card className="p-8">
               <h2 className="text-2xl font-bold mb-6">Технические характеристики</h2>
-              <div className="grid gap-3">
+              <div className="grid gap-4">
                 {productData.specifications.map((spec, idx) => (
-                  <div key={idx} className="flex justify-between py-3 border-b last:border-0">
-                    <span className="text-muted-foreground">{spec.label}</span>
-                    <span className="font-medium">{spec.value}</span>
+                  <div
+                    key={idx}
+                    className="flex justify-between py-4 border-b last:border-0 hover:bg-muted/30 px-4 rounded transition-colors"
+                  >
+                    <span className="font-medium text-muted-foreground">{spec.label}</span>
+                    <span className="font-semibold text-right">{spec.value}</span>
                   </div>
                 ))}
               </div>
@@ -258,4 +303,4 @@ const ProductDetail6 = () => {
   );
 };
 
-export default ProductDetail6;
+export default ProductDetail9;

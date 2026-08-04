@@ -1,16 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import ravenRight1 from '@/assets/products/raven-right-1.png';
-import ravenR1 from '@/assets/products/raven-r-1.jpg';
-import ravenR2 from '@/assets/products/raven-r-2.jpg';
-import ravenR3 from '@/assets/products/raven-r-3.png';
-import ravenR4 from '@/assets/products/raven-r-4.jpg';
+import mouseHanged1 from '@/assets/products/mouse-hanged-1.jpg';
 
 interface ProductDetail {
   id: number;
@@ -29,81 +25,70 @@ interface ProductDetail {
 }
 
 const productData: ProductDetail = {
-  id: 1,
-  sku: '07020002',
-  name: 'Настенный светильник "Ворон настенный крепление с право"',
-  price: 850,
+  id: 10,
+  sku: '07020010',
+  name: 'Фигурка в холодильник "Мышь повесилась"',
+  price: 260,
   images: [
-    ravenRight1,
-    ravenR1,
-    ravenR2,
-    ravenR3,
-    ravenR4
+    mouseHanged1,
   ],
-  category: 'Интерьер',
+  category: 'Юмор',
   rating: 5.0,
-  reviews: 347,
+  reviews: 0,
   inStock: true,
   madeIn: 'Россия',
-  description: `Эта восхитительная скульптура – воплощение элегантности и интеллекта. Грациозная фигура ворона, выполненная с безупречной детализацией, удерживает в клюве светящуюся лампочку, символизируя связь между мудростью, прозрением и озарением.
+  description: `Устали от скучных, безликих кухонных аксессуаров? Хотите добавить немного юмора и неожиданности в свою повседневную жизнь? Тогда наша эксклюзивная фигурка "Мышь повесилась" – это именно то, что вам нужно!
 
-Настенный светильник "Ворон настенный" – это не просто источник света, а настоящий арт-объект, который преобразит любое помещение. Идеальное сочетание функциональности и эстетики.`,
+Представьте себе: открываете вы холодильник в поисках чего-нибудь вкусненького, а там… грустная мышка, повесившаяся на веревочке. Мгновенный шок, поток эмоций – от удивления до истерического хохота! Эта фигурка станет настоящей звездой вашей кухни, способной вызвать улыбку даже в самый хмурый день.`,
   features: [
-    '✨ Уникальный дизайн: Станьте обладателем эксклюзивного предмета искусства, который подчеркнет вашу индивидуальность и тонкий вкус',
-    '🏠 Неповторимая атмосфера: Создайте в своем доме атмосферу уюта, вдохновения и интеллектуального комфорта',
-    '💎 Источник вдохновения: Наслаждайтесь красотой и мудростью, которые излучает эта удивительная скульптура',
-    '🎁 Идеальный подарок: Подарите своим близким нечто особенное, что будет радовать их долгие годы',
-    '🔧 Безупречное качество: Будьте уверены в долговечности и безупречном внешнем виде вашей покупки',
-    '🇷🇺 Сделано в России: Поддержка отечественного производителя и высокие стандарты качества'
+    'Неповторимый юмор: Эта фигурка – настоящий шедевр черного юмора, который точно оценят ваши друзья и близкие. Она станет отличной темой для разговоров и гарантированно разрядит обстановку',
+    'Эксклюзивный дизайн: Каждая фигурка выполнена с любовью и вниманием к деталям. Оригинальное исполнение и необычный сюжет выделят ее среди всех других аксессуаров',
+    'Привлекает внимание: Будьте готовы к тому, что благодаря этой мышке ваш холодильник станет центром притяжения. Гости будут восхищаться вашей находчивостью и чувством юмора',
+    'Создает настроение: Устали от однообразия? Эта фигурка добавит вашей кухне нотку иронии и сделает ее по-настоящему стильной и запоминающейся',
+    'Идеальный подарок: Ищете оригинальный и смешной подарок для друзей, коллег или близких? Фигурка "Мышь повесилась" – это беспроигрышный вариант, который точно не оставит никого равнодушным',
+    'Качество и долговечность: Фигурка изготовлена из высококачественных материалов, благодаря чему она прослужит вам долгие годы, не теряя своего первоначального вида'
   ],
   specifications: [
-    { label: 'Материал', value: 'Полимер высокого качества' },
-    { label: 'Цвет', value: 'Черный матовый' },
-    { label: 'Размер ворона', value: '35 × 15 см' },
-    { label: 'Длина крепления', value: '~20 см' },
-    { label: 'Тип лампы', value: 'E27 (не входит в комплект)' },
-    { label: 'Максимальная мощность', value: '60 Вт' },
-    { label: 'Напряжение', value: '220 В' },
-    { label: 'Способ крепления', value: 'Настенное' },
-    { label: 'Производство', value: 'Россия' },
-    { label: 'Гарантия', value: '1 год' }
+    { label: 'Артикул', value: '4829457211' },
+    { label: 'Тип', value: 'Фигурка декоративная' },
+    { label: 'Вид статуэтки', value: 'Ростовая' },
+    { label: 'Высота, см', value: '95' },
+    { label: 'Материал', value: 'Пластик' },
+    { label: 'Для кого', value: 'Универсально' },
+    { label: 'Цвет', value: 'Серый' },
+    { label: 'Страна-изготовитель', value: 'Россия' },
+    { label: 'Вид выпуска товара', value: 'Фабричное производство' },
+    { label: 'Количество в упаковке, шт', value: '1' },
+    { label: 'Гарантия', value: 'Без гарантии' },
+    { label: 'Вес товара, г', value: '70' }
   ]
 };
 
-const ProductDetail = () => {
+const ProductDetail10 = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Helmet>
-        <title>{productData.name} — Полимер-проект</title>
-        <meta name="description" content={`${productData.name}. Цена: ${productData.price}₽. ${productData.description.slice(0, 120).replace(/\n/g, ' ')} Доставка по России.`} />
-        <link rel="canonical" href="https://proekt-polimer.ru/product/1" />
+        <title>Фигурка в холодильник «Мышь повесилась» — Полимер-проект</title>
+        <meta name="description" content="Фигурка в холодильник «Мышь повесилась». Цена: 260₽. Эксклюзивный юмористический аксессуар для холодильника. Отличный подарок с чёрным юмором. Доставка по России." />
+        <link rel="canonical" href="https://proekt-polimer.ru/product/10" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Product",
           "name": productData.name,
           "sku": productData.sku,
           "description": productData.description.replace(/\n/g, ' '),
-          "image": productData.images,
           "brand": { "@type": "Brand", "name": "Полимер-проект" },
           "offers": {
             "@type": "Offer",
-            "url": "https://proekt-polimer.ru/product/1",
+            "url": "https://proekt-polimer.ru/product/10",
             "priceCurrency": "RUB",
             "price": productData.price,
             "availability": "https://schema.org/InStock",
             "seller": { "@type": "Organization", "name": "Полимер-проект" }
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": productData.rating,
-            "reviewCount": productData.reviews,
-            "bestRating": 5,
-            "worstRating": 1
           }
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
@@ -112,7 +97,7 @@ const ProductDetail = () => {
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://proekt-polimer.ru/" },
             { "@type": "ListItem", "position": 2, "name": "Каталог", "item": "https://proekt-polimer.ru/catalog" },
-            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/1" }
+            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/10" }
           ]
         })}</script>
       </Helmet>
@@ -130,31 +115,32 @@ const ProductDetail = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-12 mb-12">
+        <div className="grid lg:grid-cols-2 gap-12 mb-12">
           <div className="space-y-4">
             <div className="relative aspect-square rounded-2xl overflow-hidden bg-white shadow-lg">
               <img
                 src={productData.images[selectedImage]}
                 alt={productData.name}
-                className="w-full h-full object-contain p-4 sm:p-8"
+                className="w-full h-full object-contain p-8"
               />
-
             </div>
-            <div className="grid grid-cols-5 gap-2 sm:gap-3">
-              {productData.images.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                    selectedImage === idx
-                      ? 'border-primary shadow-md scale-105'
-                      : 'border-transparent hover:border-primary/50'
-                  }`}
-                >
-                  <img src={img} alt={`${productData.name} ${idx + 1}`} className="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
+            {productData.images.length > 1 && (
+              <div className="grid grid-cols-5 gap-3">
+                {productData.images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImage(idx)}
+                    className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                      selectedImage === idx
+                        ? 'border-primary shadow-md scale-105'
+                        : 'border-transparent hover:border-primary/50'
+                    }`}
+                  >
+                    <img src={img} alt={`${productData.name} ${idx + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="space-y-6">
@@ -163,8 +149,8 @@ const ProductDetail = () => {
                 <Badge variant="secondary">{productData.category}</Badge>
                 <span className="text-sm text-muted-foreground">Арт. {productData.sku}</span>
               </div>
-              <h1 className="text-2xl sm:text-4xl font-bold mb-4">{productData.name}</h1>
-              
+              <h1 className="text-4xl font-bold mb-4">{productData.name}</h1>
+
               <div className="flex items-center gap-4 mb-6">
                 <div className="flex items-center gap-2">
                   <div className="flex">
@@ -183,7 +169,7 @@ const ProductDetail = () => {
               </div>
 
               <div className="flex items-baseline gap-4 mb-6">
-                <div className="text-3xl sm:text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
+                <div className="text-5xl font-bold text-primary">{productData.price.toLocaleString()} ₽</div>
               </div>
 
               <div className="flex gap-3 mb-6">
@@ -246,7 +232,7 @@ const ProductDetail = () => {
               <div className="text-center">
                 <Icon name="Shield" size={32} className="mx-auto mb-2 text-primary" />
                 <div className="font-semibold text-sm">Гарантия</div>
-                <div className="text-xs text-muted-foreground">1 год</div>
+                <div className="text-xs text-muted-foreground">на брак</div>
               </div>
               <div className="text-center">
                 <Icon name="RotateCcw" size={32} className="mx-auto mb-2 text-primary" />
@@ -258,18 +244,18 @@ const ProductDetail = () => {
         </div>
 
         <Tabs defaultValue="description" className="mb-12">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full max-w-md grid-cols-3">
             <TabsTrigger value="description">Описание</TabsTrigger>
             <TabsTrigger value="features">Преимущества</TabsTrigger>
             <TabsTrigger value="specs">Характеристики</TabsTrigger>
           </TabsList>
-          
-          <TabsContent value="description" className="mt-6 sm:mt-8">
-            <Card className="p-4 sm:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-4">О товаре</h2>
+
+          <TabsContent value="description" className="mt-8">
+            <Card className="p-8">
+              <h2 className="text-2xl font-bold mb-4">О товаре</h2>
               <div className="prose max-w-none">
                 {productData.description.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="text-base leading-relaxed mb-4 text-muted-foreground">
+                  <p key={idx} className="text-lg leading-relaxed mb-4 text-muted-foreground">
                     {paragraph}
                   </p>
                 ))}
@@ -277,25 +263,25 @@ const ProductDetail = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="features" className="mt-6 sm:mt-8">
-            <Card className="p-4 sm:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-6">Почему стоит купить?</h2>
-              <div className="grid gap-4 sm:gap-6">
+          <TabsContent value="features" className="mt-8">
+            <Card className="p-8">
+              <h2 className="text-2xl font-bold mb-6">Достоинства, которые вас поразят</h2>
+              <div className="grid gap-6">
                 {productData.features.map((feature, idx) => (
-                  <div key={idx} className="flex gap-3 sm:gap-4 items-start">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
-                      <Icon name="Check" size={16} className="text-primary" />
+                  <div key={idx} className="flex gap-4 items-start">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-1">
+                      <Icon name="Check" size={20} className="text-primary" />
                     </div>
-                    <p className="text-base leading-relaxed">{feature}</p>
+                    <p className="text-lg leading-relaxed">{feature}</p>
                   </div>
                 ))}
               </div>
             </Card>
           </TabsContent>
 
-          <TabsContent value="specs" className="mt-6 sm:mt-8">
-            <Card className="p-4 sm:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold mb-6">Технические характеристики</h2>
+          <TabsContent value="specs" className="mt-8">
+            <Card className="p-8">
+              <h2 className="text-2xl font-bold mb-6">Технические характеристики</h2>
               <div className="grid gap-4">
                 {productData.specifications.map((spec, idx) => (
                   <div
@@ -315,4 +301,4 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetail10;

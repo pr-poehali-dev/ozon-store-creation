@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import moon1 from '@/assets/products/moon-1.jpg';
 
 interface ProductDetailType {
   id: number;
@@ -27,13 +28,9 @@ const productData: ProductDetailType = {
   id: 5,
   sku: '07020006',
   name: 'Настенный светильник "Луна"',
-  price: 1100,
+  price: 1300,
   images: [
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/3174a2b5-b1a4-4b3d-80e6-9f209257dc2d.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c994282d-c2e6-46e0-8169-316e6f01f23c.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/62bfe517-5d76-46bc-9779-af54afd53362.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/bcd84c59-94d8-4f6f-957a-d28fb3287797.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/86667668-fb31-4bdd-a65d-b63ac1afd107.JPG',
+    moon1,
   ],
   category: 'Интерьер',
   rating: 5.0,
@@ -72,7 +69,7 @@ const ProductDetail5 = () => {
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <Helmet>
         <title>Настенный светильник «Луна» — Полимер-проект</title>
-        <meta name="description" content="Настенный светильник «Луна». Цена: 680₽. Свет, словно сошедший с ночного неба. Настенный светильник Луна превратит ваше пространство в произведение искусства. Доставка по России." />
+        <meta name="description" content="Настенный светильник «Луна». Цена: 1300₽. Свет, словно сошедший с ночного неба. Настенный светильник Луна превратит ваше пространство в произведение искусства. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/5" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
