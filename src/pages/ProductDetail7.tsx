@@ -31,13 +31,8 @@ const productData: ProductDetailType = {
   name: 'Настенный светильник "Сова на ветке"',
   price: 750,
   images: [
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/83c5fef9-775f-45cf-a2ca-6f871b38f789.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/cbeb8c7c-1f28-49ff-8b0a-c4c117b84660.JPG',
     owlBranch2,
     owlBranch3,
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/81822cdb-7e4a-4031-aae6-16ec7bf19dd1.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/e96e77de-0dc7-425f-9a50-ef51a027b8d7.JPG',
-    'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/0e3953fc-7f4b-4a11-9599-f862205ed896.JPG',
   ],
   category: 'Интерьер',
   rating: 5.0,

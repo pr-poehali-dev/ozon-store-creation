@@ -6,7 +6,6 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import owl1 from '@/assets/products/owl-1.jpg';
 import owlBall1 from '@/assets/products/owl-ball-1.png';
 import owlBall2 from '@/assets/products/owl-ball-2.png';
 
@@ -32,7 +31,6 @@ const productData: ProductDetailType = {
   name: 'Настенный светильник "Сова с шаром"',
   price: 1100,
   images: [
-    owl1,
     owlBall1,
     owlBall2,
   ],

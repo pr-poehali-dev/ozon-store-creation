@@ -1,8 +1,8 @@
 import ravenRight1 from '@/assets/products/raven-right-1.png';
 import ravenWhite6 from '@/assets/products/raven-white-6.jpg';
 import ravenTable1 from '@/assets/products/raven-table-1.jpg';
-import owlBranch1 from '@/assets/products/owl-branch-1.jpg';
-import owl1 from '@/assets/products/owl-1.jpg';
+import owlBranch2 from '@/assets/products/owl-branch-2.png';
+import owlBall1 from '@/assets/products/owl-ball-1.png';
 import moon1 from '@/assets/products/moon-1.jpg';
 import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
 import ravenBlack2 from '@/assets/products/raven-black-2.jpg';
@@ -65,7 +65,7 @@ export const mockProducts: Product[] = [
     sku: '07020004',
     name: 'Настенный светильник "Сова на ветке"',
     price: 1000,
-    image: owlBranch1,
+    image: owlBranch2,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 97,
@@ -77,7 +77,7 @@ export const mockProducts: Product[] = [
     sku: '07020005',
     name: 'Настенный светильник "Сова с шаром"',
     price: 1100,
-    image: owl1,
+    image: owlBall1,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 183,
