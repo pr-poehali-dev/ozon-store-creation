@@ -3,7 +3,7 @@ import ravenWhite6 from '@/assets/products/raven-white-6.jpg';
 import ravenTable1 from '@/assets/products/raven-table-1.jpg';
 import owlBranch2 from '@/assets/products/owl-branch-2.png';
 import owlBall1 from '@/assets/products/owl-ball-1.png';
-import moon1 from '@/assets/products/moon-1.jpg';
+import moon2 from '@/assets/products/moon-2.png';
 import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
 import ravenBlack2 from '@/assets/products/raven-black-2.jpg';
 import mouseHangedReal from '@/assets/products/mouse-hanged-real.png';
@@ -89,7 +89,7 @@ export const mockProducts: Product[] = [
     sku: '07020006',
     name: 'Настенный светильник "Луна"',
     price: 1300,
-    image: moon1,
+    image: moon2,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 215,

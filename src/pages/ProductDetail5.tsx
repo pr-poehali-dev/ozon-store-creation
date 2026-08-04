@@ -6,7 +6,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import moon1 from '@/assets/products/moon-1.jpg';
+import moon2 from '@/assets/products/moon-2.png';
+import moon3 from '@/assets/products/moon-3.png';
 
 interface ProductDetailType {
   id: number;
@@ -30,7 +31,8 @@ const productData: ProductDetailType = {
   name: 'Настенный светильник "Луна"',
   price: 1300,
   images: [
-    moon1,
+    moon2,
+    moon3,
   ],
   category: 'Интерьер',
   rating: 5.0,
