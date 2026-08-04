@@ -8,6 +8,7 @@ import moon1 from '@/assets/products/moon-1.jpg';
 import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
 import ravenBlack1 from '@/assets/products/raven-black-1.png';
 import mouseHangedReal from '@/assets/products/mouse-hanged-real.png';
+import monk2 from '@/assets/products/monk-2.jpg';
 
 export interface Product {
   id: number;
@@ -142,5 +143,17 @@ export const mockProducts: Product[] = [
     reviews: 0,
     featured: true,
     description: 'Эксклюзивная фигурка с чёрным юмором для холодильника — станет звездой вашей кухни'
+  },
+  {
+    id: 11,
+    sku: '07020011',
+    name: 'Подсвечник "Монах"',
+    price: 900,
+    image: monk2,
+    category: 'Интерьер',
+    rating: 5.0,
+    reviews: 0,
+    featured: true,
+    description: 'Эксклюзивная статуэтка таинственной фигуры с внутренним пламенем — идеальный выбор для тех, кто ценит оригинальность'
   }
 ];
