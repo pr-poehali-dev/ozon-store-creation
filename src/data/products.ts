@@ -1,5 +1,5 @@
 import ravenRight1 from '@/assets/products/raven-right-1.png';
-import ravenWhite1 from '@/assets/products/raven-white-1.jpg';
+import ravenWhite6 from '@/assets/products/raven-white-6.jpg';
 import ravenTable1 from '@/assets/products/raven-table-1.jpg';
 import owlBranch1 from '@/assets/products/owl-branch-1.jpg';
 import owl1 from '@/assets/products/owl-1.jpg';
@@ -53,7 +53,7 @@ export const mockProducts: Product[] = [
     sku: '07020003',
     name: 'Настольный светильник "Ворон белый"',
     price: 900,
-    image: ravenWhite1,
+    image: ravenWhite6,
     category: 'Интерьер',
     rating: 5.0,
     reviews: 289,

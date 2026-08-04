@@ -6,11 +6,6 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import ravenWhite1 from '@/assets/products/raven-white-1.jpg';
-import ravenWhite2 from '@/assets/products/raven-white-2.jpg';
-import ravenWhite3 from '@/assets/products/raven-white-3.jpg';
-import ravenWhite4 from '@/assets/products/raven-white-4.jpg';
-import ravenWhite5 from '@/assets/products/raven-white-5.jpg';
 import ravenWhite6 from '@/assets/products/raven-white-6.jpg';
 import ravenWhite7 from '@/assets/products/raven-white-7.jpg';
 import ravenWhite8 from '@/assets/products/raven-white-8.jpg';
@@ -38,11 +33,6 @@ const productData: ProductDetail = {
   name: 'Настольный светильник "Ворон белый"',
   price: 900,
   images: [
-    ravenWhite1,
-    ravenWhite2,
-    ravenWhite3,
-    ravenWhite4,
-    ravenWhite5,
     ravenWhite6,
     ravenWhite7,
     ravenWhite8,
