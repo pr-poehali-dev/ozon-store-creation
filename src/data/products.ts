@@ -7,7 +7,7 @@ import owl1 from '@/assets/products/owl-1.jpg';
 import moon1 from '@/assets/products/moon-1.jpg';
 import ravenGeneric1 from '@/assets/products/raven-table-generic.jpg';
 import ravenBlack1 from '@/assets/products/raven-black-1.png';
-import mouseHanged1 from '@/assets/products/mouse-hanged-1.jpg';
+import mouseHangedReal from '@/assets/products/mouse-hanged-real.png';
 
 export interface Product {
   id: number;
@@ -136,7 +136,7 @@ export const mockProducts: Product[] = [
     sku: '07020010',
     name: 'Фигурка в холодильник "Мышь повесилась"',
     price: 260,
-    image: mouseHanged1,
+    image: mouseHangedReal,
     category: 'Юмор',
     rating: 5.0,
     reviews: 0,

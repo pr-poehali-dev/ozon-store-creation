@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
-import mouseHanged1 from '@/assets/products/mouse-hanged-1.jpg';
+import mouseHangedReal from '@/assets/products/mouse-hanged-real.png';
 
 interface ProductDetail {
   id: number;
@@ -30,7 +30,7 @@ const productData: ProductDetail = {
   name: 'Фигурка в холодильник "Мышь повесилась"',
   price: 260,
   images: [
-    mouseHanged1,
+    mouseHangedReal,
   ],
   category: 'Юмор',
   rating: 5.0,
@@ -49,7 +49,6 @@ const productData: ProductDetail = {
     'Качество и долговечность: Фигурка изготовлена из высококачественных материалов, благодаря чему она прослужит вам долгие годы, не теряя своего первоначального вида'
   ],
   specifications: [
-    { label: 'Артикул', value: '4829457211' },
     { label: 'Тип', value: 'Фигурка декоративная' },
     { label: 'Вид статуэтки', value: 'Ростовая' },
     { label: 'Высота, см', value: '95' },
