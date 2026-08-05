@@ -438,7 +438,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-center gap-2"><Icon name="Phone" size={14} />8 921 636-36-08</li>
                 <li className="flex items-center gap-2"><Icon name="Mail" size={14} />proekt-polimer@mail.ru</li>
-                <li className="flex items-center gap-2"><Icon name="MapPin" size={14} />г. Санкт-Петербург</li>
+                <li className="flex items-center gap-2"><Icon name="MapPin" size={14} />г. Санкт-Петербург, Уральская ул., 19к9Ж, офис 409</li>
               </ul>
             </div>
             <div>

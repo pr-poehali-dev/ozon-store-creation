@@ -62,7 +62,7 @@ const ContactsPage = () => (
   <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
     <Helmet>
       <title>Контакты — Полимер-проект</title>
-      <meta name="description" content="Контакты магазина Полимер-проект. Адрес: г. Санкт-Петербург. Телефон: 8 921 636-36-08. Email: proekt-polimer@mail.ru. Форма обратной связи." />
+      <meta name="description" content="Контакты магазина Полимер-проект. Адрес: г. Санкт-Петербург, Уральская ул., 19к9Ж, офис 409. Телефон: 8 921 636-36-08. Email: proekt-polimer@mail.ru. Форма обратной связи." />
       <link rel="canonical" href="https://proekt-polimer.ru/contacts" />
     </Helmet>
     <h2 className="text-2xl sm:text-3xl font-bold">Контакты</h2>
@@ -72,7 +72,7 @@ const ContactsPage = () => (
           <Icon name="MapPin" size={24} className="text-primary mt-1" />
           <div>
             <h4 className="font-semibold mb-1">Адрес</h4>
-            <p className="text-muted-foreground">г. Санкт-Петербург</p>
+            <p className="text-muted-foreground">г. Санкт-Петербург, Уральская ул., 19к9Ж, офис 409</p>
           </div>
         </div>
         <div className="flex items-start gap-3">
