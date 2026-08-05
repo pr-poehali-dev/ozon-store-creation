@@ -61,7 +61,7 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockProducts.slice(0, 6).map(product => (
+          {mockProducts.filter(product => [10, 3, 7].includes(product.id)).map(product => (
             <Card key={product.id} className="overflow-hidden group hover:shadow-xl transition-all duration-300 animate-scale-in">
               <div
                 className="relative overflow-hidden cursor-pointer"
