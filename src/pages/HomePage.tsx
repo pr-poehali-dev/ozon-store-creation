@@ -17,7 +17,7 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
     <div className="space-y-12 animate-fade-in">
       <Helmet>
         <title>Полимер-проект — декоративные светильники из Санкт-Петербурга</title>
-        <meta name="description" content="Декоративные светильники из полимерных материалов — ворон, сова, луна. Уникальный дизайн, производство в Санкт-Петербурге. Оптовые цены от 350₽. Доставка по всей России." />
+        <meta name="description" content="Декоративные светильники из полимерных материалов — ворон, сова, луна. Уникальный дизайн, производство в Санкт-Петербурге. Оптовые цены от 260₽. Доставка по всей России." />
         <link rel="canonical" href="https://proekt-polimer.ru/" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -42,7 +42,7 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
       </Helmet>
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-6 sm:p-12 text-white">
         <div className="relative z-10 max-w-2xl">
-          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Оптовые цены от 350₽</h2>
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4">Оптовые цены от 260₽</h2>
           <Button size="lg" variant="secondary" className="shadow-lg" onClick={() => navigate('/catalog')}>
             Смотреть каталог
           </Button>
