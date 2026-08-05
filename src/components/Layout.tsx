@@ -96,7 +96,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
     if (!validate()) return;
     setIsSubmitting(true);
     try {
-      await fetch('https://functions.poehali.dev/2837d83b-f881-44e4-8f6e-b85d0e5052e1', {
+      await fetch('https://functions.poehali.dev/c60042e7-22e3-4f58-9069-72d893a7ddb0', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -115,7 +115,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
     if (!validate()) return;
     setIsPaymentLoading(true);
     try {
-      const res = await fetch('https://functions.poehali.dev/08dea84f-8d63-4974-b1a5-dad7368f84ee', {
+      const res = await fetch('https://functions.poehali.dev/0ebaa028-3ef9-46ed-975b-fa5912f44f09', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

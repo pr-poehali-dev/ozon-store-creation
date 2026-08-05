@@ -132,7 +132,8 @@ def handler(event: dict, context) -> dict:
         'headers': {
             'Access-Control-Allow-Origin': '*',
             'Content-Type': 'application/xml; charset=utf-8',
-            'Content-Disposition': 'attachment; filename="polimer-project-catalog.xml"'
+            'Content-Disposition': 'attachment; filename="polimer-project-catalog.xml"',
+            'Cache-Control': 'public, max-age=3600'
         },
         'body': yml
     }

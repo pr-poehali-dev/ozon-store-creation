@@ -12,7 +12,7 @@ interface CatalogPageProps {
   onAddToCart: (product: Product) => void;
 }
 
-const YML_URL = 'https://functions.poehali.dev/56bb9d57-ff07-4bb0-ae99-1141ee4cf7ba';
+const YML_URL = 'https://functions.poehali.dev/0458d2b4-5fc8-4e52-b319-e6d50a72d3b4';
 
 const CatalogPage = ({ onAddToCart }: CatalogPageProps) => {
   const navigate = useNavigate();

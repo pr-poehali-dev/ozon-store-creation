@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
 
-const AUTH_URL = 'https://functions.poehali.dev/14c9736b-f723-402b-bd36-35c34afa4bae';
+const AUTH_URL = 'https://functions.poehali.dev/d22d7436-8efc-41c5-a3de-633de1edd972';
 
 interface User { id: number; name: string; email: string; }
 

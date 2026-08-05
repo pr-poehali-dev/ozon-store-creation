@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Icon from '@/components/ui/icon';
 
-const CONTACT_URL = 'https://functions.poehali.dev/78de95d1-8bfd-474b-893c-af5d41aba571';
+const CONTACT_URL = 'https://functions.poehali.dev/56ebd5ee-9ada-403b-bd50-ef515efeeede';
 
 const ContactForm = () => {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
