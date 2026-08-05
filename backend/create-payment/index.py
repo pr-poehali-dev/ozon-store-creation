@@ -22,11 +22,11 @@ def handler(event: dict, context) -> dict:
     amount = body.get('amount')
     description = body.get('description', 'Заказ в интернет-магазине')
 
-    if not amount or float(amount) < 30000:
+    if not amount or float(amount) < 25000:
         return {
             'statusCode': 400,
             'headers': cors_headers,
-            'body': json.dumps({'error': 'Минимальный заказ 30 000 ₽'}, ensure_ascii=False),
+            'body': json.dumps({'error': 'Минимальный заказ 25 000 ₽'}, ensure_ascii=False),
         }
 
     shop_id = '1311963'

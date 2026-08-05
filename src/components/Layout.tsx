@@ -30,7 +30,7 @@ const NAV_ITEMS = [
   { path: '/contacts', label: 'Контакты' },
 ];
 
-const MIN_ORDER = 30000;
+const MIN_ORDER = 25000;
 
 const DELIVERY_OPTIONS = [
   { value: 'courier', label: 'Курьером по Санкт-Петербургу' },
@@ -240,7 +240,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
                             </div>
                             {!canCheckout && (
                               <p className="text-sm text-red-500 text-center">
-                                Минимальный заказ — 30 000 ₽. Ещё {(MIN_ORDER - totalPrice).toLocaleString()} ₽
+                                Минимальный заказ — 25 000 ₽. Ещё {(MIN_ORDER - totalPrice).toLocaleString()} ₽
                               </p>
                             )}
                             <Button
