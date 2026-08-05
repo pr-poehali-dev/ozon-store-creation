@@ -84,19 +84,33 @@ def handler(event: dict, context) -> dict:
 
     method = event.get('httpMethod', 'POST')
     headers = event.get('headers') or {}
+    params = event.get('queryStringParameters') or {}
 
-    # GET — список заказов для админки
+    # GET — список заказов для админки или история заказов пользователя
     if method == 'GET':
         token = headers.get('X-Admin-Token') or headers.get('x-admin-token')
-        if token != ADMIN_TOKEN:
-            return {'statusCode': 401, 'headers': cors_headers, 'body': json.dumps({'error': 'Нет доступа'})}
 
         conn = psycopg2.connect(os.environ['DATABASE_URL'])
         cur = conn.cursor()
-        cur.execute(
-            "SELECT id, name, phone, email, delivery, address, comment, total, items, status, created_at "
-            "FROM orders ORDER BY created_at DESC LIMIT 200"
-        )
+
+        if token == ADMIN_TOKEN:
+            cur.execute(
+                "SELECT id, name, phone, email, delivery, address, comment, total, items, status, created_at "
+                "FROM orders ORDER BY created_at DESC LIMIT 200"
+            )
+        else:
+            user_id = params.get('user_id')
+            user_email = (params.get('email') or '').strip().lower()
+            if not user_id and not user_email:
+                cur.close(); conn.close()
+                return {'statusCode': 401, 'headers': cors_headers, 'body': json.dumps({'error': 'Нет доступа'})}
+
+            cur.execute(
+                "SELECT id, name, phone, email, delivery, address, comment, total, items, status, created_at "
+                "FROM orders WHERE user_id = %s OR LOWER(email) = %s ORDER BY created_at DESC LIMIT 200",
+                (user_id, user_email)
+            )
+
         rows = cur.fetchall()
         cur.close(); conn.close()
 
@@ -143,6 +157,7 @@ def handler(event: dict, context) -> dict:
     comment = body.get('comment', '')
     total = float(body.get('total', 0))
     items = body.get('items', [])
+    user_id = body.get('user_id')
 
     if not name or not phone or not email:
         return {
@@ -154,9 +169,9 @@ def handler(event: dict, context) -> dict:
     conn = psycopg2.connect(os.environ['DATABASE_URL'])
     cur = conn.cursor()
     cur.execute(
-        "INSERT INTO orders (name, phone, email, delivery, address, comment, total, items) "
-        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING id",
-        (name, phone, email, delivery, address, comment, total, json.dumps(items, ensure_ascii=False))
+        "INSERT INTO orders (name, phone, email, delivery, address, comment, total, items, user_id) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING id",
+        (name, phone, email, delivery, address, comment, total, json.dumps(items, ensure_ascii=False), user_id)
     )
     order_id = cur.fetchone()[0]
     conn.commit()

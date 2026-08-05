@@ -96,6 +96,8 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
     if (!validate()) return;
     setIsSubmitting(true);
     try {
+      const savedUser = localStorage.getItem('pp_user');
+      const userId = savedUser ? JSON.parse(savedUser).id : undefined;
       await fetch('https://functions.poehali.dev/c60042e7-22e3-4f58-9069-72d893a7ddb0', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -103,6 +105,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
           ...form,
           total: totalPrice,
           items: cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
+          user_id: userId,
         }),
       });
       setStep('success');

@@ -14,10 +14,18 @@
       "expectedStatus": 400
     },
     {
-      "name": "GET без токена — 401",
+      "name": "GET без токена и без email/user_id — 401",
       "method": "GET",
       "path": "/",
       "expectedStatus": 401
+    },
+    {
+      "name": "GET история заказов по email",
+      "method": "GET",
+      "path": "/?email=test@example.com",
+      "expectedStatus": 200,
+      "expectedBody": { "orders": [] },
+      "bodyMatcher": "partial"
     },
     {
       "name": "GET с токеном — список заказов",
