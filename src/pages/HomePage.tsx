@@ -41,10 +41,10 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
         })}</script>
       </Helmet>
 
-      <div className="flex items-center justify-center gap-3 flex-wrap text-center bg-muted/50 border rounded-xl px-4 py-3">
+      <div className="flex items-center justify-center gap-3 flex-wrap text-center rounded-xl px-4 py-3 bg-gradient-to-r from-primary via-secondary to-accent text-white">
         <span className="text-sm sm:text-base font-medium">Мы есть на Ozon</span>
         <a href="https://www.ozon.ru/seller/polimer-proekt/" target="_blank" rel="noopener noreferrer">
-          <Button size="sm" variant="outline" className="gap-1.5">
+          <Button size="sm" variant="secondary" className="gap-1.5 shadow-lg">
             Перейти
             <Icon name="ExternalLink" size={14} />
           </Button>
