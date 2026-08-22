@@ -455,8 +455,17 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
               </ul>
             </div>
           </div>
-          <div className="border-t pt-6 text-center text-sm text-muted-foreground">
-            © 2026 Полимер-проект. Все права защищены.
+          <div className="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-sm">
+              <span className="text-muted-foreground">Наш магазин на Ozon</span>
+              <a href="https://www.ozon.ru/seller/polimer-proekt/" target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="outline" className="gap-1.5">
+                  Перейти
+                  <Icon name="ExternalLink" size={14} />
+                </Button>
+              </a>
+            </div>
+            <p className="text-sm text-muted-foreground">© 2026 Полимер-проект. Все права защищены.</p>
           </div>
         </div>
       </footer>
