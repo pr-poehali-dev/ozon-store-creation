@@ -40,6 +40,17 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
           "sameAs": []
         })}</script>
       </Helmet>
+
+      <div className="flex items-center justify-center gap-3 flex-wrap text-center bg-muted/50 border rounded-xl px-4 py-3">
+        <span className="text-sm sm:text-base font-medium">Мы есть на Ozon</span>
+        <a href="https://www.ozon.ru/seller/polimer-proekt/" target="_blank" rel="noopener noreferrer">
+          <Button size="sm" variant="outline" className="gap-1.5">
+            Перейти
+            <Icon name="ExternalLink" size={14} />
+          </Button>
+        </a>
+      </div>
+
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-6 sm:p-12 text-white">
         <div className="relative z-10 max-w-2xl">
           <h2 className="text-3xl sm:text-5xl font-bold mb-4">Оптовые цены от 260₽</h2>
