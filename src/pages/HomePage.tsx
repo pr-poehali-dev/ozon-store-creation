@@ -49,6 +49,13 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
             <Icon name="ExternalLink" size={14} />
           </Button>
         </a>
+        <span className="text-sm sm:text-base font-medium">Мы в Авито</span>
+        <a href="https://www.avito.ru/profile/items/active/all?s=4" target="_blank" rel="noopener noreferrer">
+          <Button size="sm" variant="secondary" className="gap-1.5 shadow-lg">
+            Перейти
+            <Icon name="ExternalLink" size={14} />
+          </Button>
+        </a>
       </div>
 
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent p-6 sm:p-12 text-white">

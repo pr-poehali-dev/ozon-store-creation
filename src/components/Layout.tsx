@@ -456,9 +456,16 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
             </div>
           </div>
           <div className="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3 text-sm">
+            <div className="flex items-center gap-3 text-sm flex-wrap justify-center">
               <span className="text-muted-foreground">Наш магазин на Ozon</span>
               <a href="https://www.ozon.ru/seller/polimer-proekt/" target="_blank" rel="noopener noreferrer">
+                <Button size="sm" variant="outline" className="gap-1.5">
+                  Перейти
+                  <Icon name="ExternalLink" size={14} />
+                </Button>
+              </a>
+              <span className="text-muted-foreground">Мы в Авито</span>
+              <a href="https://www.avito.ru/profile/items/active/all?s=4" target="_blank" rel="noopener noreferrer">
                 <Button size="sm" variant="outline" className="gap-1.5">
                   Перейти
                   <Icon name="ExternalLink" size={14} />
