@@ -72,6 +72,41 @@ const EXAMPLES = [
     title: 'Портрет по фото на заказ',
     description: 'Печатаем фигурку человека в полный рост по обычной фотографии',
   },
+  {
+    image: '/images/examples3/part-1.jpg',
+    title: 'Крепёжная деталь с фланцем',
+    description: 'Функциональная печать — точные отверстия и посадочные места',
+  },
+  {
+    image: '/images/examples3/part-2.jpg',
+    title: 'Технический короб',
+    description: 'Изготовление корпусных деталей по чертежам заказчика',
+  },
+  {
+    image: '/images/examples3/part-3.jpg',
+    title: 'Лоток с текстурной поверхностью',
+    description: 'Печать сложной геометрии с высокой точностью',
+  },
+  {
+    image: '/images/examples3/part-4.jpg',
+    title: 'Корпусная накладка',
+    description: 'Прочные функциональные изделия из ABS и PETG пластика',
+  },
+  {
+    image: '/images/examples3/part-5.jpg',
+    title: 'Профильная деталь на заказ',
+    description: 'Печать деталей сложной формы с креплением под винт',
+  },
+  {
+    image: '/images/examples3/part-6.jpg',
+    title: 'Крепёжная скоба',
+    description: 'Мелкосерийные детали любой сложности из прочного пластика',
+  },
+  {
+    image: '/images/examples3/part-7.jpg',
+    title: 'Гибкая накладка из TPU',
+    description: 'Печать эластичными материалами для нестандартных задач',
+  },
 ];
 
 const PrintCalculatorPage = () => {
