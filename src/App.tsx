@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
+import PrintCalculatorPage from "./pages/PrintCalculatorPage";
 import ReviewsPage from "./pages/ReviewsPage";
 import DeliveryPage from "./pages/DeliveryPage";
 import AboutPage from "./pages/AboutPage";
@@ -73,6 +74,11 @@ const AppContent = () => {
       <Route path="/catalog" element={
         <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
           <CatalogPage onAddToCart={addToCart} />
+        </Layout>
+      } />
+      <Route path="/print-calculator" element={
+        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
+          <PrintCalculatorPage />
         </Layout>
       } />
       <Route path="/reviews" element={

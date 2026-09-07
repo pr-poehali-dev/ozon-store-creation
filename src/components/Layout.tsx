@@ -24,6 +24,7 @@ interface LayoutProps {
 const NAV_ITEMS = [
   { path: '/', label: 'Главная' },
   { path: '/catalog', label: 'Каталог' },
+  { path: '/print-calculator', label: 'Печать на заказ' },
   { path: '/reviews', label: 'Отзывы' },
   { path: '/delivery', label: 'Доставка' },
   { path: '/about', label: 'О магазине' },
