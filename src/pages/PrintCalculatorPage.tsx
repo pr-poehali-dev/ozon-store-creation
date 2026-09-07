@@ -53,22 +53,22 @@ const formatMoney = (value: number) => `${Math.round(value).toLocaleString('ru-R
 
 const EXAMPLES = [
   {
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/280d3736-b189-4fec-81df-a94f5ed834a3.jpg',
+    image: '/images/examples/example-1.jpg',
     title: 'Фигурка девушки с тюльпаном',
     description: 'Детализированная 3D-печать с цветной покраской элементов',
   },
   {
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/9ff1a8ed-5ef5-4eb1-b8a2-1b061396590b.jpg',
+    image: '/images/examples/example-2.jpg',
     title: 'Свадебная пара по фото',
     description: 'Точное воспроизведение позы и образа молодожёнов',
   },
   {
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/905a830f-e37f-42de-9226-df1ee890dc63.jpg',
+    image: '/images/examples/example-3.jpg',
     title: 'Готовое изделие в подарочной рамке',
     description: 'Оригинальный подарок — фигурка рядом с фотографией события',
   },
   {
-    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c73fd82b-1645-4192-9909-cb4f0a583892.jpg',
+    image: '/images/examples/example-4.jpg',
     title: 'Портрет по фото на заказ',
     description: 'Печатаем фигурку человека в полный рост по обычной фотографии',
   },
@@ -120,7 +120,7 @@ const PrintCalculatorPage = () => {
                 <img
                   src={example.image}
                   alt={example.title}
-                  className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-72 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
               <div className="p-4">
