@@ -51,6 +51,24 @@ const FIELDS: CalcField[] = [
 
 const formatMoney = (value: number) => `${Math.round(value).toLocaleString('ru-RU')} ₽`;
 
+const EXAMPLES = [
+  {
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/280d3736-b189-4fec-81df-a94f5ed834a3.jpg',
+    title: 'Фигурка девушки с тюльпаном',
+    description: 'Детализированная 3D-печать с цветной покраской элементов',
+  },
+  {
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/9ff1a8ed-5ef5-4eb1-b8a2-1b061396590b.jpg',
+    title: 'Свадебная пара по фото',
+    description: 'Точное воспроизведение позы и образа молодожёнов',
+  },
+  {
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/905a830f-e37f-42de-9226-df1ee890dc63.jpg',
+    title: 'Готовое изделие в подарочной рамке',
+    description: 'Оригинальный подарок — фигурка рядом с фотографией события',
+  },
+];
+
 const PrintCalculatorPage = () => {
   const [values, setValues] = useState<CalcState>(DEFAULTS);
 
@@ -84,6 +102,30 @@ const PrintCalculatorPage = () => {
           Рассчитайте ориентировочную стоимость 3D-печати вашей модели: укажите расход материала, время печати и подготовку — калькулятор покажет статьи затрат и итоговую цену.
         </p>
       </div>
+
+      <section className="max-w-5xl mx-auto space-y-4">
+        <div className="text-center space-y-1">
+          <h2 className="text-2xl sm:text-3xl font-bold">Примеры наших работ</h2>
+          <p className="text-muted-foreground text-sm sm:text-base">Печатаем фигурки по фотографии — свадебные пары, портреты и подарочные сувениры</p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {EXAMPLES.map(example => (
+            <Card key={example.image} className="overflow-hidden group">
+              <div className="relative overflow-hidden">
+                <img
+                  src={example.image}
+                  alt={example.title}
+                  className="w-full h-72 object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold text-sm mb-1">{example.title}</h3>
+                <p className="text-xs text-muted-foreground">{example.description}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
 
       <div className="grid lg:grid-cols-[1.2fr_1fr] gap-6 max-w-5xl mx-auto">
         <Card className="p-6">
