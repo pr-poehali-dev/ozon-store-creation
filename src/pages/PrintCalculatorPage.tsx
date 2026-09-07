@@ -67,6 +67,11 @@ const EXAMPLES = [
     title: 'Готовое изделие в подарочной рамке',
     description: 'Оригинальный подарок — фигурка рядом с фотографией события',
   },
+  {
+    image: 'https://cdn.poehali.dev/projects/c6e71b0f-7d20-4c00-9607-09b4ebf43fcc/bucket/c73fd82b-1645-4192-9909-cb4f0a583892.jpg',
+    title: 'Портрет по фото на заказ',
+    description: 'Печатаем фигурку человека в полный рост по обычной фотографии',
+  },
 ];
 
 const PrintCalculatorPage = () => {
@@ -108,7 +113,7 @@ const PrintCalculatorPage = () => {
           <h2 className="text-2xl sm:text-3xl font-bold">Примеры наших работ</h2>
           <p className="text-muted-foreground text-sm sm:text-base">Печатаем фигурки по фотографии — свадебные пары, портреты и подарочные сувениры</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {EXAMPLES.map(example => (
             <Card key={example.image} className="overflow-hidden group">
               <div className="relative overflow-hidden">
