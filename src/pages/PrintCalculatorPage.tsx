@@ -83,11 +83,6 @@ const EXAMPLES = [
     description: 'Изготовление корпусных деталей по чертежам заказчика',
   },
   {
-    image: '/images/examples3/part-3.jpg',
-    title: 'Лоток с текстурной поверхностью',
-    description: 'Печать сложной геометрии с высокой точностью',
-  },
-  {
     image: '/images/examples3/part-4.jpg',
     title: 'Корпусная накладка',
     description: 'Прочные функциональные изделия из ABS и PETG пластика',
