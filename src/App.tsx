@@ -29,6 +29,7 @@ import ProductDetail13 from "./pages/ProductDetail13";
 import ProductDetail14 from "./pages/ProductDetail14";
 import ProductDetail15 from "./pages/ProductDetail15";
 import ProductDetail16 from "./pages/ProductDetail16";
+import ProductDetail17 from "./pages/ProductDetail17";
 import NotFound from "./pages/NotFound";
 import AdminPage from "./pages/AdminPage";
 import { Product } from "@/data/products";
@@ -122,6 +123,7 @@ const AppContent = () => {
       <Route path="/product/14" element={<ProductDetail14 />} />
       <Route path="/product/15" element={<ProductDetail15 />} />
       <Route path="/product/16" element={<ProductDetail16 />} />
+      <Route path="/product/17" element={<ProductDetail17 />} />
       <Route path="/admin" element={<AdminPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
