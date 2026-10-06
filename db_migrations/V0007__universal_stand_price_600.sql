@@ -1,0 +1,1 @@
+UPDATE t_p37034511_ozon_store_creation.products SET price = 600 WHERE id = 18;

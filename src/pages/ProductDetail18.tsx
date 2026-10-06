@@ -29,8 +29,8 @@ const productData: ProductDetail = {
   id: 18,
   sku: '07020018',
   name: 'Подставка под Яндекс Станцию универсальная',
-  price: 1000,
-  images: ['/placeholder.svg'],
+  price: 600,
+  images: ['/products/yandex-stand-universal-1.jpg', '/products/yandex-stand-universal-2.jpg'],
   category: 'Для дома',
   rating: 5.0,
   reviews: 0,
@@ -55,6 +55,8 @@ const productData: ProductDetail = {
   specifications: [
     { label: 'Материал', value: 'Высококачественный полимер' },
     { label: 'Технология', value: '3D-печать' },
+    { label: 'Совместимость', value: 'Станция Лайт, Лайт 2, Мини, Мини 3, Миди' },
+    { label: 'Посадочный диаметр', value: 'до 102 мм' },
     { label: 'Назначение', value: 'Настольная подставка под умную колонку' },
     { label: 'Производство', value: 'Россия' }
   ]
@@ -75,7 +77,7 @@ const ProductDetail18 = () => {
     <div className="bg-gradient-to-b from-background to-muted/20">
       <Helmet>
         <title>Подставка под Яндекс Станцию универсальная — Полимер-проект</title>
-        <meta name="description" content="Подставка под Яндекс Станцию универсальная. Цена: 1000₽. Устойчивая подставка из прочного полимера. Доставка по России." />
+        <meta name="description" content="Подставка под Яндекс Станцию универсальная. Цена: 600₽. Устойчивая подставка из прочного полимера. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/18" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",

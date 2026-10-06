@@ -5,7 +5,6 @@ export interface Product {
   sku: string;
   name: string;
   price: number;
-  wholesalePrice?: number;
   image: string;
   category: string;
   rating: number;
