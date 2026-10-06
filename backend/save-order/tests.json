@@ -14,27 +14,37 @@
       "expectedStatus": 400
     },
     {
-      "name": "GET без токена и без email/user_id — 401",
+      "name": "Цены от клиента не принимаются, заказ ниже минимума",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Тест", "phone": "+79990000000", "email": "t@example.com", "delivery": "pickup", "total": 1, "items": [{"id": 12, "quantity": 1, "price": 1}]},
+      "expectedStatus": 400
+    },
+    {
+      "name": "GET без токена — 401",
       "method": "GET",
       "path": "/",
       "expectedStatus": 401
     },
     {
-      "name": "GET история заказов по email",
+      "name": "GET по чужому email без токена — 401",
       "method": "GET",
       "path": "/?email=test@example.com",
-      "expectedStatus": 200,
-      "expectedBody": { "orders": [] },
-      "bodyMatcher": "partial"
+      "expectedStatus": 401
     },
     {
-      "name": "GET с токеном — список заказов",
+      "name": "GET со старым паролем админа в заголовке — 401",
       "method": "GET",
       "path": "/",
-      "headers": { "X-Admin-Token": "polimer-admin-2024" },
-      "expectedStatus": 200,
-      "expectedBody": { "orders": [] },
-      "bodyMatcher": "partial"
+      "headers": {"X-Admin-Token": "polimer-admin-2024"},
+      "expectedStatus": 401
+    },
+    {
+      "name": "PUT без токена — 401",
+      "method": "PUT",
+      "path": "/",
+      "body": {"id": 1, "status": "shipped"},
+      "expectedStatus": 401
     }
   ]
 }

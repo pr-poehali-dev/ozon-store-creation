@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import func2url from '../../backend/func2url.json';
 import Icon from '@/components/ui/icon';
 
-const ADMIN_TOKEN = 'polimer-admin-2024';
+const ADMIN_SESSION_KEY = 'pp_admin_token';
 
 const DELIVERY_LABELS: Record<string, string> = {
   courier: 'Курьер',
@@ -40,7 +40,9 @@ interface Order {
 }
 
 export default function AdminPage() {
-  const [authed, setAuthed] = useState(false);
+  const [token, setToken] = useState<string>(() => sessionStorage.getItem(ADMIN_SESSION_KEY) || '');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const authed = !!token;
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [orders, setOrders] = useState<Order[]>([]);
@@ -48,20 +50,47 @@ export default function AdminPage() {
   const [expanded, setExpanded] = useState<number | null>(null);
   const [updatingId, setUpdatingId] = useState<number | null>(null);
 
-  const handleLogin = () => {
-    if (password === ADMIN_TOKEN) {
-      setAuthed(true);
-      setPasswordError('');
-    } else {
-      setPasswordError('Неверный пароль');
+  const logout = () => {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+    setToken('');
+    setOrders([]);
+    setPassword('');
+  };
+
+  const handleLogin = async () => {
+    setPasswordError('');
+    setLoginLoading(true);
+    try {
+      const res = await fetch(func2url['auth'], {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'admin_login', password }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.token) {
+        setPasswordError('Неверный пароль');
+        return;
+      }
+      sessionStorage.setItem(ADMIN_SESSION_KEY, data.token);
+      setToken(data.token);
+      setPassword('');
+    } catch {
+      setPasswordError('Ошибка соединения');
+    } finally {
+      setLoginLoading(false);
     }
   };
 
   const fetchOrders = async () => {
     setLoading(true);
     const res = await fetch(func2url['save-order'], {
-      headers: { 'X-Admin-Token': ADMIN_TOKEN },
+      headers: { Authorization: `Bearer ${token}` },
     });
+    if (res.status === 401) {
+      logout();
+      setLoading(false);
+      return;
+    }
     const data = await res.json();
     setOrders(data.orders || []);
     setLoading(false);
@@ -73,12 +102,16 @@ export default function AdminPage() {
 
   const updateStatus = async (id: number, status: string) => {
     setUpdatingId(id);
-    await fetch(func2url['save-order'], {
+    const res = await fetch(func2url['save-order'], {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_TOKEN },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ id, status }),
     });
-    setOrders(prev => prev.map(o => o.id === id ? { ...o, status } : o));
+    if (res.status === 401) {
+      logout();
+    } else {
+      setOrders(prev => prev.map(o => o.id === id ? { ...o, status } : o));
+    }
     setUpdatingId(null);
   };
 
@@ -104,9 +137,10 @@ export default function AdminPage() {
           {passwordError && <p className="text-red-500 text-sm mb-3">{passwordError}</p>}
           <button
             onClick={handleLogin}
-            className="w-full bg-primary text-primary-foreground font-semibold rounded-lg py-2 hover:opacity-90 transition"
+            disabled={loginLoading || !password}
+            className="w-full bg-primary text-primary-foreground font-semibold rounded-lg py-2 hover:opacity-90 transition disabled:opacity-50"
           >
-            Войти
+            {loginLoading ? 'Проверка...' : 'Войти'}
           </button>
         </div>
       </div>
@@ -118,13 +152,22 @@ export default function AdminPage() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Заказы</h1>
-          <button
-            onClick={fetchOrders}
-            className="flex items-center gap-2 bg-white border rounded-lg px-4 py-2 text-sm hover:bg-muted transition"
-          >
-            <Icon name="RefreshCw" size={16} />
-            Обновить
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={fetchOrders}
+              className="flex items-center gap-2 bg-white border rounded-lg px-4 py-2 text-sm hover:bg-muted transition"
+            >
+              <Icon name="RefreshCw" size={16} />
+              Обновить
+            </button>
+            <button
+              onClick={logout}
+              className="flex items-center gap-2 bg-white border rounded-lg px-4 py-2 text-sm hover:bg-muted transition"
+            >
+              <Icon name="LogOut" size={16} />
+              Выйти
+            </button>
+          </div>
         </div>
 
         {loading ? (

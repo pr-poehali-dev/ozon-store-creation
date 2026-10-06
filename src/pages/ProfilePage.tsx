@@ -58,8 +58,17 @@ const ProfilePage = () => {
   useEffect(() => {
     if (!user) return;
     setOrdersLoading(true);
-    fetch(`${ORDERS_URL}?user_id=${user.id}&email=${encodeURIComponent(user.email)}`)
-      .then(res => res.json())
+    const token = localStorage.getItem('pp_token') || '';
+    fetch(ORDERS_URL, { headers: { Authorization: `Bearer ${token}` } })
+      .then(res => {
+        if (res.status === 401) {
+          localStorage.removeItem('pp_user');
+          localStorage.removeItem('pp_token');
+          setUser(null);
+          return { orders: [] };
+        }
+        return res.json();
+      })
       .then(data => setOrders(data.orders || []))
       .finally(() => setOrdersLoading(false));
   }, [user]);

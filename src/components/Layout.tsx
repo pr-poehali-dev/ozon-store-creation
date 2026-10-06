@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
 import { Product } from '@/data/products';
+import func2url from '../../backend/func2url.json';
 
 interface CartItem extends Product {
   quantity: number;
@@ -98,18 +99,20 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
     if (!validate()) return;
     setIsSubmitting(true);
     try {
-      const savedUser = localStorage.getItem('pp_user');
-      const userId = savedUser ? JSON.parse(savedUser).id : undefined;
-      await fetch('https://functions.poehali.dev/c60042e7-22e3-4f58-9069-72d893a7ddb0', {
+      const token = localStorage.getItem('pp_token');
+      const res = await fetch(func2url['save-order'], {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}) },
         body: JSON.stringify({
           ...form,
-          total: totalPrice,
-          items: cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
-          user_id: userId,
+          items: cart.map(i => ({ id: i.id, quantity: i.quantity })),
         }),
       });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || 'Не удалось оформить заказ. Попробуйте ещё раз.');
+        return;
+      }
       setStep('success');
     } finally {
       setIsSubmitting(false);
@@ -120,13 +123,11 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
     if (!validate()) return;
     setIsPaymentLoading(true);
     try {
-      const res = await fetch('https://functions.poehali.dev/0ebaa028-3ef9-46ed-975b-fa5912f44f09', {
+      const res = await fetch(func2url['create-payment'], {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: totalPrice,
-          description: `Заказ: ${form.name}, ${form.phone}`,
-          items: cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity })),
+          items: cart.map(i => ({ id: i.id, quantity: i.quantity })),
           customer: form,
         }),
       });

@@ -15,6 +15,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactsPage from "./pages/ContactsPage";
 import WholesalePage from "./pages/WholesalePage";
 import LegalPage from "./pages/LegalPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProductDetail from "./pages/ProductDetail";
 import ProductDetail2 from "./pages/ProductDetail2";
@@ -69,6 +70,7 @@ const AppContent = () => {
       <Route path="/privacy" element={<Page><LegalPage type="privacy" /></Page>} />
       <Route path="/offer" element={<Page><LegalPage type="offer" /></Page>} />
       <Route path="/returns" element={<Page><LegalPage type="returns" /></Page>} />
+      <Route path="/payment-success" element={<Page><PaymentSuccessPage /></Page>} />
       <Route path="/profile" element={<Page><ProfilePage /></Page>} />
       {PRODUCT_PAGES.map((Component, i) => (
         <Route key={i + 1} path={`/product/${i + 1}`} element={<Page><Component /></Page>} />

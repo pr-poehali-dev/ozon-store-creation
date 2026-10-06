@@ -7,18 +7,25 @@
       "expectedStatus": 200
     },
     {
-      "name": "Register new user",
+      "name": "Вход с неверным паролем",
       "method": "POST",
       "path": "/",
-      "body": {"action": "register", "name": "Тест2 Тестов", "email": "test_reg_unique2@example.com", "password": "password123"},
-      "expectedStatus": 200
+      "body": {"action": "login", "email": "no_such_user@example.com", "password": "wrongpass"},
+      "expectedStatus": 401
     },
     {
-      "name": "Login with wrong password",
+      "name": "Вход админа с неверным паролем",
       "method": "POST",
       "path": "/",
-      "body": {"action": "login", "email": "test_reg_unique2@example.com", "password": "wrongpass"},
+      "body": {"action": "admin_login", "password": "definitely-wrong-password"},
       "expectedStatus": 401
+    },
+    {
+      "name": "Неизвестное действие",
+      "method": "POST",
+      "path": "/",
+      "body": {"action": "nope"},
+      "expectedStatus": 400
     }
   ]
 }

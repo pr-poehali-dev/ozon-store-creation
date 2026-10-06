@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /profile
+Disallow: /payment-success
 
 Sitemap: https://proekt-polimer.ru/sitemap.xml
