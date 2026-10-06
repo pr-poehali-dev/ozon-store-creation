@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import { useCart } from '@/context/CartContext';
+import { mockProducts } from '@/data/products';
+import { toast } from 'sonner';
 import owlBall1 from '@/assets/products/owl-ball-1.png';
 import owlBall2 from '@/assets/products/owl-ball-2.png';
 
@@ -63,12 +65,18 @@ const productData: ProductDetailType = {
 };
 
 const ProductDetail6 = () => {
-  const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const handleAddToCart = () => {
+    const catalogProduct = mockProducts.find(p => p.id === productData.id);
+    if (!catalogProduct) return;
+    addToCart(catalogProduct, quantity);
+    toast.success(`Добавлено в корзину: ${catalogProduct.name}`);
+  };
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="bg-gradient-to-b from-background to-muted/20">
       <Helmet>
         <title>Настенный светильник «Сова с шаром» — Полимер-проект</title>
         <meta name="description" content="Настенный светильник «Сова с шаром». Цена: 1100₽. Добавьте магию ночи и мудрость веков с уникальным светильником Сова. Символ мудрости и защиты в вашем доме. Доставка по России." />
@@ -107,18 +115,6 @@ const ProductDetail6 = () => {
           ]
         })}</script>
       </Helmet>
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate('/')}>
-              <Icon name="ArrowLeft" size={20} />
-            </Button>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Полимер-проект
-            </h1>
-          </div>
-        </div>
-      </header>
 
       <main className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
@@ -184,7 +180,7 @@ const ProductDetail6 = () => {
                   <div className="text-2xl font-bold text-primary">{(productData.price * quantity).toLocaleString()} ₽</div>
                 </div>
               </div>
-              <Button size="lg" className="w-full mb-3 gap-2">
+              <Button size="lg" className="w-full mb-3 gap-2" onClick={handleAddToCart}>
                 <Icon name="ShoppingCart" size={20} />Добавить в корзину
               </Button>
               <Button size="lg" variant="outline" className="w-full gap-2">

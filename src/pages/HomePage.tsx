@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { mockProducts, Product } from '@/data/products';
+import LeadForm from '@/components/LeadForm';
 
 interface HomePageProps {
   onAddToCart: (product: Product) => void;
@@ -118,6 +119,22 @@ const HomePage = ({ onAddToCart }: HomePageProps) => {
             </Card>
           ))}
         </div>
+      </section>
+
+      <section className="grid md:grid-cols-2 gap-6 items-start">
+        <div className="space-y-3">
+          <h2 className="text-2xl sm:text-3xl font-bold">Бесплатная консультация</h2>
+          <p className="text-muted-foreground">Поможем выбрать светильник или сувенир, рассчитаем доставку и ответим на вопросы по опту. Оставьте контакты — перезвоним в рабочее время с 10:00 до 19:00.</p>
+        </div>
+        <Card className="p-4 sm:p-6">
+          <LeadForm
+            subject="Заявка на консультацию"
+            goal="consultation_request"
+            withPhone
+            messagePlaceholder="Что вас интересует?"
+            submitLabel="Получить консультацию"
+          />
+        </Card>
       </section>
     </div>
   );

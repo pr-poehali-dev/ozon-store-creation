@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Icon from '@/components/ui/icon';
+import { useCart } from '@/context/CartContext';
+import { mockProducts } from '@/data/products';
+import { toast } from 'sonner';
 import ravenTable1 from '@/assets/products/raven-table-1.jpg';
 import ravenTable2 from '@/assets/products/raven-table-2.jpg';
 import ravenTable3 from '@/assets/products/raven-table-3.jpg';
@@ -75,15 +77,21 @@ const productData: ProductDetail = {
 };
 
 const ProductDetail3 = () => {
-  const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const handleAddToCart = () => {
+    const catalogProduct = mockProducts.find(p => p.id === productData.id);
+    if (!catalogProduct) return;
+    addToCart(catalogProduct, quantity);
+    toast.success(`Добавлено в корзину: ${catalogProduct.name}`);
+  };
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+    <div className="bg-gradient-to-b from-background to-muted/20">
       <Helmet>
         <title>Настольный светильник «Ворон» — Полимер-проект</title>
-        <meta name="description" content="Настольный светильник «Ворон». Цена: 630₽. Настольный светильник Ворон золотой — шедевр современного дизайна, сочетающий элегантность и функциональность. Доставка по России." />
+        <meta name="description" content="Настольный светильник «Ворон». Цена: 900₽. Настольный светильник Ворон золотой — шедевр современного дизайна, сочетающий элегантность и функциональность. Доставка по России." />
         <link rel="canonical" href="https://proekt-polimer.ru/product/3" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -119,18 +127,6 @@ const ProductDetail3 = () => {
           ]
         })}</script>
       </Helmet>
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => navigate('/')}>
-              <Icon name="ArrowLeft" size={20} />
-            </Button>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              Полимер-проект
-            </h1>
-          </div>
-        </div>
-      </header>
 
       <main className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
@@ -234,7 +230,7 @@ const ProductDetail3 = () => {
                 </div>
               </div>
 
-              <Button size="lg" className="w-full mb-3 gap-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600">
+              <Button size="lg" className="w-full mb-3 gap-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600" onClick={handleAddToCart}>
                 <Icon name="ShoppingCart" size={20} />
                 Добавить в корзину
               </Button>

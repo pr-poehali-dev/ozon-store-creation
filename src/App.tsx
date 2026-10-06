@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { ReactNode } from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
+import { CartProvider, useCart } from "@/context/CartContext";
 import HomePage from "./pages/HomePage";
 import CatalogPage from "./pages/CatalogPage";
 import PrintCalculatorPage from "./pages/PrintCalculatorPage";
@@ -12,6 +13,8 @@ import ReviewsPage from "./pages/ReviewsPage";
 import DeliveryPage from "./pages/DeliveryPage";
 import AboutPage from "./pages/AboutPage";
 import ContactsPage from "./pages/ContactsPage";
+import WholesalePage from "./pages/WholesalePage";
+import LegalPage from "./pages/LegalPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProductDetail from "./pages/ProductDetail";
 import ProductDetail2 from "./pages/ProductDetail2";
@@ -32,98 +35,44 @@ import ProductDetail16 from "./pages/ProductDetail16";
 import ProductDetail17 from "./pages/ProductDetail17";
 import NotFound from "./pages/NotFound";
 import AdminPage from "./pages/AdminPage";
-import { Product } from "@/data/products";
-
-interface CartItem extends Product {
-  quantity: number;
-}
 
 const queryClient = new QueryClient();
 
+const PRODUCT_PAGES = [
+  ProductDetail, ProductDetail2, ProductDetail3, ProductDetail4, ProductDetail5, ProductDetail6,
+  ProductDetail7, ProductDetail8, ProductDetail9, ProductDetail10, ProductDetail11, ProductDetail12,
+  ProductDetail13, ProductDetail14, ProductDetail15, ProductDetail16, ProductDetail17,
+];
+
+const Page = ({ children }: { children: ReactNode }) => {
+  const { cart, updateQuantity, removeFromCart } = useCart();
+  return (
+    <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
+      {children}
+    </Layout>
+  );
+};
+
 const AppContent = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  const addToCart = (product: Product) => {
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-  };
-
-  const updateQuantity = (id: number, quantity: number) => {
-    if (quantity === 0) {
-      setCart(prev => prev.filter(item => item.id !== id));
-      return;
-    }
-    setCart(prev => prev.map(item => item.id === id ? { ...item, quantity } : item));
-  };
-
-  const removeFromCart = (id: number) => {
-    setCart(prev => prev.filter(item => item.id !== id));
-  };
+  const { addToCart } = useCart();
 
   return (
     <Routes>
-      <Route path="/" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <HomePage onAddToCart={addToCart} />
-        </Layout>
-      } />
-      <Route path="/catalog" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <CatalogPage onAddToCart={addToCart} />
-        </Layout>
-      } />
-      <Route path="/print-calculator" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <PrintCalculatorPage />
-        </Layout>
-      } />
-      <Route path="/reviews" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <ReviewsPage />
-        </Layout>
-      } />
-      <Route path="/delivery" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <DeliveryPage />
-        </Layout>
-      } />
-      <Route path="/about" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <AboutPage />
-        </Layout>
-      } />
-      <Route path="/contacts" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <ContactsPage />
-        </Layout>
-      } />
-      <Route path="/profile" element={
-        <Layout cart={cart} onUpdateQuantity={updateQuantity} onRemoveFromCart={removeFromCart}>
-          <ProfilePage />
-        </Layout>
-      } />
-      <Route path="/product/1" element={<ProductDetail />} />
-      <Route path="/product/2" element={<ProductDetail2 />} />
-      <Route path="/product/3" element={<ProductDetail3 />} />
-      <Route path="/product/4" element={<ProductDetail4 />} />
-      <Route path="/product/5" element={<ProductDetail5 />} />
-      <Route path="/product/6" element={<ProductDetail6 />} />
-      <Route path="/product/7" element={<ProductDetail7 />} />
-      <Route path="/product/8" element={<ProductDetail8 />} />
-      <Route path="/product/9" element={<ProductDetail9 />} />
-      <Route path="/product/10" element={<ProductDetail10 />} />
-      <Route path="/product/11" element={<ProductDetail11 />} />
-      <Route path="/product/12" element={<ProductDetail12 />} />
-      <Route path="/product/13" element={<ProductDetail13 />} />
-      <Route path="/product/14" element={<ProductDetail14 />} />
-      <Route path="/product/15" element={<ProductDetail15 />} />
-      <Route path="/product/16" element={<ProductDetail16 />} />
-      <Route path="/product/17" element={<ProductDetail17 />} />
+      <Route path="/" element={<Page><HomePage onAddToCart={addToCart} /></Page>} />
+      <Route path="/catalog" element={<Page><CatalogPage onAddToCart={addToCart} /></Page>} />
+      <Route path="/print-calculator" element={<Page><PrintCalculatorPage /></Page>} />
+      <Route path="/reviews" element={<Page><ReviewsPage /></Page>} />
+      <Route path="/delivery" element={<Page><DeliveryPage /></Page>} />
+      <Route path="/about" element={<Page><AboutPage /></Page>} />
+      <Route path="/contacts" element={<Page><ContactsPage /></Page>} />
+      <Route path="/wholesale" element={<Page><WholesalePage /></Page>} />
+      <Route path="/privacy" element={<Page><LegalPage type="privacy" /></Page>} />
+      <Route path="/offer" element={<Page><LegalPage type="offer" /></Page>} />
+      <Route path="/returns" element={<Page><LegalPage type="returns" /></Page>} />
+      <Route path="/profile" element={<Page><ProfilePage /></Page>} />
+      {PRODUCT_PAGES.map((Component, i) => (
+        <Route key={i + 1} path={`/product/${i + 1}`} element={<Page><Component /></Page>} />
+      ))}
       <Route path="/admin" element={<AdminPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
@@ -136,7 +85,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AppContent />
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

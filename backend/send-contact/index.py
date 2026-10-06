@@ -1,5 +1,6 @@
 import json  # v2
 import os
+import html as htmllib
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -21,6 +22,8 @@ def handler(event: dict, context) -> dict:
     email = body.get('email', '').strip()
     subject = body.get('subject', '').strip()
     message = body.get('message', '').strip()
+    phone = body.get('phone', '').strip()
+    company = body.get('company', '').strip()
 
     if not name or not email:
         return {
@@ -41,12 +44,15 @@ def handler(event: dict, context) -> dict:
     msg['To'] = to_email
     msg['Reply-To'] = email
 
+    esc = lambda v: htmllib.escape(v) if v else ''
     html = f"""
     <h2>Новая заявка с сайта Полимер-проект</h2>
-    <p><strong>Имя:</strong> {name}</p>
-    <p><strong>Email:</strong> {email}</p>
-    <p><strong>Тема:</strong> {subject or 'Не указана'}</p>
-    <p><strong>Сообщение:</strong><br>{message or 'Не указано'}</p>
+    <p><strong>Имя:</strong> {esc(name)}</p>
+    <p><strong>Организация:</strong> {esc(company) or 'Не указана'}</p>
+    <p><strong>Email:</strong> {esc(email)}</p>
+    <p><strong>Телефон:</strong> {esc(phone) or 'Не указан'}</p>
+    <p><strong>Тема:</strong> {esc(subject) or 'Не указана'}</p>
+    <p><strong>Сообщение:</strong><br>{esc(message) or 'Не указано'}</p>
     """
     msg.attach(MIMEText(html, 'html', 'utf-8'))
 

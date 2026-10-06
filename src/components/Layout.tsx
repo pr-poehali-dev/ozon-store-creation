@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
@@ -25,6 +25,7 @@ const NAV_ITEMS = [
   { path: '/', label: 'Главная' },
   { path: '/catalog', label: 'Каталог' },
   { path: '/print-calculator', label: 'Печать на заказ' },
+  { path: '/wholesale', label: 'Опт' },
   { path: '/reviews', label: 'Отзывы' },
   { path: '/delivery', label: 'Доставка' },
   { path: '/about', label: 'О магазине' },
@@ -473,7 +474,14 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
                 </Button>
               </a>
             </div>
-            <p className="text-sm text-muted-foreground">© 2026 Полимер-проект. Все права защищены.</p>
+            <div className="flex flex-col items-center sm:items-end gap-2">
+              <div className="flex items-center gap-4 text-xs text-muted-foreground flex-wrap justify-center">
+                <Link to="/privacy" className="hover:text-foreground transition-colors">Политика конфиденциальности</Link>
+                <Link to="/offer" className="hover:text-foreground transition-colors">Оферта</Link>
+                <Link to="/returns" className="hover:text-foreground transition-colors">Возврат и обмен</Link>
+              </div>
+              <p className="text-sm text-muted-foreground">© 2026 Полимер-проект. Все права защищены.</p>
+            </div>
           </div>
         </div>
       </footer>
