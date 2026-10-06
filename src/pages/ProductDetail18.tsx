@@ -8,8 +8,6 @@ import Icon from '@/components/ui/icon';
 import { useCart } from '@/context/CartContext';
 import { mockProducts } from '@/data/products';
 import { toast } from 'sonner';
-import yandexStand1 from '@/assets/products/yandex-stand-1.jpg';
-import yandexStand2 from '@/assets/products/yandex-stand-2.jpg';
 
 interface ProductDetail {
   id: number;
@@ -28,48 +26,41 @@ interface ProductDetail {
 }
 
 const productData: ProductDetail = {
-  id: 17,
-  sku: '07020017',
-  name: 'Подставка под Яндекс-станцию',
-  price: 450,
-  images: [
-    yandexStand1,
-    yandexStand2,
-  ],
+  id: 18,
+  sku: '07020018',
+  name: 'Подставка под Яндекс Станцию универсальная',
+  price: 1000,
+  images: ['/placeholder.svg'],
   category: 'Для дома',
   rating: 5.0,
   reviews: 0,
   inStock: true,
   madeIn: 'Россия',
-  description: `Подставка под Яндекс-станцию
+  description: `Подставка под Яндекс Станцию универсальная
 
-Компактная и практичная подставка обеспечивает удобное расположение устройства в зоне слышимости и видимости. Легкая конструкция легко адаптируется к любому интерьеру, сохраняя эргономическую высоту для комфортного взаимодействия со смарт-устройством.
+Аккуратная подставка поднимает колонку на удобную высоту: звук раскрывается лучше, а голосовой помощник уверенно слышит команды из любой точки комнаты.
 
-Создана для надёжной фиксации техники любого формата, исключая скатывание или перекос. Минимальный занимаемый объем идеально подходит для маленьких помещений или рабочих поверхностей.
+Универсальная конструкция надёжно фиксирует устройство, не даёт ему скатываться и перекашиваться. Компактные размеры подходят для рабочего стола, прикроватной тумбы или кухонной полки.
 
-Прочный материал гарантирует долгий срок службы даже при ежедневном использовании.
+Изготовлена из прочного полимерного материала методом 3D-печати: лёгкая, устойчивая и рассчитана на ежедневное использование.
 
-Эта подставка станет стильным дополнением к вашему умному дому, сочетая функциональность и современный внешний вид.`,
+Лаконичный дизайн вписывается в любой интерьер и становится стильным дополнением умного дома.`,
   features: [
-    '🎨 Стильный дизайн «курьи ножки»',
+    '🗣️ Поднимает колонку в зону лучшей слышимости',
     '⚖️ Устойчивая подставка — исключает скатывание и перекос',
-    '🗣️ Идеально для Алисы и других смарт-колонок',
-    '✨ Уникальный аксессуар интерьера',
-    '📐 Универсальная модель для 5 моделей Яндекс-станций',
-    '🏠 Минимальный объём — подходит для любых поверхностей',
-    '💪 Прочный материал для долгого срока службы'
+    '📐 Универсальная конструкция',
+    '🏠 Компактные размеры — подходит для любых поверхностей',
+    '💪 Прочный полимер для долгого срока службы'
   ],
   specifications: [
     { label: 'Материал', value: 'Высококачественный полимер' },
-    { label: 'Совместимость', value: 'Станция Лайт, Лайт 2, Мини, Мини 3, Миди' },
-    { label: 'Дизайн', value: '«Курьи ножки»' },
+    { label: 'Технология', value: '3D-печать' },
     { label: 'Назначение', value: 'Настольная подставка под умную колонку' },
-    { label: 'Производство', value: 'Россия' },
-    { label: 'Гарантия', value: 'Без гарантии' }
+    { label: 'Производство', value: 'Россия' }
   ]
 };
 
-const ProductDetail17 = () => {
+const ProductDetail18 = () => {
   const { addToCart } = useCart();
   const handleAddToCart = () => {
     const catalogProduct = mockProducts.find(p => p.id === productData.id);
@@ -83,9 +74,9 @@ const ProductDetail17 = () => {
   return (
     <div className="bg-gradient-to-b from-background to-muted/20">
       <Helmet>
-        <title>Подставка под Яндекс-станцию — Полимер-проект</title>
-        <meta name="description" content="Подставка под Яндекс-станцию. Цена: 450₽. Универсальная модель для 5 моделей колонок. Доставка по России." />
-        <link rel="canonical" href="https://proekt-polimer.ru/product/17" />
+        <title>Подставка под Яндекс Станцию универсальная — Полимер-проект</title>
+        <meta name="description" content="Подставка под Яндекс Станцию универсальная. Цена: 1000₽. Устойчивая подставка из прочного полимера. Доставка по России." />
+        <link rel="canonical" href="https://proekt-polimer.ru/product/18" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Product",
@@ -95,7 +86,7 @@ const ProductDetail17 = () => {
           "brand": { "@type": "Brand", "name": "Полимер-проект" },
           "offers": {
             "@type": "Offer",
-            "url": "https://proekt-polimer.ru/product/17",
+            "url": "https://proekt-polimer.ru/product/18",
             "priceCurrency": "RUB",
             "price": productData.price,
             "availability": "https://schema.org/InStock",
@@ -108,7 +99,7 @@ const ProductDetail17 = () => {
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://proekt-polimer.ru/" },
             { "@type": "ListItem", "position": 2, "name": "Каталог", "item": "https://proekt-polimer.ru/catalog" },
-            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/17" }
+            { "@type": "ListItem", "position": 3, "name": productData.name, "item": "https://proekt-polimer.ru/product/18" }
           ]
         })}</script>
       </Helmet>
@@ -300,4 +291,4 @@ const ProductDetail17 = () => {
   );
 };
 
-export default ProductDetail17;
+export default ProductDetail18;

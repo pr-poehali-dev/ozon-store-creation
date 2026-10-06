@@ -34,6 +34,7 @@ import ProductDetail14 from "./pages/ProductDetail14";
 import ProductDetail15 from "./pages/ProductDetail15";
 import ProductDetail16 from "./pages/ProductDetail16";
 import ProductDetail17 from "./pages/ProductDetail17";
+import ProductDetail18 from "./pages/ProductDetail18";
 import NotFound from "./pages/NotFound";
 import AdminPage from "./pages/AdminPage";
 
@@ -42,7 +43,7 @@ const queryClient = new QueryClient();
 const PRODUCT_PAGES = [
   ProductDetail, ProductDetail2, ProductDetail3, ProductDetail4, ProductDetail5, ProductDetail6,
   ProductDetail7, ProductDetail8, ProductDetail9, ProductDetail10, ProductDetail11, ProductDetail12,
-  ProductDetail13, ProductDetail14, ProductDetail15, ProductDetail16, ProductDetail17,
+  ProductDetail13, ProductDetail14, ProductDetail15, ProductDetail16, ProductDetail17, ProductDetail18,
 ];
 
 const Page = ({ children }: { children: ReactNode }) => {

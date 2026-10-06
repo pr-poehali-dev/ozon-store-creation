@@ -1,0 +1,2 @@
+UPDATE t_p37034511_ozon_store_creation.products SET price = 450 WHERE id = 17;
+INSERT INTO t_p37034511_ozon_store_creation.products (id, name, price, active) VALUES (18, 'Подставка под Яндекс Станцию универсальная', 1000, TRUE) ON CONFLICT (id) DO UPDATE SET name = EXCLUDED.name, price = EXCLUDED.price, active = TRUE;
