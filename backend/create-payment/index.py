@@ -7,7 +7,6 @@ import urllib.error
 import psycopg2
 
 SCHEMA = os.environ.get('MAIN_DB_SCHEMA', 't_p37034511_ozon_store_creation')
-MIN_ORDER = 25000
 MAX_QTY = 1000
 RETURN_URL = 'https://proekt-polimer.ru/payment-success'
 
@@ -60,8 +59,6 @@ def handler(event: dict, context) -> dict:
         return reply(400, {'error': 'Некорректный состав заказа'})
 
     total = sum(i['price'] * i['quantity'] for i in items)
-    if total < MIN_ORDER:
-        return reply(400, {'error': 'Минимальный заказ 25 000 ₽'})
 
     shop_id = os.environ.get('YOOKASSA_SHOP_ID')
     secret_key = os.environ.get('YOOKASSA_SECRET_KEY')

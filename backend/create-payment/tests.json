@@ -14,17 +14,31 @@
       "expectedStatus": 400
     },
     {
-      "name": "Сумма от клиента игнорируется, заказ меньше минимума",
-      "method": "POST",
-      "path": "/",
-      "body": {"amount": 999999, "items": [{"id": 12, "quantity": 1, "price": 99999}]},
-      "expectedStatus": 400
-    },
-    {
       "name": "Несуществующий товар",
       "method": "POST",
       "path": "/",
-      "body": {"items": [{"id": 99999, "quantity": 1}]},
+      "body": {
+        "items": [
+          {
+            "id": 99999,
+            "quantity": 1
+          }
+        ]
+      },
+      "expectedStatus": 400
+    },
+    {
+      "name": "Некорректное количество",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "items": [
+          {
+            "id": 12,
+            "quantity": 0
+          }
+        ]
+      },
       "expectedStatus": 400
     }
   ]

@@ -9,7 +9,6 @@ from email.mime.multipart import MIMEMultipart
 
 SCHEMA = os.environ.get('MAIN_DB_SCHEMA', 't_p37034511_ozon_store_creation')
 ADMIN_USER_ID = 0
-MIN_ORDER = 25000
 MAX_QTY = 1000
 DELIVERY_LABELS = {
     'courier': 'Курьер',
@@ -186,9 +185,6 @@ def handler(event: dict, context) -> dict:
         return reply(400, {'error': 'Некорректный состав заказа'})
 
     total = sum(i['price'] * i['quantity'] for i in items)
-    if total < MIN_ORDER:
-        cur.close(); conn.close()
-        return reply(400, {'error': 'Минимальный заказ 25 000 ₽'})
 
     user_id = session_user if session_user not in (None, ADMIN_USER_ID) else None
 

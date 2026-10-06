@@ -14,10 +14,21 @@
       "expectedStatus": 400
     },
     {
-      "name": "Цены от клиента не принимаются, заказ ниже минимума",
+      "name": "Несуществующий товар",
       "method": "POST",
       "path": "/",
-      "body": {"name": "Тест", "phone": "+79990000000", "email": "t@example.com", "delivery": "pickup", "total": 1, "items": [{"id": 12, "quantity": 1, "price": 1}]},
+      "body": {
+        "name": "Тест",
+        "phone": "+79990000000",
+        "email": "t@example.com",
+        "delivery": "pickup",
+        "items": [
+          {
+            "id": 99999,
+            "quantity": 1
+          }
+        ]
+      },
       "expectedStatus": 400
     },
     {
@@ -33,17 +44,22 @@
       "expectedStatus": 401
     },
     {
-      "name": "GET со старым паролем админа в заголовке — 401",
+      "name": "GET со старым паролем админа — 401",
       "method": "GET",
       "path": "/",
-      "headers": {"X-Admin-Token": "polimer-admin-2024"},
+      "headers": {
+        "X-Admin-Token": "polimer-admin-2024"
+      },
       "expectedStatus": 401
     },
     {
       "name": "PUT без токена — 401",
       "method": "PUT",
       "path": "/",
-      "body": {"id": 1, "status": "shipped"},
+      "body": {
+        "id": 1,
+        "status": "shipped"
+      },
       "expectedStatus": 401
     }
   ]

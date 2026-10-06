@@ -33,8 +33,6 @@ const NAV_ITEMS = [
   { path: '/contacts', label: 'Контакты' },
 ];
 
-const MIN_ORDER = 25000;
-
 const DELIVERY_OPTIONS = [
   { value: 'courier', label: 'Курьером по Санкт-Петербургу' },
   { value: 'sdek', label: 'СДЭК (по России)' },
@@ -72,7 +70,6 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
 
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const canCheckout = totalPrice >= MIN_ORDER;
 
   const handleSheetOpenChange = (open: boolean) => {
     if (!open) {
@@ -244,15 +241,9 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
                               <span>Итого:</span>
                               <span className="text-primary">{totalPrice.toLocaleString()} ₽</span>
                             </div>
-                            {!canCheckout && (
-                              <p className="text-sm text-red-500 text-center">
-                                Минимальный заказ — 25 000 ₽. Ещё {(MIN_ORDER - totalPrice).toLocaleString()} ₽
-                              </p>
-                            )}
                             <Button
                               className="w-full"
                               size="lg"
-                              disabled={!canCheckout}
                               onClick={() => setStep('order')}
                             >
                               Оформить заказ
