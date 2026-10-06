@@ -65,6 +65,8 @@ def handler(event: dict, context) -> dict:
     if not shop_id or not secret_key:
         print('[CONFIG] не заданы YOOKASSA_SHOP_ID / YOOKASSA_SECRET_KEY')
         return reply(500, {'error': 'Оплата временно недоступна'})
+    shop_id = shop_id.strip()
+    secret_key = secret_key.strip()
     credentials = base64.b64encode(f'{shop_id}:{secret_key}'.encode()).decode()
 
     receipt_items = [
@@ -109,8 +111,29 @@ def handler(event: dict, context) -> dict:
         with urllib.request.urlopen(req, timeout=15) as resp:
             result = json.loads(resp.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
-        print(f'[YOOKASSA ERROR] code={e.code} body={e.read().decode("utf-8")}')
-        return reply(502, {'error': 'Не удалось создать платёж. Попробуйте позже или выберите другой способ.'})
+        raw = e.read().decode('utf-8')
+        try:
+            err = json.loads(raw)
+        except ValueError:
+            err = {}
+        code = err.get('code', '')
+        if e.code in (401, 403) or code in ('invalid_credentials', 'forbidden'):
+            print('[YOOKASSA CONFIG] ЮKassa не приняла shopId/секретный ключ. Проверьте секреты YOOKASSA_SHOP_ID и YOOKASSA_SECRET_KEY: значения без пробелов, ключ действующий, магазин активен.')
+            return reply(503, {
+                'error': 'Онлайн-оплата временно недоступна. Вы можете оформить заказ без оплаты, и мы свяжемся с вами.',
+                'code': 'payment_unavailable',
+            })
+        print(f'[YOOKASSA ERROR] http={e.code} code={code} description={err.get("description", raw[:300])}')
+        return reply(502, {
+            'error': 'Не удалось создать платёж. Попробуйте ещё раз или оформите заказ без оплаты.',
+            'code': 'payment_failed',
+        })
+    except (urllib.error.URLError, TimeoutError) as e:
+        print(f'[YOOKASSA NETWORK] {e}')
+        return reply(502, {
+            'error': 'Платёжный сервис не отвечает. Попробуйте ещё раз или оформите заказ без оплаты.',
+            'code': 'payment_failed',
+        })
 
     return reply(200, {
         'confirmation_url': result['confirmation']['confirmation_url'],

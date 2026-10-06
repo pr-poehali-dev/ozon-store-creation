@@ -132,7 +132,7 @@ const Layout = ({ children, cart, onUpdateQuantity, onRemoveFromCart }: LayoutPr
       if (data.confirmation_url) {
         window.location.href = data.confirmation_url;
       } else {
-        alert(data.error || 'Не удалось создать платёж. Попробуйте ещё раз или выберите оплату при получении.');
+        alert(data.error || 'Не удалось создать платёж. Попробуйте ещё раз или оформите заказ без оплаты.');
       }
     } catch {
       alert('Ошибка соединения. Попробуйте ещё раз.');
