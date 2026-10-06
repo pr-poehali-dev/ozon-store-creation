@@ -115,8 +115,7 @@ export const renderPage = (template, page) => {
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(page.title)}</title>`)
     .replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${esc(page.description)}">`)
-    .replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${url}">`)
-    .replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${url}">`)
+    .replace('</head>', `<link rel="canonical" href="${url}">\n<meta property="og:url" content="${url}">\n</head>`)
     .replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${esc(page.title)}">`)
     .replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${esc(page.description)}">`)
     .replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${esc(page.title)}">`)
